@@ -1,0 +1,8 @@
+# Comparison to other software  {#comparison}
+
+Other software tools that can do population approach modeling are `NONMEM`, 'Lixoft', `Phoenix', ... .
+
+An `nlmixr` comparison to NONMEM is documented on posters presented at `PAGE` and `ACoP`.
+
+
+**We could write out a more elaborate version of the method of comparison**

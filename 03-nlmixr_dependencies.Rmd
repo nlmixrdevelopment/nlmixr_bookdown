@@ -1,0 +1,14 @@
+# nlmixr dependencies  {#dependencies}
+
+There are several packages and pieces of software that together make sure you can use 'nlmixr`.
+
+These packages and software are:
+- Python
+- R
+- RStudio
+- ...
+
+
+
+
+
