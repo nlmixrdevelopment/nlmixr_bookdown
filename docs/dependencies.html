@@ -6,26 +6,26 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>nlmixr: an R package for population PKPD modeling</title>
-  <meta name="description" content="This is the start of setting up a bookdown for nlmixr">
+  <meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
   <meta name="generator" content="bookdown 0.5.10 and GitBook 2.6.7">
 
   <meta property="og:title" content="nlmixr: an R package for population PKPD modeling" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="This is the start of setting up a bookdown for nlmixr" />
+  <meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
   
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="nlmixr: an R package for population PKPD modeling" />
   
-  <meta name="twitter:description" content="This is the start of setting up a bookdown for nlmixr" />
+  <meta name="twitter:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
   
 
-<meta name="author" content="Teun Post, Richard Hooijmaijers, Matthew Fidler, Yuan Xiong, Rik Schoemaker, Justin Wilkins, Mirjam Trame, Wenping Wang">
+<meta name="author" content="Teun Post, Richard Hooijmaijers, Matthew Fidler, Yuan Xiong, Rik Schoemaker, Justin Wilkins, Mirjam Trame and Wenping Wang">
 
 
-<meta name="date" content="2018-01-09">
+<meta name="date" content="2018-02-09">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -100,12 +100,17 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">nlmixr book</a></li>
+<li><a href="./">nlmixr User's guide and Reference Manual</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to population modeling with R</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-this-book"><i class="fa fa-check"></i>About this book</a></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+</ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#introduction-to-nlmixr"><i class="fa fa-check"></i><b>1.1</b> Introduction to <code>nlmixr</code></a></li>
+<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#prereq"><i class="fa fa-check"></i><b>1.1</b> prerequisites</a></li>
+<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#workflow"><i class="fa fa-check"></i><b>1.2</b> workflow</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Installation of nlmixr</a><ul>
 <li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html#windows-installer"><i class="fa fa-check"></i><b>2.1</b> Windows installer</a></li>
@@ -149,6 +154,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 3</span> nlmixr dependencies</h1>
 <p>There are several packages and pieces of software that together make sure you can use ’nlmixr`.</p>
 <p>These packages and software are: - Python - R - RStudio - …</p>
+<p>Under the hood <code>nlmixr</code> has five main modules:</p>
+<ol style="list-style-type: decimal">
+<li><code>dynmodel()</code> and its mcmc cousin <code>dynmodel.mcmc()</code> for nonlinear dynamic models of individual data;</li>
+<li><code>nlme_lin_cmpt()</code>for one to three linear compartment models of population data with first order absorption, or i.v. bolus, or i.v. infusion using the nlme algorithm;</li>
+<li><code>nlme_ode()</code> for general dynamic models defined by ordinary differential equations (ODEs) of population data using the nlme algorithm;</li>
+<li><code>saem_fit</code> for general dynamic models defined by ordinary differential equations (ODEs) of population data by the Stochastic Approximation Expectation-Maximization (SAEM) algorithm;<br />
+</li>
+<li><code>gnlmm</code> for generalized non-linear mixed-models (possibly defined by ordinary differential equations) of population data by the adaptive Gaussian quadrature algorithm.</li>
+</ol>
 
 </div>
             </section>
@@ -170,16 +184,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"google": false,
-"weibo": false,
-"instapper": false,
-"vk": false,
-"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
-},
+"sharing": null,
 "fontsettings": {
 "theme": "white",
 "family": "sans",
@@ -189,7 +194,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["nlmixr_bookdown.pdf", "nlmixr_bookdown.epub"],
+"download": null,
 "toc": {
 "collapse": "subsection"
 }

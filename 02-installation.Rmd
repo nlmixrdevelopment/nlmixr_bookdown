@@ -1,15 +1,16 @@
-# Installation of nlmixr  {#install}
+# Installation  {#install}
 
 **Needs rewrite because of the `CRAN` versions of `RxODE` and `nlmixr`**
 
 `nlmixr` can be used on several platforms. The installation can be easy to challenging depending on the platform. We are in the process of making sure the installation works every time. Any help or suggestions are appreciated !
 
 
-## Windows installer
+## `nlmixr`
+### Windows installer
 For those not interested in customized installation on Windows, we **recommend** you download a Windows installer for your platform from the following link:
  https://github.com/nlmixrdevelopment/nlmixr/releases/tag/v0.9.0-2
 
-## Installation on Windows
+### Installation on Windows
 To replicate the environment that was used in Windows for `nlmixr` development, you will need administrator rights, and you should perform the following steps:
 
 1. Install R 3.4.1 (or later) from the R website.
@@ -62,7 +63,7 @@ To replicate the environment that was used in Windows for `nlmixr` development, 
    - Load `devtools` again using `library(devtools)`
    - Install `nlmixr` by running `install_github("nlmixrdevelopment/nlmixr")`
 
-## Installation on Linux
+### Installation on Linux
 Instructions for Ubuntu-alike distributions are given here (specifically, [Ubuntu 16.04 Xenial Xerus](http://releases.ubuntu.com/16.04/)), but all current Linux distributions are supported, in principle.
 
 1. Install R 3.4.1 (or later) from an appropriate repository (Ubuntu Xenial shown below, based on instructions provided [here](https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-16-04-2)).
@@ -96,7 +97,7 @@ Instructions for Ubuntu-alike distributions are given here (specifically, [Ubunt
 6. Install `nlmixr`.
    - This can be done by `install_github("nlmixrdevelopment/nlmixr")`
  
-## Installation on macOS
+### Installation on macOS
 Instructions for macOS 10.12 Sierra are provided here. They should be broadly extensible to all recent releases of macOS, however.
 
 1. Install R 3.4.1 (or later) from the R website.
@@ -129,3 +130,9 @@ Instructions for macOS 10.12 Sierra are provided here. They should be broadly ex
      correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.)
 7. Install `nlmixr`.
    - This can be done by `install_github("nlmixrdevelopment/nlmixr")`
+
+
+
+## `ShinyMixR`
+Installation of the interface
+

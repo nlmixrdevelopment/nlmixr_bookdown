@@ -1,20 +1,45 @@
-# Introduction {#intro}
+<!-- Preface -->
 
-There are several software packages that can do population PKPD modeling.
-...
+# Preface {-}
+In pharmacometrics there are several population pharmacokinetic and pharmacodynamic modeling software packages.
 
-`nlmixr` is an R package for fitting general dynamic models, pharmacokinetic (PK) models and pharmacokinetic-pharmacodynamic (PKPD) models in particular, with either individual data or population data. The interesting part about `nlmixr` is that it is open-source and the whole workflow of modeling can be done solely in R !
+We developed the `nlmixr` R package for fitting general dynamic models, pharmacokinetic (PK) models and pharmacokinetic-pharmacodynamic (PKPD) models in particular, with either individual data or population data. The interesting part about `nlmixr` is that it is open-source and the whole workflow of modeling can be done solely in R !
 
-## Introduction to `nlmixr`
+## About this book {-}
+This book provides user's guidance to `nlmixr` and serves as a first reference manual, without the intent to cover every aspect of modeling or `nlmixr`.
 
-Under the hood `nlmixr` has five main modules:  
-
-1. `dynmodel()` and its mcmc cousin `dynmodel.mcmc()` for nonlinear dynamic models of individual data; 
-2. `nlme_lin_cmpt()`for one to three linear compartment models of population data with first order absorption, or i.v. bolus, or i.v. infusion using the nlme algorithm; 
-3. `nlme_ode()` for general dynamic models defined by ordinary differential equations (ODEs) of population data using the nlme algorithm; 
-4. `saem_fit` for general dynamic models defined by ordinary differential equations (ODEs) of population data by the Stochastic Approximation Expectation-Maximization (SAEM) algorithm;  
-5. `gnlmm` for generalized non-linear mixed-models (possibly defined by ordinary differential equations) of population data by the adaptive Gaussian quadrature algorithm.
-
-
+We assume readers have a background in pharmacometric modeling and know how to use R.
 
 The installation is described in Chapter \@ref(install). A comparison to other software in made in Chapter \@ref(comparison).
+
+## Acknowledgements {-}
+We are thankful for the time people are willing to spend on this project. There have been many interactions and contributions on GitHub. We would like to thank ... .
+
+
+
+<!-- First chapter -->
+# Introduction {#intro}
+## Prerequisites {#prereq}
+There are several packages and pieces of software that together make sure you can use 'nlmixr`.
+
+These packages and software are:
+
+- [R](https://cran.r-project.org/) (and related GUIs, such as RGui and [Rstudio](https://www.rstudio.com/))
+- [Python](https://www.python.org/)
+- [RxODE](https://cran.r-project.org/web/packages/RxODE/index.html)
+- [nlmixr](https://cran.r-project.org/web/packages/nlmixr/index.html)
+- ShinyMixR
+
+
+## Workflow {#workflow}
+The ability to perform population modeling in R provides an opportunity to work via a single unified workflow for data management, data exploration, data analysis and report writing. 
+
+`ShinyMixR` aims to provide a user-friendly tool for `nlmixr` based on [`Shiny`](https://shiny.rstudio.com/), which would facilitate a workflow around an `nlmixr` project. It is build as a project-centric, instead of interface-centric, workflow around `nlmixr` from the `R` command line and from a streamlined `Shiny` application. The [`shinydashboard`](https://cran.r-project.org/web/packages/shinydashboard/shinydashboard.pdf) package provides a layer on top of `Shiny` to produce an easy-to-use dashboard which can be used for controlling and tracking runs with an nlmixr project, and was the basis for setting up the modular interface.
+
+This project tool was enhances the usability and attractiveness of `nlmixr`, facilitating dynamic and interactive use in real-time for rapid model development. In this project-oriented structure, the command line and dashboard can be used independently and/or interdependently.
+
+Using the `ShinyMixR`, the user specifies and controls an `nlmixr` project workflow entirely in `R`. Within a project folder, a structure can be created to include separate folders for models, data and runs. Functionality is available to edit and run model code, summarize and compare model outputs in a tabular fashion, and view model development using a tree paradigm. Inputs, outputs and metadata are stored in relation to the model code within the project structure (a discrete R object) to ensure traceability. 
+
+Results are visualized by using modifications of existing packages (such as [`xpose.nlmixr`](https://github.com/nlmixrdevelopment/xpose.nlmixr), user-written functions and packages, or pre-existing plotting functionality included in the `ShinyMixR` package. Results are reported using the [R3port](https://github.com/RichardHooijmaijers/R3port) package in pdf and html format.
+
+More on the use of `ShinyMixR` in Chapter \@ref(interface).
