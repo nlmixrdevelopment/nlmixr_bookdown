@@ -1,6 +1,6 @@
 # `nlmixr` vignettes  {#vignettes}
 
-Some _significant_ applications are demonstrated in this chapter; the vignettes will be discussed in more depth.
+Some _significant_ applications are demonstrated in this chapter; the vignettes will be discussing the application in in more depth.
 
 
 
@@ -9,7 +9,25 @@ Some _significant_ applications are demonstrated in this chapter; the vignettes 
 
 ## `ShinyMixR` - project-centric interface {#interface}
 
-The `nlmixr` package can be accessed through command line in `RStudio` and through an interface `NAME` supported by the `nlmixr` Team. Both command line and interface support the integration with `xpose.nlmixr`.
+The `nlmixr` package can be accessed through command line in `RStudio` and through an interface `ShinyMixR` supported by the `nlmixr` team. Both command line and interface support the integration with `xpose.nlmixr`.
+
+
+`ShinyMixR` aims to provide a user-friendly tool for `nlmixr` based on [`Shiny`](https://shiny.rstudio.com/), which facilitates a workflow around an `nlmixr` project. It is build as a project-centric, instead of interface-centric, workflow around `nlmixr` from the `R` command line and from a streamlined `Shiny` application. The [`shinydashboard`](https://cran.r-project.org/web/packages/shinydashboard/shinydashboard.pdf) package was used to set up a structure for controlling and tracking runs with an nlmixr project, and was the basis for setting up the modular interface.
+
+This project tool enhances the usability and attractiveness of `nlmixr`, facilitating dynamic and interactive use in real-time for rapid model development. In this project-oriented structure, the command line and dashboard can be used independently and/or interdependently.
+
+Using the `ShinyMixR`, the user specifies and controls an `nlmixr` project workflow entirely in `R`. Within a project folder, a structure can be created to include separate folders for models, data and runs. Functionality is available to edit and run model code, summarize and compare model outputs in a tabular fashion, and view model development using a tree paradigm. Inputs, outputs and metadata are stored in relation to the model code within the project structure (a discrete R object) to ensure traceability. 
+
+Results are visualized by using modifications of existing packages (such as [`xpose.nlmixr`](https://github.com/nlmixrdevelopment/xpose.nlmixr), user-written functions and packages, or pre-existing plotting functionality included in the `ShinyMixR` package. Results are reported using the [R3port](https://github.com/RichardHooijmaijers/R3port) package in pdf and html format.
+
+
+An introduction on how to use the `ShinyMixR` interface can be found [here](https://richardhooijmaijers.github.io/shinyMixR/index.html). To get started, first install the package and use the library.
+
+```{r eval=FALSE}
+library(shinyMixR,quietly = TRUE)
+```
+
+
 
 
 ```{r eval=FALSE}

@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>nlmixr: an R package for population PKPD modeling</title>
   <meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
-  <meta name="generator" content="bookdown 0.5.10 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.6 and GitBook 2.6.7">
 
   <meta property="og:title" content="nlmixr: an R package for population PKPD modeling" />
   <meta property="og:type" content="book" />
@@ -25,7 +25,7 @@
 <meta name="author" content="Teun Post, Richard Hooijmaijers, Matthew Fidler, Yuan Xiong, Rik Schoemaker, Justin Wilkins, Mirjam Trame and Wenping Wang">
 
 
-<meta name="date" content="2018-02-09">
+<meta name="date" content="2018-03-07">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -119,7 +119,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.3" data-path="install.html"><a href="install.html#installation-on-linux"><i class="fa fa-check"></i><b>2.1.3</b> Installation on Linux</a></li>
 <li class="chapter" data-level="2.1.4" data-path="install.html"><a href="install.html#installation-on-macos"><i class="fa fa-check"></i><b>2.1.4</b> Installation on macOS</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="install.html"><a href="install.html#shinymixr"><i class="fa fa-check"></i><b>2.2</b> <code>ShinyMixR</code></a></li>
+<li class="chapter" data-level="2.2" data-path="install.html"><a href="install.html#shinymixr-project-management-tool-for-nlmixr"><i class="fa fa-check"></i><b>2.2</b> <code>ShinyMixR</code>: project management tool for <code>nlmixr</code></a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="vignettes.html"><a href="vignettes.html"><i class="fa fa-check"></i><b>3</b> <code>nlmixr</code> vignettes</a><ul>
 <li class="chapter" data-level="3.1" data-path="vignettes.html"><a href="vignettes.html#interface"><i class="fa fa-check"></i><b>3.1</b> <code>ShinyMixR</code> - project-centric interface</a></li>
@@ -157,10 +157,16 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
             <section class="normal" id="section-">
 <div id="vignettes" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> <code>nlmixr</code> vignettes</h1>
-<p>Some <em>significant</em> applications are demonstrated in this chapter; the vignettes will be discussed in more depth.</p>
+<p>Some <em>significant</em> applications are demonstrated in this chapter; the vignettes will be discussing the application in in more depth.</p>
 <div id="interface" class="section level2">
 <h2><span class="header-section-number">3.1</span> <code>ShinyMixR</code> - project-centric interface</h2>
-<p>The <code>nlmixr</code> package can be accessed through command line in <code>RStudio</code> and through an interface <code>NAME</code> supported by the <code>nlmixr</code> Team. Both command line and interface support the integration with <code>xpose.nlmixr</code>.</p>
+<p>The <code>nlmixr</code> package can be accessed through command line in <code>RStudio</code> and through an interface <code>ShinyMixR</code> supported by the <code>nlmixr</code> team. Both command line and interface support the integration with <code>xpose.nlmixr</code>.</p>
+<p><code>ShinyMixR</code> aims to provide a user-friendly tool for <code>nlmixr</code> based on <a href="https://shiny.rstudio.com/"><code>Shiny</code></a>, which facilitates a workflow around an <code>nlmixr</code> project. It is build as a project-centric, instead of interface-centric, workflow around <code>nlmixr</code> from the <code>R</code> command line and from a streamlined <code>Shiny</code> application. The <a href="https://cran.r-project.org/web/packages/shinydashboard/shinydashboard.pdf"><code>shinydashboard</code></a> package was used to set up a structure for controlling and tracking runs with an nlmixr project, and was the basis for setting up the modular interface.</p>
+<p>This project tool enhances the usability and attractiveness of <code>nlmixr</code>, facilitating dynamic and interactive use in real-time for rapid model development. In this project-oriented structure, the command line and dashboard can be used independently and/or interdependently.</p>
+<p>Using the <code>ShinyMixR</code>, the user specifies and controls an <code>nlmixr</code> project workflow entirely in <code>R</code>. Within a project folder, a structure can be created to include separate folders for models, data and runs. Functionality is available to edit and run model code, summarize and compare model outputs in a tabular fashion, and view model development using a tree paradigm. Inputs, outputs and metadata are stored in relation to the model code within the project structure (a discrete R object) to ensure traceability.</p>
+<p>Results are visualized by using modifications of existing packages (such as <a href="https://github.com/nlmixrdevelopment/xpose.nlmixr"><code>xpose.nlmixr</code></a>, user-written functions and packages, or pre-existing plotting functionality included in the <code>ShinyMixR</code> package. Results are reported using the <a href="https://github.com/RichardHooijmaijers/R3port">R3port</a> package in pdf and html format.</p>
+<p>An introduction on how to use the <code>ShinyMixR</code> interface can be found <a href="https://richardhooijmaijers.github.io/shinyMixR/index.html">here</a>. To get started, first install the package and use the library.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(shinyMixR,<span class="dt">quietly =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(nlmixr)
 <span class="kw">library</span>(xpose)
 <span class="kw">library</span>(xpose.nlmixr)</code></pre></div>

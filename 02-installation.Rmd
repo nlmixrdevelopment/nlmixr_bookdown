@@ -5,10 +5,15 @@
 `nlmixr` can be used on several platforms. The installation can be easy to challenging depending on the platform. We are in the process of making sure the installation works every time. Any help or suggestions are appreciated !
 
 
+
+<!-- Windows installer -->
+
 ## `nlmixr`
 ### Windows installer
-For those not interested in customized installation on Windows, we **recommend** you download a Windows installer for your platform from the following link:
- https://github.com/nlmixrdevelopment/nlmixr/releases/tag/v0.9.0-2
+For those not interested in customized installation on Windows, we **recommend** you download a Windows installer for your platform from the following [link](https://github.com/nlmixrdevelopment/nlmixr/releases/tag/v0.9.0-2)
+
+
+<!-- Windows installation -->
 
 ### Installation on Windows
 To replicate the environment that was used in Windows for `nlmixr` development, you will need administrator rights, and you should perform the following steps:
@@ -63,6 +68,10 @@ To replicate the environment that was used in Windows for `nlmixr` development, 
    - Load `devtools` again using `library(devtools)`
    - Install `nlmixr` by running `install_github("nlmixrdevelopment/nlmixr")`
 
+
+
+<!-- Linux installation -->
+
 ### Installation on Linux
 Instructions for Ubuntu-alike distributions are given here (specifically, [Ubuntu 16.04 Xenial Xerus](http://releases.ubuntu.com/16.04/)), but all current Linux distributions are supported, in principle.
 
@@ -97,42 +106,98 @@ Instructions for Ubuntu-alike distributions are given here (specifically, [Ubunt
 6. Install `nlmixr`.
    - This can be done by `install_github("nlmixrdevelopment/nlmixr")`
  
-### Installation on macOS
-Instructions for macOS 10.12 Sierra are provided here. They should be broadly extensible to all recent releases of macOS, however.
+ 
+ 
+ 
+<!-- macOS installation  -->
+ 
+<!-- ### Installation on macOS -->
+<!-- Instructions for macOS 10.12 Sierra are provided here. They should be broadly extensible to all recent releases of macOS, however. -->
 
-1. Install R 3.4.1 (or later) from the R website.
+<!-- 1. Install R 3.4.1 (or later) from the R website. -->
+<!--    - Download and install `R-3.4.1.pkg` (or later) from [CRAN](http://cran.r-project.org/bin/macosx/). -->
+<!-- 2. Install Python dependencies. -->
+<!--    - Install `pip` from the macOS terminal prompt: `sudo easy_install pip`. -->
+<!--    - Install `sympy` using `pip`: `sudo -H pip install sympy`. -->
+<!-- 3. Install `devtools` and dependencies. -->
+<!--    - This package is required to install packages from Github, amongst other things. -->
+<!--    - Install `devtools` from a clean R session by entering `install.packages("devtools")`. -->
+<!-- 4. In R, load `devtools` using `library(devtools)`. -->
+<!-- 5. Install build tools. -->
+<!--    - Install Xcode from the App Store.  -->
+<!--    - Read the license by entering the following at the macOS terminal: -->
+<!--      `sudo xcodebuild -license` -->
+<!--    - Scroll through it all, reading it carefully, and type `agree` at the end. (If you don't, you can't use `nlmixr` or anything else that requires compilation on macOS. Don't yell at us, yell at Apple.)  -->
+<!--    - Install `gfortran`: download the appropriate macOS installer from [here](https://gcc.gnu.org/wiki/GFortranBinaries) and run it. -->
+<!-- 6. Install `RxODE`. -->
+<!--    - Currently the new version of `RxODE` is in the process of being -->
+<!--      uploaded to CRAN.  `nlmixr` needs this newer version of `RxODE` to -->
+<!--      function correctly. To install this version, use the command: -->
+<!--      `install_github("nlmixrdevelopment/RxODE")`. -->
+<!--    - Install `SnakeCharmR` using `install_github("nlmixrdevelopment/SnakeCharmR")`. -->
+<!--    - Restart your R session. -->
+<!--    - As a quick test, you can make sure that R and Python can -->
+<!--      communicate by typing the command `library(SnakeCharmR)`. -->
+<!--    - To validate or test the installation of `RxODE` completely, you -->
+<!--      can type the following `library(RxODE); rxTest();` and it will -->
+<!--      run all of the unit tests in RxODE to make sure it is running -->
+<!--      correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.) -->
+<!-- 7. Install `nlmixr`. -->
+<!--    - This can be done by `install_github("nlmixrdevelopment/nlmixr")` -->
+
+
+### Installation on macOS
+Instructions for macOS 10.12 Sierra are provided here. They should be broadly extensible to all recent releases of macOS.
+
+The general logic is to first install any external software and then install the R packages.
+
+1. Check the Python version in the terminal: python --version. On maxOS the standard version is 2.7, which is used by `nlmixr`. If there are other versions of Python available, set the $PATH to the 2.7 version and/or remove other versions of Python, if possible (this step can be a challenge).
+2. Install R 3.4.1 (or later) from the R website.
    - Download and install `R-3.4.1.pkg` (or later) from [CRAN](http://cran.r-project.org/bin/macosx/).
-2. Install Python dependencies.
-   - Install `pip` from the macOS terminal prompt: `sudo easy_install pip`.
+3. Install Python dependencies.
+   - Install `pip` from the macOS or RStudio terminal prompt: `sudo easy_install pip`.
    - Install `sympy` using `pip`: `sudo -H pip install sympy`.
-3. Install `devtools` and dependencies.
-   - This package is required to install packages from Github, amongst other things.
-   - Install `devtools` from a clean R session by entering `install.packages("devtools")`.
-4. In R, load `devtools` using `library(devtools)`.
-5. Install build tools.
+4. Install build tools.
    - Install Xcode from the App Store. 
    - Read the license by entering the following at the macOS terminal:
      `sudo xcodebuild -license`
    - Scroll through it all, reading it carefully, and type `agree` at the end. (If you don't, you can't use `nlmixr` or anything else that requires compilation on macOS. Don't yell at us, yell at Apple.) 
-   - Install `gfortran`: download the appropriate macOS installer from [here](https://gcc.gnu.org/wiki/GFortranBinaries) and run it.
-6. Install `RxODE`.
+   - Install `gfortran`: download the appropriate macOS installer from [here](https://gcc.gnu.org/wiki/GFortranBinaries) and run it. Another option is to run the installation for the approriate macOS version from the terminal by typing: `brew cask install gfortran` to [automatically install the version of gfortran](https://twitter.com/opencpu/status/924608631110332421?s=03) on macOS needed by R from the Terminal (Mac or RStudio).
+
+Now install the R packages:
+
+5. Install `devtools` and dependencies.
+   - This package is required to install packages from Github, amongst other things.
+   - Install `devtools` from a clean R session by entering `install.packages("devtools")`.
+6. In R, load `devtools` using `library(devtools)`.
+7. Install `RxODE`.
    - Currently the new version of `RxODE` is in the process of being
      uploaded to CRAN.  `nlmixr` needs this newer version of `RxODE` to
      function correctly. To install this version, use the command:
-     `install_github("nlmixrdevelopment/RxODE")`.
+     `install_github("nlmixrdevelopment/RxODE")` or use `install.packages('RxODE')`.
    - Install `SnakeCharmR` using `install_github("nlmixrdevelopment/SnakeCharmR")`.
    - Restart your R session.
    - As a quick test, you can make sure that R and Python can
      communicate by typing the command `library(SnakeCharmR)`.
+   - SnakeCharmR wants to install the Python package sympy and the latest macOS version does not allow this (installation of packages cannot be done system wide and has to be done on user level). To do this, open the terminal (in macOS or Rstudio) and type: `pip install simpy --user` (the user flag is important !).
    - To validate or test the installation of `RxODE` completely, you
      can type the following `library(RxODE); rxTest();` and it will
      run all of the unit tests in RxODE to make sure it is running
      correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.)
-7. Install `nlmixr`.
-   - This can be done by `install_github("nlmixrdevelopment/nlmixr")`
+8. Install `nlmixr`.
+   - This can be done by `install_github("nlmixrdevelopment/nlmixr")` or `install.packages('nlmixr')`.
 
 
 
-## `ShinyMixR`
-Installation of the interface
+<!-- ShinyMixR -->
 
+## `ShinyMixR`: project management tool for `nlmixr`
+A user-friendly tool was developed for `nlmixr` based on [`Shiny`](http://shiny.rstudio.com/) and [`shinydashboards`](https://cran.r-project.org/web/packages/shinydashboard/shinydashboard.pdf), which facilitates a workflow around an `nlmixr` project.
+
+This `ShinyMixR` package provides a means to build a project-centric workflow around `nlmixr` from the R command line and from a streamlined Shiny application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of `ShinyMixR` in Chapter \@ref(interface).
+
+To install the package, use:
+
+```{r eval=FALSE}
+devtools::install_github("richardhooijmaijers/shinyMixR")
+```
