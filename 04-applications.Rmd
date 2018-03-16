@@ -13,7 +13,8 @@ Various posters were presented at different conferences where `nlmixr` was compa
 
 
 
-[link](https://github.com/nlmixrdevelopment/nlmixr_bookdown/poster/PosterACoP2016.pdf)
+[link](https://github.com/nlmixrdevelopment/nlmixr_bookdown/blob/master/posters/PosterACoP2016.pdf)
+
 
 
 **We could write out a more elaborate version of the method of comparison**
