@@ -7,25 +7,575 @@
 How can you run the examples from GitHub and what can you learn form these.
 
 
-
+<!-- ## Posters and Presentations -->
 ## Posters and Presentations
-Various posters were presented at different conferences where `nlmixr` was compared to `NONMEM`.
-
 
 ```{r echo=FALSE, results='hide'}
-file.copy("poster", "docs/poster", overwrite = TRUE)
+file.copy("posters", "docs/posters", overwrite = TRUE)
 ```
 
-[link](posters/PosterACoP2016.pdf)
+Various posters were presented at different conferences where `nlmixr` was compared to `NONMEM`. These findings provideevidence that nlmixr may provide a viable open-source parameter estimation alternative for fitting nonlinear mixed effects pharmacometric models within the R environment.
 
 
-**We could write out a more elaborate version of the method of comparison**
+<a href="posters/PosterACoP2016.pdf" target="_blank">PosterACoP2016</a>
+
+<a href="posters/PosterWCoP2016.pdf" target="_blank">PosterWCoP2016</a>
+
+<a href="posters/PosterACoP2017.pdf" target="_blank">PosterACoP2017</a>
+
+<a href="posters/PosterPAGE2017.pdf" target="_blank">PosterPAGE2017</a>
+
+`nlmixr` was presented at the 12th Pharmacometrics Network Benelux Meeting with the title: Simualtion (RxODE) and parameter estimation in `nlmixr`.
+
+<!-- ## Sparse Sampling -->
+## Sparse data analysis with `nlmixr`
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
+```
+
+## Examination of nlmixr estimation algorithm properties for sparse sample data
+
+The nlme and SAEM parameter estimation algorithms were compared with NONMEM FOCE-I in a sparse-sampling data setting. To this end, 10,000 patients were simulated after 7 doses with 24 hour intervals with doses split between 10, 30, 60 and 120 mg. Four time points were randomly sampled in the 24 hours after the last dose. A first order absorption, one compartment distribution, and linear elimination model was used with population values of Clearance=4.0 L/hr, Vc=70 L, and KA=1 /hr, 30% IIV for all three parameters (diagonal omega matrix), and 20% residual variability. Of these 10,000 patients, 600 patients were randomly sampled (stratified by dose, 150 subjects per dose), 500 times using PsN and analysed using NONMEM.
+
+The code for the full analysis is provided here along with some output graphs to demonstrate the results. While these are interesting in their own right, the code also demonstrates how to perform parallel analysis of the estimations; with 500 datasets per analysis, it makes perfect sense to be bale to run these analyses side-by-side providing you have access to a computer with multiple cores. As these approaches are completely OS-dependent, the code below for running in parallel is only applicable to Windows.
+
+Installing the latest version of nlmixr can be performed with the following code:
 
 
-## Sparse Sampling
+```{r installation}
+library(devtools)
+install_github("nlmixrdevelopment/PreciseSums")
+install_github("nlmixrdevelopment/RxODE")
+install_github("nlmixrdevelopment/nlmixr")
+```
 
+Load the packages and define the model using ODEs:
+
+```{r ode_definition}
+library(nlmixr)
+library(data.table)
+
+#Define the RxODE model
+  ode4 <- "
+  d/dt(abs)    = -KA*abs;
+  d/dt(centr)  =  KA*abs-(CL/V)*centr;
+  C2=centr/V;
+  "
+  
+#Create the RxODE simulation object
+  mod4 <- RxODE(model = ode4, modName = 'mod4')
+```
+
+Generate the 10,000 sampled parameters:
+
+```{r sample_parameters}
+#Population parameter values on log-scale
+  paramsl <- c(CL = log(4),
+               V = log(70),
+               KA = log(1))
+#make 10,000 subjects to sample from:
+  nsubg <- 2500 # subjects per dose
+  doses <- c(10, 30, 60, 120)
+  nsub <- nsubg * length(doses)
+#IIV of 30% for each parameter
+  omega <- diag(c(0.09, 0.09, 0.09))# IIV covariance matrix
+  sigma <- 0.2
+#Sample from the multivariate normal
+  set.seed(98176247)
+  library(MASS)
+  mv <-
+    mvrnorm(nsub, rep(0, dim(omega)[1]), omega) # Sample from covariance matrix
+#Combine population parameters with IIV
+  params.all <-
+    data.table(
+      "ID" = seq(1:nsub),
+      "CL" = exp(paramsl['CL'] + mv[, 1]),
+      "V" = exp(paramsl['V'] + mv[, 2]),
+      "KA" = exp(paramsl['KA'] + mv[, 3])
+    )
+#set the doses (looping through the 4 doses)
+  params.all[, AMT := 1000 * doses]
+```
+
+The do the simulation of all these profiles. The cool thing is to use lapply which is super efficient (the initial code with a for loop as suggested in the RxODE paper is about 20 times slower):
+
+```{r Simulate_profiles}
+Startlapply <- Sys.time()
+  
+#Run the simulations using lapply for speed
+  s = lapply(1:nsub, function(i) {
+#selects the parameters associated with the subject to be simulated
+    params <- params.all[i]
+#creates an eventTable with 7 doses every 24 hours
+    ev <- eventTable()
+    ev$add.dosing(
+      dose = params$AMT,
+      nbr.doses = 7,
+      dosing.to = 1,
+      dosing.interval = 24,
+      rate = NULL,
+      start.time = 0
+    )
+#generates 4 random samples in a 24 hour period for the last dose
+    ev$add.sampling(6 * 24 + c(0, sort(round(sample(runif(600, 0, 1440), 4) / 60, 2))))
+#runs the RxODE simulation
+    x <- as.data.table(mod4$run(params, ev))
+#merges the parameters and ID number to the simulation output
+    x[, names(params) := params]
+  })
+  
+#runs the entire sequence of 10000 subjects and binds the results to the object res
+  res = as.data.table(do.call("rbind", s))
+  
+Stoplapply <- Sys.time()
+  
+Stoplapply - Startlapply
+  #10,000 subjects simulated in:
+  #Time difference of 29.36007 secs
+```
+
+Clean up the results and prepare for analysis uising NONMEM:
+
+```{r clean_simulations}
+  setnames(res, "time", "TIME")
+#administered dose:
+  Dose <- expand.grid(TIME = seq(0, 6 * 24, 24), ID = params.all$ID)
+  Dose <- data.table(merge(Dose, params.all, by = "ID"))
+  Dose[, C2 := 0]
+  Dose[, EVID := 101]
+  Dose[, DOSE := AMT / 1000]
+  res[, EVID := 0]
+  res[, centr := NULL]
+  res[, abs := NULL]
+  res[, DOSE := AMT / 1000]
+  res[, AMT := 0]
+#take out the 'trough' (sampling)timepoint used for dosing in this case
+  res <- res[TIME != 144]
+  res <- rbind(res, Dose)
+  setkey(res, ID, TIME)
+#Add residual error
+  res[, DV := C2 * exp(rnorm(length(C2), 0, sigma))]
+  res[, C2 := NULL]
+  res[, DV := round(DV)]
+#NONMEM EVID is just 1 instead of the RxODE EVID of 101
+  res[, EVIDNM := as.numeric(EVID == 101)]
+  res <- res[, .(ID, DOSE, V, CL, KA, TIME, EVID, AMT, DV, EVIDNM)]
+  write.table(res,file="FullSIM160817.csv",sep=",",col.names=TRUE,quote=FALSE,row.names=FALSE)
+```
+
+Then PsN is used to sample 600 subjects stratified by dose from the 10,000 subjects and analyse these with NONMEM. This is repeated 500 times using PsN bootstrap functionality, creating both 500 sets of output and 500 data files to be analysed using nlmixr with the following PsN syntax:
+
+```{}
+bootstrap runN024.mod -samples=500 -sample_size=600 -stratify_on=DOSE -no-run_base_model -seed=12345 -threads=15 -directory=runN024
+```
+
+and the following NONMEM syntax file:
+```{}
+    $PROB    ORAL1_1CPT_KAVCL MULTIPLE DOSE FOCEI runN024
+    $INPUT   ID DOSE VI CLI KAI TIME EVIDNLMX AMT DV EVID
+    $DATA    FullSIM160817.csv IGNORE=@
+    $SUBR    ADVAN2,TRANS2
+    $PK
+    CL=EXP(THETA(1)+ETA(1))
+    V=EXP(THETA(2)+ETA(2))
+    KA=EXP(THETA(3)+ETA(3))
+    S2=V
+    $ERROR   
+    IPRED = F     
+    RESCV = THETA(4) 
+    W     = IPRED*RESCV
+    IRES  = DV-IPRED
+    IWRES = IRES/W
+    Y     = IPRED+W*EPS(1)
+    $THETA   1.6       ;CL
+    $THETA   4.5       ;V
+    $THETA   0.2       ;Ka
+    $THETA   (0,0.3,1) ;RSV
+    $OMEGA   0.15 0.15 0.15
+    $SIGMA   1 FIX
+    $EST     NSIG=3 PRINT=5 MAX=9999 NOABORT POSTHOC METHOD=COND INTER NOOBT
+    $COV
+```
+
+
+The NONMEM results will be provided separately, along with the PsN-generated data files that will be analysed in nlmixr. A function do_nlmixr is created that reads in the data file, defines the model, runs the parameter estimation, and then saves the output file, to be analysed at a later date.
+The code to analyse these data sets using SAEM with the solved equations implementation is:
+
+```{r SAEM_solved}
+  #SAEM with solved equations:
+  
+  do_nlmixr <- function(i) {
+    datr <-
+      read.csv(
+        paste("D:\\nmrun\\nmrun1\\m1\\bs_pr1_", i, ".dta", sep = ""),
+        header = TRUE,
+        stringsAsFactors = F
+      )
+    
+    #If using Microsoft R Open, you need to specify:
+    #setMKLthreads(1)
+    #Otherwise it accesses too much resources without any gain in speed
+    
+    one.compartment.oral.model.solved <- function() {
+      ini({
+        # Where initial conditions/variables are specified
+        # '<-' or '=' defines population parameters
+        # Simple numeric expressions are supported
+        lCl <- 1        #log Cl (L/hr)
+        lVc <- 4        #log V (L)
+        lKA <- 0.1      #log V (L)
+        # Bounds may be specified by c(lower, est, upper), like NONMEM:
+        # Residuals errors are assumed to be population parameters
+        prop.err <- c(0, 0.2, 1)
+        # Between subject variability estimates are specified by '~'
+        # Semicolons are optional
+        eta.Cl ~ 0.1
+        eta.Vc ~ 0.1
+        eta.KA ~ 0.1
+      })
+      model({
+        # Where the model is specified
+        # The model uses the ini-defined variable names
+        Cl <- exp(lCl + eta.Cl)
+        Vc <- exp(lVc + eta.Vc)
+        KA <- exp(lKA + eta.KA)
+        # Solved equations:
+        linCmt() ~ prop(prop.err)
+      })
+    }
+    
+    fit <-
+      nlmixr(
+        one.compartment.oral.model.solved,
+        datr,
+        est = "saem",
+        control = saemControl(print = 50)
+      )
+    
+    save(fit, file = paste("fit_SAEM_Solved_UUI_", i, ".Rdata", sep = ""))
+  }
+```
+
+Note that if you use Microsoft R-Open, this comes with the Intel MKL for parallel mathematical computing software that interferes with nlmixr code. You need to actively tell R to o nly use a single thread using the command `setMKLthreads(1)`. Otherwise it appears to use a parallelised implementation but that only eats up hardware resources without any gain in speed (quite the opposite actually). 
+The code for SAEM with an ODE implementation is:
+
+```{r SAEM_ODE}
+  #SAEM with ODE:
+  
+  do_nlmixrODE <- function(i) {
+    datr <-
+      read.csv(
+        paste("D:\\nmrun\\nmrun1\\m1\\bs_pr1_", i, ".dta", sep = ""),
+        header = TRUE,
+        stringsAsFactors = F
+      )
+    
+    #If using Microsoft R Open, you need to specify:
+    #setMKLthreads(1)
+    #Otherwise it accesses too much resources without any gain in speed
+    
+    one.compartment.oral.model <- function() {
+      ini({
+        # Where initial conditions/variables are specified
+        # '<-' or '=' defines population parameters
+        # Simple numeric expressions are supported
+        lCl <- 1        #log Cl (L/hr)
+        lVc <- 4        #log V (L)
+        lKA <- 0.1      #log V (L)
+        # Bounds may be specified by c(lower, est, upper), like NONMEM:
+        # Residuals errors are assumed to be population parameters
+        prop.err <- c(0, 0.2, 1)
+        # Between subject variability estimates are specified by '~'
+        # Semicolons are optional
+        eta.Cl ~ 0.1
+        eta.Vc ~ 0.1
+        eta.KA ~ 0.1
+      })
+      model({
+        # Where the model is specified
+        # The model uses the ini-defined variable names
+        Cl <- exp(lCl + eta.Cl)
+        Vc <- exp(lVc + eta.Vc)
+        KA <- exp(lKA + eta.KA)
+        # RxODE-style differential equations are supported
+        d / dt(depot)    = -KA * depot
+        
+        d / dt(centr)  =  KA * depot - (Cl / Vc) * centr
+        
+        ## Concentration is calculated
+        cp = centr / Vc
+        
+        # And is assumed to follow proportional error estimated by prop.err
+        cp ~ prop(prop.err)
+        
+      })
+    }
+    
+    fit <-
+      nlmixr(
+        one.compartment.oral.model,
+        datr,
+        est = "saem",
+        control = saemControl(print = 50)
+      )
+    
+    save(fit, file = paste("fit_SAEM_ODE_UUI_", i, ".Rdata", sep = ""))
+  }
+```
+
+nlme with solved equations:
+```{r nlme_solved}
+  #nlme with solved equations:
+  
+  
+  do_nlmixr_nlme <- function(i) {
+    datr <-
+      read.csv(
+        paste("D:\\nmrun\\nmrun1\\m1\\bs_pr1_", i, ".dta", sep = ""),
+        header = TRUE,
+        stringsAsFactors = F
+      )
+    
+    one.compartment.oral.model.solved <- function() {
+      ini({
+        # Where initial conditions/variables are specified
+        # '<-' or '=' defines population parameters
+        # Simple numeric expressions are supported
+        lCl <- 1        #log Cl (L/hr)
+        lVc <- 4        #log V (L)
+        lKA <- 0.1      #log V (L)
+        # Bounds may be specified by c(lower, est, upper), like NONMEM:
+        # Residuals errors are assumed to be population parameters
+        prop.err <- c(0, 0.2, 1)
+        # Between subject variability estimates are specified by '~'
+        # Semicolons are optional
+        eta.Cl ~ 0.1
+        eta.Vc ~ 0.1
+        eta.KA ~ 0.1
+      })
+      model({
+        # Where the model is specified
+        # The model uses the ini-defined variable names
+        Cl <- exp(lCl + eta.Cl)
+        Vc <- exp(lVc + eta.Vc)
+        KA <- exp(lKA + eta.KA)
+        # Solved equations:
+        linCmt() ~ prop(prop.err)
+      })
+    }
+    
+    fit <-
+      nlmixr(
+        one.compartment.oral.model.solved,
+        datr,
+        est = "nlme",
+        control = nlmeControl(pnlsTol = .1)
+      )
+    
+    save(fit, file = paste("fit_NLME_Solved_UUI_", i, ".Rdata", sep = ""))
+  }
+```
+
+and finally nlme with ODE:
+
+```{r nlme_ODE}
+  #nlme with ODE:
+  
+  
+  do_nlmixrODE_nlme <- function(i) {
+    datr <-
+      read.csv(
+        paste("D:\\nmrun\\nmrun1\\m1\\bs_pr1_", i, ".dta", sep = ""),
+        header = TRUE,
+        stringsAsFactors = F
+      )
+    
+    one.compartment.oral.model <- function() {
+      ini({
+        # Where initial conditions/variables are specified
+        # '<-' or '=' defines population parameters
+        # Simple numeric expressions are supported
+        lCl <- 1        #log Cl (L/hr)
+        lVc <- 4        #log V (L)
+        lKA <- 0.1      #log V (L)
+        # Bounds may be specified by c(lower, est, upper), like NONMEM:
+        # Residuals errors are assumed to be population parameters
+        prop.err <- c(0, 0.2, 1)
+        # Between subject variability estimates are specified by '~'
+        # Semicolons are optional
+        eta.Cl ~ 0.1
+        eta.Vc ~ 0.1
+        eta.KA ~ 0.1
+      })
+      model({
+        # Where the model is specified
+        # The model uses the ini-defined variable names
+        Cl <- exp(lCl + eta.Cl)
+        Vc <- exp(lVc + eta.Vc)
+        KA <- exp(lKA + eta.KA)
+        # RxODE-style differential equations are supported
+        d / dt(depot)    = -KA * depot
+        
+        d / dt(centr)  =  KA * depot - (Cl / Vc) * centr
+        
+        ## Concentration is calculated
+        cp = centr / Vc
+        
+        # And is assumed to follow proportional error estimated by prop.err
+        cp ~ prop(prop.err)
+        
+      })
+    }
+    
+    
+    fit <-
+      nlmixr(
+        one.compartment.oral.model,
+        datr,
+        est = "nlme",
+        control = nlmeControl(pnlsTol = .1)
+      )
+    
+    save(fit, file = paste("fit_NLME_ODE_UUI_", i, ".Rdata", sep = ""))
+  }
+```
+
+
+To run these analyses in parallel, you need to set up a local virtual cluster using the `doParallel` package, in this case with 15 cores, but adjust to your own hardware:
+
+```{r doParallel}
+  #install.packages("doParallel")  
+  library(doParallel)
+  cl <- makeCluster(15)
+  registerDoParallel(cl)
+```
+
+And then run the 500 analyses using `foreach` syntax. SAEM with ODEs takes forever for 600 subjects and 4 samples per subject, and so this chunk only runs 15 analyses:
+
+```{r SAEMODE_run}
+  timeS_Sparse <- Sys.time()
+  nlmixr_out <-
+    foreach(i = 1:15, .packages = c('nlmixr')) %dopar% do_nlmixrODE(i)
+  timeE_Sparse <- Sys.time()
+  timeE_Sparse - timeS_Sparse
+#Time difference of 1.216711 hours for only 15 runs in parallel on a 15 core cluster
+```
+
+But SAEM with solved equations is much faster!:
+
+```{r SAEMsolved_run}
+  timeS_Sparse <- Sys.time()
+  nlmixr_out <-
+    foreach(i = 1:500, .packages = c('nlmixr')) %dopar% do_nlmixr(i)
+  timeE_Sparse <- Sys.time()
+  timeE_Sparse-timeS_Sparse
+#Time difference of 3.656132 hours
+```
+
+nlme with solved systems is even faster:
+
+```{r nlmesolved_run}
+  timeS_Sparse <- Sys.time()
+  nlmixr_out <-
+    foreach(i = 1:500, .packages = c('nlmixr')) %dopar% do_nlmixr_nlme(i)
+  timeE_Sparse <- Sys.time()
+  timeE_Sparse - timeS_Sparse
+#Time difference of 43.58214 mins
+```
+
+and nlme with ODEs is still very doable:
+
+```{r nlmeODE_run}
+  timeS_Sparse <- Sys.time()
+  nlmixr_out <-
+    foreach(i = 1:500, .packages = c('nlmixr')) %dopar% do_nlmixrODE_nlme(i)
+  timeE_Sparse <- Sys.time()
+  timeE_Sparse - timeS_Sparse
+#Time difference of 2.432612 hours
+```
+
+You can then read in the output from the 500 nlmixr analyses. With the new Unified User Interface, uniform storage is obtained for all estimation routines, and so a single read routine suffices!
+
+```{r Read_nlmixr}
+Read_nlmixr <- function(Identifier) {
+  for (i in 1:500) {
+    filename <- paste(Identifier, "_", i, ".Rdata", sep = "")
+    
+    if (file.exists(filename)) {
+      load(filename)
+      TMSE <- fit$par.fixed$SE
+      TM <- fit$theta
+      names(TMSE) <- paste(names(TM), "_SE", sep = "")
+      Time <- c("Time" = fit$table.time["elapsed"])
+      IIV <- sqrt(diag(fit$omega))
+      run <- c("Run" = i)
+      MISSING_CWRES <- c("MISSING_CWRES" = sum(is.na(fit$CWRES)))
+      TM <- c(run, TM, TMSE, Time, IIV, MISSING_CWRES)
+      TM <- as.data.frame(t(TM))
+      fit <- NULL
+      print(i)
+      if (i == 1) {
+        nlmixrpars <<- TM
+      } else{
+        nlmixrpars <<- rbind(nlmixrpars, TM)
+      }
+    }
+  }
+  
+  save(nlmixrpars, file = paste(Identifier, ".Rdata", sep = ""))
+  
+}
+
+Read_nlmixr(Identifier = "fit_NLME_Solved_UUI")
+#Read_nlmixr(Identifier = "fit_NLME_ODE_UUI")
+#Read_nlmixr(Identifier = "fit_SAEM_Solved_UUI")
+```
+
+These results can then be compared with the NONMEM output and plotted to see the results. Let's start with a comparison of nlme results and NONMEM estimates. The results generated for nlme using solved equations are provided in Figure \@ref(fig:fig1).
+
+
+```{r fig1, fig.cap='Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE, eval=TRUE}
+knitr::include_graphics("figures/NLMEsolvedFig1.png")
+```
+
+<!-- ![Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig1}](sparse/NLME_solved_Fig1.png) -->
+
+Estimates for population parameters (Cl, Vc, Ka) match pretty well between NONMEM and nlme, and IIV for Cl works fine as well. However, when IIVs become a bit more difficult to estimate, like for Vc, and for Ka especially, nlme tends to return IIV values of zero quite frequently.
+
+Next step is to compare the results for nlme with models implemented using solved equations vs. the ODE implementation (Figure \@ref(fig:fig2).
+
+
+<!-- ![Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig2}](sparse/NLME_Solved_ODE_Fig1.png) -->
+
+```{r fig2, fig.cap='Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE, eval=TRUE}
+knitr::include_graphics("figures/NLMESolvedODEFig1.png")
+```
+
+
+As is clear from the graph, there is some discrepancy between the outcomes of the two model-definition methods, but this is to be expected with any numerical approach.
+
+Next, SAEM results are compared with NONMEM FOCE-I. At this stage, estimating ODE models with a large number of subjects is prohibitively time-consuming using SAEM, and so only SAEM with solved solution results are presented (Figure \@ref(fig:fig3)).
+
+<!-- ![Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig3}](sparse/SAEM_solved_Fig1.png) -->
+
+```{r fig3, fig.cap='Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE, eval=TRUE}
+knitr::include_graphics("figures/SAEMsolvedFig1.png")
+```
+
+
+These results show a near perfect match between NONMEM and nlmixr/SAEM population estimates, and a very good match for IIV estimates as well, where it is noted that for Ka, NONMEM estimates a number of IIVs at zero, while SAEM never does this. The standard errors for NONMEM are larger than for SAEM in all cases, but it is difficult to say which one is correct: for population parameters and IIVs, the values simulated from are known, but for standard errors this is not the case.
+
+Finally, for a comparison between methods in terms of speed of calculations see Figure \@ref(fig:fig4). It is clear that NONMEM is faster in virtually all cases (and SAEM with ODEs is not even reported) and these comparisons are with single-thread NONMEM. However, speeds are not so prohibitively high that use in daily practice is crippled.
+
+<!-- ![Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right) \label{fig:fig4}](sparse/Runtimes_Fig1.png) -->
+
+```{r fig4, fig.cap='Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right)', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE, eval=TRUE}
+knitr::include_graphics("figures/RuntimesFig1.png")
+```
 
 
 
 
 ## Course PAGE 2018
+_full course_
