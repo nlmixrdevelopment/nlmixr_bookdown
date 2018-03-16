@@ -34,7 +34,7 @@ Various posters were presented at different conferences where `nlmixr` was compa
 knitr::opts_chunk$set(echo = TRUE, eval=FALSE)
 ```
 
-## Examination of nlmixr estimation algorithm properties for sparse sample data
+### Examination of nlmixr estimation algorithm properties for sparse sample data
 
 The nlme and SAEM parameter estimation algorithms were compared with NONMEM FOCE-I in a sparse-sampling data setting. To this end, 10,000 patients were simulated after 7 doses with 24 hour intervals with doses split between 10, 30, 60 and 120 mg. Four time points were randomly sampled in the 24 hours after the last dose. A first order absorption, one compartment distribution, and linear elimination model was used with population values of Clearance=4.0 L/hr, Vc=70 L, and KA=1 /hr, 30% IIV for all three parameters (diagonal omega matrix), and 20% residual variability. Of these 10,000 patients, 600 patients were randomly sampled (stratified by dose, 150 subjects per dose), 500 times using PsN and analysed using NONMEM.
 

@@ -130,9 +130,10 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications of <code>nlmixr</code></a><ul>
 <li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#demo-examples-from-github"><i class="fa fa-check"></i><b>4.1</b> Demo Examples from GitHub</a></li>
 <li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#posters-and-presentations"><i class="fa fa-check"></i><b>4.2</b> Posters and Presentations</a></li>
-<li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#sparse-data-analysis-with-nlmixr"><i class="fa fa-check"></i><b>4.3</b> Sparse data analysis with <code>nlmixr</code></a></li>
-<li class="chapter" data-level="4.4" data-path="applications.html"><a href="applications.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><i class="fa fa-check"></i><b>4.4</b> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
-<li class="chapter" data-level="4.5" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.5</b> Course PAGE 2018</a></li>
+<li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#sparse-data-analysis-with-nlmixr"><i class="fa fa-check"></i><b>4.3</b> Sparse data analysis with <code>nlmixr</code></a><ul>
+<li class="chapter" data-level="4.3.1" data-path="applications.html"><a href="applications.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><i class="fa fa-check"></i><b>4.3.1</b> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.4</b> Course PAGE 2018</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -174,9 +175,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 <div id="sparse-data-analysis-with-nlmixr" class="section level2">
 <h2><span class="header-section-number">4.3</span> Sparse data analysis with <code>nlmixr</code></h2>
-</div>
-<div id="examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data" class="section level2">
-<h2><span class="header-section-number">4.4</span> Examination of nlmixr estimation algorithm properties for sparse sample data</h2>
+<div id="examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</h3>
 <p>The nlme and SAEM parameter estimation algorithms were compared with NONMEM FOCE-I in a sparse-sampling data setting. To this end, 10,000 patients were simulated after 7 doses with 24 hour intervals with doses split between 10, 30, 60 and 120 mg. Four time points were randomly sampled in the 24 hours after the last dose. A first order absorption, one compartment distribution, and linear elimination model was used with population values of Clearance=4.0 L/hr, Vc=70 L, and KA=1 /hr, 30% IIV for all three parameters (diagonal omega matrix), and 20% residual variability. Of these 10,000 patients, 600 patients were randomly sampled (stratified by dose, 150 subjects per dose), 500 times using PsN and analysed using NONMEM.</p>
 <p>The code for the full analysis is provided here along with some output graphs to demonstrate the results. While these are interesting in their own right, the code also demonstrates how to perform parallel analysis of the estimations; with 500 datasets per analysis, it makes perfect sense to be bale to run these analyses side-by-side providing you have access to a computer with multiple cores. As these approaches are completely OS-dependent, the code below for running in parallel is only applicable to Windows.</p>
 <p>Installing the latest version of nlmixr can be performed with the following code:</p>
@@ -636,8 +636,9 @@ Figure 4.4: Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), 
 </p>
 </div>
 </div>
+</div>
 <div id="course-page-2018" class="section level2">
-<h2><span class="header-section-number">4.5</span> Course PAGE 2018</h2>
+<h2><span class="header-section-number">4.4</span> Course PAGE 2018</h2>
 <p><em>full course</em></p>
 
 </div>
