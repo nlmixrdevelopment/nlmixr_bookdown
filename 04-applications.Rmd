@@ -25,7 +25,7 @@ Various posters were presented at different conferences where `nlmixr` was compa
 
 <a href="posters/PosterPAGE2017.pdf" target="_blank">PosterPAGE2017</a>
 
-`nlmixr` was presented at the 12th Pharmacometrics Network Benelux Meeting with the title: Simualtion (RxODE) and parameter estimation in `nlmixr`.
+`nlmixr` was presented at the 12^th^ Pharmacometrics Network Benelux Meeting with the title: Simualtion (RxODE) and parameter estimation in `nlmixr`.
 
 <!-- ## Sparse Sampling -->
 ## Sparse data analysis with `nlmixr`
