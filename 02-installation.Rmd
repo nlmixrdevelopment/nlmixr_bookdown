@@ -1,6 +1,6 @@
 # Installation  {#install}
 
-**Needs rewrite because of the `CRAN` versions of `RxODE` and `nlmixr`**
+**Needs rewrite because of the `CRAN` and GitHub versions of `RxODE` and `nlmixr`**
 
 `nlmixr` can be used on several platforms. The installation can be easy to challenging depending on the platform. We are in the process of making sure the installation works every time. Any help or suggestions are appreciated !
 

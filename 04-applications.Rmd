@@ -25,7 +25,11 @@ Various posters were presented at different conferences where `nlmixr` was compa
 
 <a href="posters/PosterPAGE2017.pdf" target="_blank">PosterPAGE2017</a>
 
-`nlmixr` was presented at the 12^th^ Pharmacometrics Network Benelux Meeting with the title: Simualtion (RxODE) and parameter estimation in `nlmixr`.
+On 8 December 2016, Rik Schoemaker presented a seminar on `nlmixr` at Uppsala University with the title: `nlmixr`: an open-source package for pharmacometric modelling in R (<a href="posters/PRESnlmixrUppsala161208.pdf" target="_blank">PresentationUppsala161208</a>).
+
+`nlmixr` was presented at the 12^th^ Pharmacometrics Network Benelux Meeting (29 March 2018) with the title: Simulation (RxODE) and parameter estimation in `nlmixr` (<a href="posters/PRES nlmixr PNB 180326.pdf" target="_blank">PresentationPNB180326</a>).
+
+
 
 <!-- ## Sparse Sampling -->
 ## Sparse data analysis with `nlmixr`

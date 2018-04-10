@@ -20,12 +20,20 @@ There are several packages and pieces of software that together create an enviro
 
 These packages and software are:
 
-- [R](https://cran.r-project.org/) (and related GUIs, such as RGui and [Rstudio](https://www.rstudio.com/))
-- [Python](https://www.python.org/)
-- [RxODE](https://cran.r-project.org/web/packages/RxODE/index.html)
-- [nlmixr](https://cran.r-project.org/web/packages/nlmixr/index.html)
-- [ShinyMixR](https://richardhooijmaijers.github.io/shinyMixR/index.html)
+- [`R`](https://cran.r-project.org/) (and related GUIs, such as RGui and [`Rstudio`](https://www.rstudio.com/))
+- [`Python`](https://www.python.org/) - i.e., [`SymPy`](http://www.sympy.org/nl/index.html)
+- [`RxODE`](https://cran.r-project.org/web/packages/RxODE/index.html)
+- [`nlmixr`](https://cran.r-project.org/web/packages/nlmixr/index.html)
 
+Related custom packages used by `nlmixr` are:
+
+- [`PreciseSums`](https://github.com/nlmixrdevelopment/PreciseSums)
+- [`SnakeCharmer`](https://github.com/nlmixrdevelopment/SnakeCharmR)
+
+Packages to support the use of `nlmixr` are:
+
+- [`ShinyMixR`](https://richardhooijmaijers.github.io/shinyMixR/index.html)
+- [`xpose.nlmixr`](https://github.com/nlmixrdevelopment/xpose.nlmixr)
 
  <!-- placeholder for an illustration -->
 
