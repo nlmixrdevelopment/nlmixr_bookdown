@@ -1,54 +1,40 @@
 <!DOCTYPE html>
-<html >
+
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>nlmixr: an R package for population PKPD modeling</title>
-  <meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
-
-  <meta property="og:title" content="nlmixr: an R package for population PKPD modeling" />
-  <meta property="og:type" content="book" />
-  
-  
-  <meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
-  
-
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="nlmixr: an R package for population PKPD modeling" />
-  
-  <meta name="twitter:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
-  
-
-<meta name="author" content="Matthew Fidler, Teun Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam Trame, Justin Wilkins, Yuan Xiong and Wenping Wang">
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="nlmixr: an R package for population PKPD modeling" />
+<meta property="og:type" content="book" />
 
 
-<meta name="date" content="2018-05-11">
-
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  
-  
-<link rel="prev" href="vignettes.html">
-<link rel="next" href="references.html">
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
-<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
 
 
+<meta name="author" content="Matthew Fidler, Teun Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
+
+<meta name="date" content="2018-05-11" />
 
 
+<meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
+
+<title>nlmixr: an R package for population PKPD modeling</title>
+
+<script src="libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="libs/navigation-1.1/tabsets.js"></script>
+\usepackage{booktabs}
 
 
-
-
-
+<style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
 div.sourceCode { overflow-x: auto; }
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -86,106 +72,91 @@ code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Ann
 code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
 code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 </style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+</style>
 </head>
 
 <body>
 
+<div class="container-fluid main-container">
 
 
-  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
-
-    <div class="book-summary">
-      <nav role="navigation">
-
-<ul class="summary">
-<li><a href="./">nlmixr User's guide and Reference Manual</a></li>
-
-<li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to population modeling with R</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-this-book"><i class="fa fa-check"></i>About this book</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<div class="row">
+<div class="col-sm-12">
+<div id="TOC">
+<ul>
+<li><a href="index.html#welcome-to-population-modeling-with-r">Welcome to population modeling with R</a></li>
+<li class="has-sub"><a href="preface.html#preface">Preface</a><ul>
+<li><a href="about-this-book.html#about-this-book">About this book</a></li>
+<li><a href="acknowledgements.html#acknowledgements">Acknowledgements</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
-<li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#prereq"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
-<li class="chapter" data-level="1.2" data-path="intro.html"><a href="intro.html#workflow"><i class="fa fa-check"></i><b>1.2</b> Workflow</a></li>
+<li class="has-sub"><a href="1-intro.html#intro"><span class="toc-section-number">1</span> Introduction</a><ul>
+<li><a href="1-1-prereq.html#prereq"><span class="toc-section-number">1.1</span> Prerequisites</a></li>
+<li><a href="1-2-workflow.html#workflow"><span class="toc-section-number">1.2</span> Workflow</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="install.html"><a href="install.html"><i class="fa fa-check"></i><b>2</b> Installation</a><ul>
-<li class="chapter" data-level="2.1" data-path="install.html"><a href="install.html#nlmixr"><i class="fa fa-check"></i><b>2.1</b> <code>nlmixr</code></a><ul>
-<li class="chapter" data-level="2.1.1" data-path="install.html"><a href="install.html#windows-installer"><i class="fa fa-check"></i><b>2.1.1</b> Windows installer</a></li>
-<li class="chapter" data-level="2.1.2" data-path="install.html"><a href="install.html#installation-on-windows"><i class="fa fa-check"></i><b>2.1.2</b> Installation on Windows</a></li>
-<li class="chapter" data-level="2.1.3" data-path="install.html"><a href="install.html#installation-on-linux"><i class="fa fa-check"></i><b>2.1.3</b> Installation on Linux</a></li>
-<li class="chapter" data-level="2.1.4" data-path="install.html"><a href="install.html#installation-on-macos"><i class="fa fa-check"></i><b>2.1.4</b> Installation on macOS</a></li>
+<li class="has-sub"><a href="2-install.html#install"><span class="toc-section-number">2</span> Installation</a><ul>
+<li class="has-sub"><a href="2-1-nlmixr.html#nlmixr"><span class="toc-section-number">2.1</span> <code>nlmixr</code></a><ul>
+<li><a href="2-1-nlmixr.html#windows-installer"><span class="toc-section-number">2.1.1</span> Windows installer</a></li>
+<li><a href="2-1-nlmixr.html#installation-on-windows"><span class="toc-section-number">2.1.2</span> Installation on Windows</a></li>
+<li><a href="2-1-nlmixr.html#installation-on-linux"><span class="toc-section-number">2.1.3</span> Installation on Linux</a></li>
+<li><a href="2-1-nlmixr.html#installation-on-macos"><span class="toc-section-number">2.1.4</span> Installation on macOS</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="install.html"><a href="install.html#shinymixr-project-management-tool-for-nlmixr"><i class="fa fa-check"></i><b>2.2</b> <code>ShinyMixR</code>: project management tool for <code>nlmixr</code></a></li>
+<li><a href="2-2-shinymixr-project-management-tool-for-nlmixr.html#shinymixr-project-management-tool-for-nlmixr"><span class="toc-section-number">2.2</span> <code>ShinyMixR</code>: project management tool for <code>nlmixr</code></a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="vignettes.html"><a href="vignettes.html"><i class="fa fa-check"></i><b>3</b> <code>nlmixr</code> vignettes</a><ul>
-<li class="chapter" data-level="3.1" data-path="vignettes.html"><a href="vignettes.html#interface"><i class="fa fa-check"></i><b>3.1</b> <code>ShinyMixR</code> - project-centric interface</a><ul>
-<li class="chapter" data-level="3.1.1" data-path="vignettes.html"><a href="vignettes.html#introduction"><i class="fa fa-check"></i><b>3.1.1</b> Introduction</a></li>
-<li class="chapter" data-level="3.1.2" data-path="vignettes.html"><a href="vignettes.html#getting-started"><i class="fa fa-check"></i><b>3.1.2</b> Getting started</a></li>
-<li class="chapter" data-level="3.1.3" data-path="vignettes.html"><a href="vignettes.html#overview"><i class="fa fa-check"></i><b>3.1.3</b> Overview</a></li>
-<li class="chapter" data-level="3.1.4" data-path="vignettes.html"><a href="vignettes.html#edit-models"><i class="fa fa-check"></i><b>3.1.4</b> Edit models</a></li>
-<li class="chapter" data-level="3.1.5" data-path="vignettes.html"><a href="vignettes.html#run-models"><i class="fa fa-check"></i><b>3.1.5</b> Run models</a></li>
-<li class="chapter" data-level="3.1.6" data-path="vignettes.html"><a href="vignettes.html#parameter-estimates"><i class="fa fa-check"></i><b>3.1.6</b> Parameter estimates</a></li>
-<li class="chapter" data-level="3.1.7" data-path="vignettes.html"><a href="vignettes.html#goodness-of-fit"><i class="fa fa-check"></i><b>3.1.7</b> Goodness of fit</a></li>
-<li class="chapter" data-level="3.1.8" data-path="vignettes.html"><a href="vignettes.html#fit-plots"><i class="fa fa-check"></i><b>3.1.8</b> Fit plots</a></li>
-<li class="chapter" data-level="3.1.9" data-path="vignettes.html"><a href="vignettes.html#scripts"><i class="fa fa-check"></i><b>3.1.9</b> Scripts</a></li>
-<li class="chapter" data-level="3.1.10" data-path="vignettes.html"><a href="vignettes.html#results"><i class="fa fa-check"></i><b>3.1.10</b> Results</a></li>
-<li class="chapter" data-level="3.1.11" data-path="vignettes.html"><a href="vignettes.html#interactive-session"><i class="fa fa-check"></i><b>3.1.11</b> Interactive session</a></li>
+<li class="has-sub"><a href="3-vignettes.html#vignettes"><span class="toc-section-number">3</span> <code>nlmixr</code> vignettes</a><ul>
+<li class="has-sub"><a href="3-1-interface.html#interface"><span class="toc-section-number">3.1</span> <code>ShinyMixR</code> - project-centric interface</a><ul>
+<li><a href="3-1-interface.html#introduction"><span class="toc-section-number">3.1.1</span> Introduction</a></li>
+<li><a href="3-1-interface.html#getting-started"><span class="toc-section-number">3.1.2</span> Getting started</a></li>
+<li><a href="3-1-interface.html#overview"><span class="toc-section-number">3.1.3</span> Overview</a></li>
+<li><a href="3-1-interface.html#edit-models"><span class="toc-section-number">3.1.4</span> Edit models</a></li>
+<li><a href="3-1-interface.html#run-models"><span class="toc-section-number">3.1.5</span> Run models</a></li>
+<li><a href="3-1-interface.html#parameter-estimates"><span class="toc-section-number">3.1.6</span> Parameter estimates</a></li>
+<li><a href="3-1-interface.html#goodness-of-fit"><span class="toc-section-number">3.1.7</span> Goodness of fit</a></li>
+<li><a href="3-1-interface.html#fit-plots"><span class="toc-section-number">3.1.8</span> Fit plots</a></li>
+<li><a href="3-1-interface.html#scripts"><span class="toc-section-number">3.1.9</span> Scripts</a></li>
+<li><a href="3-1-interface.html#results"><span class="toc-section-number">3.1.10</span> Results</a></li>
+<li><a href="3-1-interface.html#interactive-session"><span class="toc-section-number">3.1.11</span> Interactive session</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="vignettes.html"><a href="vignettes.html#nlmixr-modeling-mini-language"><i class="fa fa-check"></i><b>3.2</b> <code>nlmixr</code> modeling mini-language:</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="vignettes.html"><a href="vignettes.html#rationale"><i class="fa fa-check"></i><b>3.2.1</b> Rationale</a></li>
+<li class="has-sub"><a href="3-2-nlmixr-modeling-mini-language.html#nlmixr-modeling-mini-language"><span class="toc-section-number">3.2</span> <code>nlmixr</code> modeling mini-language:</a><ul>
+<li><a href="3-2-nlmixr-modeling-mini-language.html#rationale"><span class="toc-section-number">3.2.1</span> Rationale</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications of <code>nlmixr</code></a><ul>
-<li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#demo-examples-from-github"><i class="fa fa-check"></i><b>4.1</b> Demo Examples from GitHub</a></li>
-<li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#posters-and-presentations"><i class="fa fa-check"></i><b>4.2</b> Posters and Presentations</a></li>
-<li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#sparse-data-analysis-with-nlmixr"><i class="fa fa-check"></i><b>4.3</b> Sparse data analysis with <code>nlmixr</code></a><ul>
-<li class="chapter" data-level="4.3.1" data-path="applications.html"><a href="applications.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><i class="fa fa-check"></i><b>4.3.1</b> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
+<li class="has-sub"><a href="4-applications.html#applications"><span class="toc-section-number">4</span> Applications of <code>nlmixr</code></a><ul>
+<li><a href="4-1-demo-examples-from-github.html#demo-examples-from-github"><span class="toc-section-number">4.1</span> Demo Examples from GitHub</a></li>
+<li><a href="4-2-posters-and-presentations.html#posters-and-presentations"><span class="toc-section-number">4.2</span> Posters and Presentations</a></li>
+<li class="has-sub"><a href="4-3-sparse-data-analysis-with-nlmixr.html#sparse-data-analysis-with-nlmixr"><span class="toc-section-number">4.3</span> Sparse data analysis with <code>nlmixr</code></a><ul>
+<li><a href="4-3-sparse-data-analysis-with-nlmixr.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><span class="toc-section-number">4.3.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.4</b> Course PAGE 2018</a></li>
+<li><a href="4-4-course-page-2018.html#course-page-2018"><span class="toc-section-number">4.4</span> Course PAGE 2018</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
-<li class="divider"></li>
-<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-
+<li><a href="references.html#references">References</a></li>
 </ul>
-
-      </nav>
-    </div>
-
-    <div class="book-body">
-      <div class="body-inner">
-        <div class="book-header" role="navigation">
-          <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"><code>nlmixr</code>: an R package for population PKPD modeling</a>
-          </h1>
-        </div>
-
-        <div class="page-wrapper" tabindex="-1" role="main">
-          <div class="page-inner">
-
-            <section class="normal" id="section-">
-<div id="applications" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Applications of <code>nlmixr</code></h1>
-<div id="demo-examples-from-github" class="section level2">
-<h2><span class="header-section-number">4.1</span> Demo Examples from GitHub</h2>
-<p>How can you run the examples from GitHub and what can you learn form these.</p>
-<!-- ## Posters and Presentations -->
 </div>
-<div id="posters-and-presentations" class="section level2">
-<h2><span class="header-section-number">4.2</span> Posters and Presentations</h2>
-<p>Various posters were presented at different conferences where <code>nlmixr</code> was compared to <code>NONMEM</code>. These findings provideevidence that nlmixr may provide a viable open-source parameter estimation alternative for fitting nonlinear mixed effects pharmacometric models within the R environment.</p>
-<p><a href="posters/PosterACoP2016.pdf" target="_blank">PosterACoP2016</a></p>
-<p><a href="posters/PosterWCoP2016.pdf" target="_blank">PosterWCoP2016</a></p>
-<p><a href="posters/PosterACoP2017.pdf" target="_blank">PosterACoP2017</a></p>
-<p><a href="posters/PosterPAGE2017.pdf" target="_blank">PosterPAGE2017</a></p>
-<p>On 8 December 2016, Rik Schoemaker presented a seminar on <code>nlmixr</code> at Uppsala University with the title: <code>nlmixr</code>: an open-source package for pharmacometric modelling in R (<a href="posters/PRESnlmixrUppsala161208.pdf" target="_blank">PresentationUppsala161208</a>).</p>
-<p><code>nlmixr</code> was presented at the 12<sup>th</sup> Pharmacometrics Network Benelux Meeting (29 March 2018) with the title: Simulation (RxODE) and parameter estimation in <code>nlmixr</code> (<a href="posters/PRES nlmixr PNB 180326.pdf" target="_blank">PresentationPNB180326</a>).</p>
-<!-- ## Sparse Sampling -->
 </div>
+</div>
+<div class="row">
+<div class="col-sm-12">
 <div id="sparse-data-analysis-with-nlmixr" class="section level2">
 <h2><span class="header-section-number">4.3</span> Sparse data analysis with <code>nlmixr</code></h2>
 <div id="examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data" class="section level3">
@@ -613,86 +584,61 @@ Stoplapply <span class="op">-</span><span class="st"> </span>Startlapply
 <span class="kw">Read_nlmixr</span>(<span class="dt">Identifier =</span> <span class="st">&quot;fit_NLME_Solved_UUI&quot;</span>)
 <span class="co">#Read_nlmixr(Identifier = &quot;fit_NLME_ODE_UUI&quot;)</span>
 <span class="co">#Read_nlmixr(Identifier = &quot;fit_SAEM_Solved_UUI&quot;)</span></code></pre></div>
-<p>These results can then be compared with the NONMEM output and plotted to see the results. Let’s start with a comparison of nlme results and NONMEM estimates. The results generated for nlme using solved equations are provided in Figure <a href="applications.html#fig:fig1">4.1</a>.</p>
+<p>These results can then be compared with the NONMEM output and plotted to see the results. Let’s start with a comparison of nlme results and NONMEM estimates. The results generated for nlme using solved equations are provided in Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig1">3.1</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:fig1"></span>
 <img src="figures/NLMEsolvedFig1.png" alt="Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)" width="80%" />
 <p class="caption">
-Figure 4.1: Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
+Figure 3.1: Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
 </p>
 </div>
 <!-- ![Sparse data analysis results: NONMEM FOCE-I solved vs. nlmixr/NLME solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig1}](sparse/NLME_solved_Fig1.png) -->
 <p>Estimates for population parameters (Cl, Vc, Ka) match pretty well between NONMEM and nlme, and IIV for Cl works fine as well. However, when IIVs become a bit more difficult to estimate, like for Vc, and for Ka especially, nlme tends to return IIV values of zero quite frequently.</p>
-<p>Next step is to compare the results for nlme with models implemented using solved equations vs. the ODE implementation (Figure <a href="applications.html#fig:fig2">4.2</a>.</p>
+<p>Next step is to compare the results for nlme with models implemented using solved equations vs. the ODE implementation (Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig2">3.2</a>.</p>
 <!-- ![Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig2}](sparse/NLME_Solved_ODE_Fig1.png) -->
 <div class="figure" style="text-align: center"><span id="fig:fig2"></span>
 <img src="figures/NLMESolvedODEFig1.png" alt="Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)" width="80%" />
 <p class="caption">
-Figure 4.2: Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
+Figure 3.2: Sparse data analysis results: nlmixr/NLME solved vs. nlmixr/NLME ODE. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
 </p>
 </div>
 <p>As is clear from the graph, there is some discrepancy between the outcomes of the two model-definition methods, but this is to be expected with any numerical approach.</p>
-<p>Next, SAEM results are compared with NONMEM FOCE-I. At this stage, estimating ODE models with a large number of subjects is prohibitively time-consuming using SAEM, and so only SAEM with solved solution results are presented (Figure <a href="applications.html#fig:fig3">4.3</a>).</p>
+<p>Next, SAEM results are compared with NONMEM FOCE-I. At this stage, estimating ODE models with a large number of subjects is prohibitively time-consuming using SAEM, and so only SAEM with solved solution results are presented (Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig3">3.3</a>).</p>
 <!-- ![Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row) \label{fig:fig3}](sparse/SAEM_solved_Fig1.png) -->
 <div class="figure" style="text-align: center"><span id="fig:fig3"></span>
 <img src="figures/SAEMsolvedFig1.png" alt="Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)" width="80%" />
 <p class="caption">
-Figure 4.3: Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
+Figure 3.3: Sparse data analysis results: NONMEM FOCE I solved vs. nlmixr/SAEM solved. Cl (left column), Vc (middle column), and Ka (right column), for the population parameter (top row), IIV (middle row), and SE of the log population estimate (bottom row)
 </p>
 </div>
 <p>These results show a near perfect match between NONMEM and nlmixr/SAEM population estimates, and a very good match for IIV estimates as well, where it is noted that for Ka, NONMEM estimates a number of IIVs at zero, while SAEM never does this. The standard errors for NONMEM are larger than for SAEM in all cases, but it is difficult to say which one is correct: for population parameters and IIVs, the values simulated from are known, but for standard errors this is not the case.</p>
-<p>Finally, for a comparison between methods in terms of speed of calculations see Figure <a href="applications.html#fig:fig4">4.4</a>. It is clear that NONMEM is faster in virtually all cases (and SAEM with ODEs is not even reported) and these comparisons are with single-thread NONMEM. However, speeds are not so prohibitively high that use in daily practice is crippled.</p>
+<p>Finally, for a comparison between methods in terms of speed of calculations see Figure <a href="4-3-sparse-data-analysis-with-nlmixr.html#fig:fig4">3.4</a>. It is clear that NONMEM is faster in virtually all cases (and SAEM with ODEs is not even reported) and these comparisons are with single-thread NONMEM. However, speeds are not so prohibitively high that use in daily practice is crippled.</p>
 <!-- ![Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right) \label{fig:fig4}](sparse/Runtimes_Fig1.png) -->
 <div class="figure" style="text-align: center"><span id="fig:fig4"></span>
 <img src="figures/RuntimesFig1.png" alt="Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right)" width="80%" />
 <p class="caption">
-Figure 4.4: Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right)
+Figure 3.4: Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), nlmixr/NLME ODE (middle), SAEM solved (right)
 </p>
 </div>
 </div>
 </div>
-<div id="course-page-2018" class="section level2">
-<h2><span class="header-section-number">4.4</span> Course PAGE 2018</h2>
-<p><em>full course</em></p>
-
+<p style="text-align: center;">
+<a href="4-2-posters-and-presentations.html"><button class="btn btn-default">Previous</button></a>
+<a href="4-4-course-page-2018.html"><button class="btn btn-default">Next</button></a>
+</p>
 </div>
 </div>
-            </section>
 
-          </div>
-        </div>
-      </div>
-<a href="vignettes.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
-    </div>
-  </div>
-<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
-<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+
+</div>
+
 <script>
-gitbook.require(["gitbook"], function(gitbook) {
-gitbook.start({
-"sharing": null,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"download": null,
-"toc": {
-"collapse": "subsection"
-}
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
 });
-});
+
 </script>
 
 </body>
-
 </html>
