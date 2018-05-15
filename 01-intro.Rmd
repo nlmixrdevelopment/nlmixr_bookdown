@@ -9,7 +9,7 @@ The first attempt was to combine `RxODE` with the `nlme()` function in R, result
 
 Because of actual projects’ needs, a function for the Generalized Nonlinear Mixed-Effect Model (`gnlmm`) was developed. This function `gnlmm()` takes an arbitrary user-defined log-likelihood function and hence is able to fit odd types of data like binary data, count data, heavy tail data and bounded clinical endpoints via beta-regression. Structure models can be optionally defined by user-defined ODEs.
 
-These population PK/PD functions, plus a few ancillary functions to aid model building (e.g., vpc and forward selection of covariate serach), comprise the functionality of the first public release of `nlmixr` in October 2016.
+These population PK/PD functions, plus a few ancillary functions to aid model building (e.g., vpc, bootstrap and forward selection of covariate serach), comprise the functionality of the first public release of `nlmixr` in October 2016.
 
 In early 2017, a publication on First-Order Conditional Estimate with interaction (FOCEi) was brought to the attention of the `nlmixr` team.  A proof-of-concept implementation was soon put in place. A full production version then followed. This FOCEi algorithm expands NONMEM’s FOCEi implementation prior to Version 7.4.
 
