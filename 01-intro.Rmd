@@ -45,6 +45,7 @@ These packages and software are:
 
 Related custom packages used by `nlmixr` are:
 
+- [`n1qn1`](https://github.com/nlmixrdevelopment/n1qn1)
 - [`PreciseSums`](https://github.com/nlmixrdevelopment/PreciseSums)
 - [`SnakeCharmeR`](https://github.com/nlmixrdevelopment/SnakeCharmR)
 
