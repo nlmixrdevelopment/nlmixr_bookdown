@@ -1,12 +1,6 @@
 # Applications of `nlmixr` {#applications}
 
 
-
-
-## Demo Examples from GitHub
-How can you run the examples from GitHub and what can you learn form these.
-
-
 <!-- ## Posters and Presentations -->
 ## Posters and Presentations
 
@@ -14,7 +8,7 @@ How can you run the examples from GitHub and what can you learn form these.
 file.copy("posters", "docs/posters", overwrite = TRUE)
 ```
 
-Various posters were presented at different conferences where `nlmixr` was compared to `NONMEM`. These findings provideevidence that nlmixr may provide a viable open-source parameter estimation alternative for fitting nonlinear mixed effects pharmacometric models within the R environment.
+Various posters were presented at different conferences where `nlmixr` was compared to `NONMEM`. These findings provide evidence that nlmixr provides a viable open-source parameter estimation alternative for fitting nonlinear mixed effects pharmacometric models within the R environment.
 
 
 <a href="posters/PosterACoP2016.pdf" target="_blank">PosterACoP2016</a>

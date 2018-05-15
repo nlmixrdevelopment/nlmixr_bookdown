@@ -1,8 +1,6 @@
 # Installation  {#install}
 
-**Needs rewrite because of the `CRAN` and GitHub versions of `RxODE` and `nlmixr`**
-
-`nlmixr` can be used on several platforms. The installation can be easy to challenging depending on the platform. We are in the process of making sure the installation works every time. Any help or suggestions are appreciated !
+`nlmixr` can be used on several platforms. The installation can be easy to challenging depending on the platform. We are in the process of making sure the installation work every time. Any help or suggestions are appreciated !
 
 
 
@@ -16,28 +14,29 @@ For those not interested in customized installation on Windows, we **recommend**
 <!-- Windows installation -->
 
 ### Installation on Windows
-To replicate the environment that was used in Windows for `nlmixr` development, you will need administrator rights, and you should perform the following steps:
+To replicate the environment that was used in Windows for `nlmixr` development, you may need administrator rights to write to C:\\, and you should perform the following steps:
 
 1. Install R 3.4.1 (or later) from the R website.
    - For best results, we suggest you use `C:\R\R-3.4.1`, but
-     you can also use the default location (`C:\Program Files\R\R-3.4.1`) as well, if really needed.
+     you can also use the default location (`C:\Program Files\R\R-3.4.1`) as well, if really needed. If writing to C:\\ is not allowed, another option could be to install to %AppData%, which is typically in C:\Users\userName\AppData\. Most users have write access to this location. 
    - For 64-bit Windows, it is best practice to include *only* the 64-bit version. 
      If you include 32-bit files, some packages may not
      run correctly.  Additionally, both the 32- and
      64-bit binaries have to be compiled for every package. Similarly, if on 32-bit Windows, install only the 32-bit version of R (and Python, and Rtools).
+     - There could be troubles caused by using "Program Files" because paths with spaces are not always supported on all R packages and typically the "Program Files" directory is read only which has been known to cause problems with some packages being able to run.
 2. Install the appropriate version of Rtools for Windows, currently version 3.4, from [here](https://cran.r-project.org/bin/windows/Rtools/).
-   - This is an absolute requirement, since it includes C++ and related compilers not usually available under Windows.
-   - For best results, use the default location of `c:\Rtools`
+   - This is an absolute requirement, since it includes `C++` and related compilers not usually available under Windows.
+   - For best results, use the default location of `C:\Rtools`
      - `RxODE`, a required component of `nlmixr`, checks and sets up the path based on the following:
 	    a. `Rtools` is in the path (fastest and recommended option)
 		b. `Rtools` was installed with information saved to the Windows registry, and `RxODE` can 
 		   find the installation.
 		c. `Rtools` is on a hard drive installed in either `Rtools` or `RBuildTools`
      - If you are on 64-bit windows, please *do not install* the R
-       3.3.x 32-bit toolchain.  These files can interfere with some
-       packages that compile binaries, with unpredictable consequences.  Similarly, only install 32-bit
-       Rtools on 32-bit versions of Windows.
-   - Make sure the compilers have been added to the Windows `PATH` environment variable, or `RxODE` and `nlmixr` will not work (this should be done automatically during installation).
+       3.3.x 32-bit toolchain. These files can interfere with some
+       packages that compile binaries, with unpredictable consequences and it also checks to see if it was installed to a custom location by the `nlmixr` installer.  Similarly, only install 32-bit
+       Rtools on 32-bit versions of Windows. 
+   - Make sure the compilers have been added to the Windows `PATH` environment variable, or `RxODE` and `nlmixr` may not work (this should be done automatically during installation). Under Windows, this is not strictly necessary, rather `RxODE` finds the paths and sets them up if they are not in the path environment. However, it is good practice.
 3. Install a version of Python for Windows.
    - This is used for its symbolic algebra package [SymPy](http://sympy.org/).
    - A very robust Python distribution that includes [SymPy](http://sympy.org/) and
@@ -45,7 +44,7 @@ To replicate the environment that was used in Windows for `nlmixr` development, 
      pharmacometrician
      is [Anaconda](https://www.anaconda.com/download/). Although very straightforward and easy to install, it is quite a large download and contains much more than you will need to run `nlmixr`. When installing, use the Python 3.6 version. During the installation, Anaconda provides the option of adding itself to the `PATH` environment variable, but advises against it; please do this anyway (despite the red warning).
    - Another option is to use [official Python](http://python.org), although you will need to install [SymPy](http://sympy.org/) separately if you go this route, which is sometimes not straightforward under Windows 10 owing to folder permissions (see [here](https://stackoverflow.com/questions/31172719/pip-install-access-denied-on-windows) for a few workarounds). Nonetheless, see [here](http://simpy.readthedocs.io/en/latest/simpy_intro/installation.html) for instructions for installation from source or using `pip`. Note that if you approach us for support, we are going to recommend that you use [Anaconda](https://www.anaconda.com/download/).
-   - Regardless of the option you choose, please use like with like (64-bit Python for 64-bit Windows, for example).
+   - Regardless of the option you choose, please use 64-bit Python for 64-bit Windows (or 32 bit).
    - Once again, make sure Python has been added to the Windows `PATH` environment variable, or `RxODE` and `nlmixr` will not work, no matter what Anaconda might say.   
 3. Install `devtools`.
    - This package is required to install packages from Github, amongst other things.
@@ -56,14 +55,15 @@ To replicate the environment that was used in Windows for `nlmixr` development, 
      uploaded to CRAN.  `nlmixr` needs this newer version of `RxODE` to
      function correctly. To install this version, use the command:
      `install_github("nlmixrdevelopment/RxODE")`.
-   - Once installed, type `RxODE::rxWinPythonSetup()` to install the required package `SnakeCharmR`and to make sure Python and SymPy are working properly.
+   - Once installed, type `RxODE::rxWinPythonSetup()` to install the required package `SnakeCharmR` and to make sure Python and SymPy are working properly.
    - Restart your R session.
    - As a quick test, you can make sure that R and Python can
-     communicate by typing the command `library(SnakeCharmR)`.
+     communicate by typing the command `library(SnakeCharmR)`. This will will display the version of python you are using.
+  - Another test to make sure that `SymPy` is setup appropriately is to do `library(RxODE)` and `rxSymPyVersion()`. This will display the `SymPy` version.
    - To validate or test the installation of `RxODE` completely, you
-     can type the following `library(RxODE); rxTest();` and it will
+     can type the following `library(RxODE); rxTest()` and it will
      run all of the unit tests in RxODE to make sure it is running
-     correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.)
+     correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.) For a short test use `rxTest(FALSE)`.
 6. Install `nlmixr`.
    - Load `devtools` again using `library(devtools)`
    - Install `nlmixr` by running `install_github("nlmixrdevelopment/nlmixr")`
@@ -98,11 +98,12 @@ Instructions for Ubuntu-alike distributions are given here (specifically, [Ubunt
    - Install `SnakeCharmR` using `install_github("nlmixrdevelopment/SnakeCharmR")`.
    - Restart your R session.
    - As a quick test, you can make sure that R and Python can
-     communicate by typing the command `library(SnakeCharmR)`.
+     communicate by typing the command `library(SnakeCharmR)`. This will will display the version of python you are using.
+  - Another test to make sure that `SymPy` is setup appropriately is to do `library(RxODE)` and `rxSymPyVersion()`. This will display the `SymPy` version.
    - To validate or test the installation of `RxODE` completely, you
-     can type the following `library(RxODE); rxTest();` and it will
+     can type the following `library(RxODE); rxTest()` and it will
      run all of the unit tests in RxODE to make sure it is running
-     correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.)
+     correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.) For a short test use `rxTest(FALSE)`.
 6. Install `nlmixr`.
    - This can be done by `install_github("nlmixrdevelopment/nlmixr")`
  
@@ -158,11 +159,11 @@ The general logic is to first install any external software and then install the
    - Install `pip` from the macOS or RStudio terminal prompt: `sudo easy_install pip`.
    - Install `sympy` using `pip`: `sudo -H pip install sympy`.
 4. Install build tools.
-   - Install Xcode from the App Store. 
+   - Install Xcode from the App Store (see which version matches your MacOS if you do not want to upgrade to the latest OS). 
    - Read the license by entering the following at the macOS terminal:
      `sudo xcodebuild -license`
    - Scroll through it all, reading it carefully, and type `agree` at the end. (If you don't, you can't use `nlmixr` or anything else that requires compilation on macOS. Don't yell at us, yell at Apple.) 
-   - Install `gfortran`: download the appropriate macOS installer from [here](https://gcc.gnu.org/wiki/GFortranBinaries) and run it. Another option is to run the installation for the approriate macOS version from the terminal by typing: `brew cask install gfortran` to [automatically install the version of gfortran](https://twitter.com/opencpu/status/924608631110332421?s=03) on macOS needed by R from the Terminal (Mac or RStudio).
+   - Install `gfortran`: download the appropriate macOS installer from [here](https://gcc.gnu.org/wiki/GFortranBinaries) and run it. Another option is to run the installation for the approriate macOS version from the terminal by typing: `brew cask install gfortran` to [automatically install the version of gfortran](https://twitter.com/opencpu/status/924608631110332421?s=03) on macOS needed by R from the Terminal (Mac or RStudio). Another option is to use the Mac build tools, which are the [Mac equivalent of Rtools](https://cran.r-project.org/bin/macosx/tools/). With R 3.5, this includes `clang6`, which has open mp support required for threaded/parallel `RxODE` solving.
 
 Now install the R packages:
 
@@ -177,24 +178,31 @@ Now install the R packages:
      `install_github("nlmixrdevelopment/RxODE")` or use `install.packages('RxODE')`.
    - Install `SnakeCharmR` using `install_github("nlmixrdevelopment/SnakeCharmR")`.
    - Restart your R session.
-   - As a quick test, you can make sure that R and Python can
-     communicate by typing the command `library(SnakeCharmR)`.
-   - SnakeCharmR wants to install the Python package sympy and the latest macOS version does not allow this (installation of packages cannot be done system wide and has to be done on user level). To do this, open the terminal (in macOS or Rstudio) and type: `pip install simpy --user` (the user flag is important !).
+    - As a quick test, you can make sure that R and Python can
+     communicate by typing the command `library(SnakeCharmR)`. This will will display the version of python you are using.
+   - SnakeCharmR wants to install the Python package `SymPy` and the latest macOS version does not allow this (installation of packages cannot be done system wide and has to be done on user level, or install as Adminstrator which may allow to install system wide). To do this on user level, open the terminal (in macOS or Rstudio) and type: `pip install simpy --user` (the user flag is important !).
+  - Another test to make sure that `SymPy` is setup appropriately is to do `library(RxODE)` and `rxSymPyVersion()`. This will display the `SymPy` version.
    - To validate or test the installation of `RxODE` completely, you
-     can type the following `library(RxODE); rxTest();` and it will
+     can type the following `library(RxODE); rxTest()` and it will
      run all of the unit tests in RxODE to make sure it is running
-     correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.)
+     correctly on your system. (Note that the `testthat` package is required for this, and it will take a long time.) For a short test use `rxTest(FALSE)`.
 8. Install `nlmixr`.
    - This can be done by `install_github("nlmixrdevelopment/nlmixr")` or `install.packages('nlmixr')`.
 
 
 
-<!-- ShinyMixR -->
+<!-- docker installation  -->
+### Installation via `Docker`
 
-## `ShinyMixR`: project management tool for `nlmixr`
+**include the docker installation**
+
+
+<!-- shinyMixR -->
+
+## `shinyMixR`: project management tool for `nlmixr`
 A user-friendly tool was developed for `nlmixr` based on [`Shiny`](http://shiny.rstudio.com/) and [`shinydashboards`](https://cran.r-project.org/web/packages/shinydashboard/shinydashboard.pdf), which facilitates a workflow around an `nlmixr` project.
 
-This `ShinyMixR` package provides a means to build a project-centric workflow around `nlmixr` from the R command line and from a streamlined Shiny application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of `ShinyMixR` in Chapter \@ref(interface).
+This `shinyMixR` package provides a means to build a project-centric workflow around `nlmixr` from the R command line and from a streamlined Shiny application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of `ShinyMixR` in Chapter \@ref(interface).
 
 To install the package, use:
 
