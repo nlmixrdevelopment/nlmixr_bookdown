@@ -15,9 +15,9 @@
 <meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
 
 
-<meta name="author" content="Matthew Fidler, Teun Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
+<meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
 
-<meta name="date" content="2018-05-11" />
+<meta name="date" content="2018-05-16" />
 
 
 <meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
@@ -106,7 +106,7 @@ img {
 <div class="col-sm-12">
 <div id="TOC">
 <ul>
-<li><a href="index.html#welcome-to-population-modeling-with-r">Welcome to population modeling with R</a></li>
+<li><a href="index.html#welcome-to-population-modeling-in-r">Welcome to population modeling in R</a></li>
 <li class="has-sub"><a href="preface.html#preface">Preface</a><ul>
 <li><a href="about-this-book.html#about-this-book">About this book</a></li>
 <li><a href="acknowledgements.html#acknowledgements">Acknowledgements</a></li>
@@ -121,34 +121,34 @@ img {
 <li><a href="2-1-nlmixr.html#installation-on-windows"><span class="toc-section-number">2.1.2</span> Installation on Windows</a></li>
 <li><a href="2-1-nlmixr.html#installation-on-linux"><span class="toc-section-number">2.1.3</span> Installation on Linux</a></li>
 <li><a href="2-1-nlmixr.html#installation-on-macos"><span class="toc-section-number">2.1.4</span> Installation on macOS</a></li>
+<li><a href="2-1-nlmixr.html#installation-via-docker"><span class="toc-section-number">2.1.5</span> Installation via <code>Docker</code></a></li>
 </ul></li>
-<li><a href="2-2-shinymixr-project-management-tool-for-nlmixr.html#shinymixr-project-management-tool-for-nlmixr"><span class="toc-section-number">2.2</span> <code>ShinyMixR</code>: project management tool for <code>nlmixr</code></a></li>
+<li><a href="2-2-project-management-tool-shinymixr.html#project-management-tool-shinymixr"><span class="toc-section-number">2.2</span> project management tool (<code>shinyMixR</code>)</a></li>
 </ul></li>
 <li class="has-sub"><a href="3-vignettes.html#vignettes"><span class="toc-section-number">3</span> <code>nlmixr</code> vignettes</a><ul>
-<li class="has-sub"><a href="3-1-interface.html#interface"><span class="toc-section-number">3.1</span> <code>ShinyMixR</code> - project-centric interface</a><ul>
-<li><a href="3-1-interface.html#introduction"><span class="toc-section-number">3.1.1</span> Introduction</a></li>
-<li><a href="3-1-interface.html#getting-started"><span class="toc-section-number">3.1.2</span> Getting started</a></li>
-<li><a href="3-1-interface.html#overview"><span class="toc-section-number">3.1.3</span> Overview</a></li>
-<li><a href="3-1-interface.html#edit-models"><span class="toc-section-number">3.1.4</span> Edit models</a></li>
-<li><a href="3-1-interface.html#run-models"><span class="toc-section-number">3.1.5</span> Run models</a></li>
-<li><a href="3-1-interface.html#parameter-estimates"><span class="toc-section-number">3.1.6</span> Parameter estimates</a></li>
-<li><a href="3-1-interface.html#goodness-of-fit"><span class="toc-section-number">3.1.7</span> Goodness of fit</a></li>
-<li><a href="3-1-interface.html#fit-plots"><span class="toc-section-number">3.1.8</span> Fit plots</a></li>
-<li><a href="3-1-interface.html#scripts"><span class="toc-section-number">3.1.9</span> Scripts</a></li>
-<li><a href="3-1-interface.html#results"><span class="toc-section-number">3.1.10</span> Results</a></li>
-<li><a href="3-1-interface.html#interactive-session"><span class="toc-section-number">3.1.11</span> Interactive session</a></li>
+<li class="has-sub"><a href="3-1-nlmixr-domain-specific-language.html#nlmixr-domain-specific-language"><span class="toc-section-number">3.1</span> <code>nlmixr</code> domain specific language</a><ul>
+<li><a href="3-1-nlmixr-domain-specific-language.html#rationale"><span class="toc-section-number">3.1.1</span> Rationale</a></li>
 </ul></li>
-<li class="has-sub"><a href="3-2-nlmixr-modeling-mini-language.html#nlmixr-modeling-mini-language"><span class="toc-section-number">3.2</span> <code>nlmixr</code> modeling mini-language:</a><ul>
-<li><a href="3-2-nlmixr-modeling-mini-language.html#rationale"><span class="toc-section-number">3.2.1</span> Rationale</a></li>
+<li class="has-sub"><a href="3-2-interface.html#interface"><span class="toc-section-number">3.2</span> <code>shinyMixR</code></a><ul>
+<li><a href="3-2-interface.html#introduction"><span class="toc-section-number">3.2.1</span> Introduction</a></li>
+<li><a href="3-2-interface.html#getting-started"><span class="toc-section-number">3.2.2</span> Getting started</a></li>
+<li><a href="3-2-interface.html#overview"><span class="toc-section-number">3.2.3</span> Overview</a></li>
+<li><a href="3-2-interface.html#edit-models"><span class="toc-section-number">3.2.4</span> Edit models</a></li>
+<li><a href="3-2-interface.html#run-models"><span class="toc-section-number">3.2.5</span> Run models</a></li>
+<li><a href="3-2-interface.html#parameter-estimates"><span class="toc-section-number">3.2.6</span> Parameter estimates</a></li>
+<li><a href="3-2-interface.html#goodness-of-fit"><span class="toc-section-number">3.2.7</span> Goodness-of-fit</a></li>
+<li><a href="3-2-interface.html#fit-plots"><span class="toc-section-number">3.2.8</span> Fit plots</a></li>
+<li><a href="3-2-interface.html#scripts"><span class="toc-section-number">3.2.9</span> Scripts</a></li>
+<li><a href="3-2-interface.html#results"><span class="toc-section-number">3.2.10</span> Results</a></li>
+<li><a href="3-2-interface.html#interactive-session"><span class="toc-section-number">3.2.11</span> Interactive session</a></li>
 </ul></li>
 </ul></li>
 <li class="has-sub"><a href="4-applications.html#applications"><span class="toc-section-number">4</span> Applications of <code>nlmixr</code></a><ul>
-<li><a href="4-1-demo-examples-from-github.html#demo-examples-from-github"><span class="toc-section-number">4.1</span> Demo Examples from GitHub</a></li>
-<li><a href="4-2-posters-and-presentations.html#posters-and-presentations"><span class="toc-section-number">4.2</span> Posters and Presentations</a></li>
-<li class="has-sub"><a href="4-3-sparse-data-analysis-with-nlmixr.html#sparse-data-analysis-with-nlmixr"><span class="toc-section-number">4.3</span> Sparse data analysis with <code>nlmixr</code></a><ul>
-<li><a href="4-3-sparse-data-analysis-with-nlmixr.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><span class="toc-section-number">4.3.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
+<li><a href="4-1-posters-and-presentations.html#posters-and-presentations"><span class="toc-section-number">4.1</span> Posters and Presentations</a></li>
+<li class="has-sub"><a href="4-2-sparse-data-analysis-with-nlmixr.html#sparse-data-analysis-with-nlmixr"><span class="toc-section-number">4.2</span> Sparse data analysis with <code>nlmixr</code></a><ul>
+<li><a href="4-2-sparse-data-analysis-with-nlmixr.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><span class="toc-section-number">4.2.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
 </ul></li>
-<li><a href="4-4-course-page-2018.html#course-page-2018"><span class="toc-section-number">4.4</span> Course PAGE 2018</a></li>
+<li><a href="4-3-course-page-2018.html#course-page-2018"><span class="toc-section-number">4.3</span> Course PAGE 2018</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -159,11 +159,12 @@ img {
 <div class="col-sm-12">
 <div id="vignettes" class="section level1">
 <h1><span class="header-section-number">Chapter 3</span> <code>nlmixr</code> vignettes</h1>
-<p>Some <em>significant</em> applications are demonstrated in this chapter; the vignettes will be discussing the application in in more depth.</p> 
+<p>Some <em>significant</em> applications are demonstrated in this chapter; the vignettes will be discussing the application in more depth.</p>
+<!-- nlmixr vignette --> 
 </div>
 <p style="text-align: center;">
-<a href="2-2-shinymixr-project-management-tool-for-nlmixr.html"><button class="btn btn-default">Previous</button></a>
-<a href="3-1-interface.html"><button class="btn btn-default">Next</button></a>
+<a href="2-2-project-management-tool-shinymixr.html"><button class="btn btn-default">Previous</button></a>
+<a href="3-1-nlmixr-domain-specific-language.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>

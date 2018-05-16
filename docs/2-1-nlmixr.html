@@ -15,9 +15,9 @@
 <meta property="og:description" content="This is the start of setting up a user’s guide and reference manual for nlmixr" />
 
 
-<meta name="author" content="Matthew Fidler, Teun Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
+<meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang" />
 
-<meta name="date" content="2018-05-11" />
+<meta name="date" content="2018-05-16" />
 
 
 <meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
@@ -106,7 +106,7 @@ img {
 <div class="col-sm-12">
 <div id="TOC">
 <ul>
-<li><a href="index.html#welcome-to-population-modeling-with-r">Welcome to population modeling with R</a></li>
+<li><a href="index.html#welcome-to-population-modeling-in-r">Welcome to population modeling in R</a></li>
 <li class="has-sub"><a href="preface.html#preface">Preface</a><ul>
 <li><a href="about-this-book.html#about-this-book">About this book</a></li>
 <li><a href="acknowledgements.html#acknowledgements">Acknowledgements</a></li>
@@ -121,34 +121,34 @@ img {
 <li><a href="2-1-nlmixr.html#installation-on-windows"><span class="toc-section-number">2.1.2</span> Installation on Windows</a></li>
 <li><a href="2-1-nlmixr.html#installation-on-linux"><span class="toc-section-number">2.1.3</span> Installation on Linux</a></li>
 <li><a href="2-1-nlmixr.html#installation-on-macos"><span class="toc-section-number">2.1.4</span> Installation on macOS</a></li>
+<li><a href="2-1-nlmixr.html#installation-via-docker"><span class="toc-section-number">2.1.5</span> Installation via <code>Docker</code></a></li>
 </ul></li>
-<li><a href="2-2-shinymixr-project-management-tool-for-nlmixr.html#shinymixr-project-management-tool-for-nlmixr"><span class="toc-section-number">2.2</span> <code>ShinyMixR</code>: project management tool for <code>nlmixr</code></a></li>
+<li><a href="2-2-project-management-tool-shinymixr.html#project-management-tool-shinymixr"><span class="toc-section-number">2.2</span> project management tool (<code>shinyMixR</code>)</a></li>
 </ul></li>
 <li class="has-sub"><a href="3-vignettes.html#vignettes"><span class="toc-section-number">3</span> <code>nlmixr</code> vignettes</a><ul>
-<li class="has-sub"><a href="3-1-interface.html#interface"><span class="toc-section-number">3.1</span> <code>ShinyMixR</code> - project-centric interface</a><ul>
-<li><a href="3-1-interface.html#introduction"><span class="toc-section-number">3.1.1</span> Introduction</a></li>
-<li><a href="3-1-interface.html#getting-started"><span class="toc-section-number">3.1.2</span> Getting started</a></li>
-<li><a href="3-1-interface.html#overview"><span class="toc-section-number">3.1.3</span> Overview</a></li>
-<li><a href="3-1-interface.html#edit-models"><span class="toc-section-number">3.1.4</span> Edit models</a></li>
-<li><a href="3-1-interface.html#run-models"><span class="toc-section-number">3.1.5</span> Run models</a></li>
-<li><a href="3-1-interface.html#parameter-estimates"><span class="toc-section-number">3.1.6</span> Parameter estimates</a></li>
-<li><a href="3-1-interface.html#goodness-of-fit"><span class="toc-section-number">3.1.7</span> Goodness of fit</a></li>
-<li><a href="3-1-interface.html#fit-plots"><span class="toc-section-number">3.1.8</span> Fit plots</a></li>
-<li><a href="3-1-interface.html#scripts"><span class="toc-section-number">3.1.9</span> Scripts</a></li>
-<li><a href="3-1-interface.html#results"><span class="toc-section-number">3.1.10</span> Results</a></li>
-<li><a href="3-1-interface.html#interactive-session"><span class="toc-section-number">3.1.11</span> Interactive session</a></li>
+<li class="has-sub"><a href="3-1-nlmixr-domain-specific-language.html#nlmixr-domain-specific-language"><span class="toc-section-number">3.1</span> <code>nlmixr</code> domain specific language</a><ul>
+<li><a href="3-1-nlmixr-domain-specific-language.html#rationale"><span class="toc-section-number">3.1.1</span> Rationale</a></li>
 </ul></li>
-<li class="has-sub"><a href="3-2-nlmixr-modeling-mini-language.html#nlmixr-modeling-mini-language"><span class="toc-section-number">3.2</span> <code>nlmixr</code> modeling mini-language:</a><ul>
-<li><a href="3-2-nlmixr-modeling-mini-language.html#rationale"><span class="toc-section-number">3.2.1</span> Rationale</a></li>
+<li class="has-sub"><a href="3-2-interface.html#interface"><span class="toc-section-number">3.2</span> <code>shinyMixR</code></a><ul>
+<li><a href="3-2-interface.html#introduction"><span class="toc-section-number">3.2.1</span> Introduction</a></li>
+<li><a href="3-2-interface.html#getting-started"><span class="toc-section-number">3.2.2</span> Getting started</a></li>
+<li><a href="3-2-interface.html#overview"><span class="toc-section-number">3.2.3</span> Overview</a></li>
+<li><a href="3-2-interface.html#edit-models"><span class="toc-section-number">3.2.4</span> Edit models</a></li>
+<li><a href="3-2-interface.html#run-models"><span class="toc-section-number">3.2.5</span> Run models</a></li>
+<li><a href="3-2-interface.html#parameter-estimates"><span class="toc-section-number">3.2.6</span> Parameter estimates</a></li>
+<li><a href="3-2-interface.html#goodness-of-fit"><span class="toc-section-number">3.2.7</span> Goodness-of-fit</a></li>
+<li><a href="3-2-interface.html#fit-plots"><span class="toc-section-number">3.2.8</span> Fit plots</a></li>
+<li><a href="3-2-interface.html#scripts"><span class="toc-section-number">3.2.9</span> Scripts</a></li>
+<li><a href="3-2-interface.html#results"><span class="toc-section-number">3.2.10</span> Results</a></li>
+<li><a href="3-2-interface.html#interactive-session"><span class="toc-section-number">3.2.11</span> Interactive session</a></li>
 </ul></li>
 </ul></li>
 <li class="has-sub"><a href="4-applications.html#applications"><span class="toc-section-number">4</span> Applications of <code>nlmixr</code></a><ul>
-<li><a href="4-1-demo-examples-from-github.html#demo-examples-from-github"><span class="toc-section-number">4.1</span> Demo Examples from GitHub</a></li>
-<li><a href="4-2-posters-and-presentations.html#posters-and-presentations"><span class="toc-section-number">4.2</span> Posters and Presentations</a></li>
-<li class="has-sub"><a href="4-3-sparse-data-analysis-with-nlmixr.html#sparse-data-analysis-with-nlmixr"><span class="toc-section-number">4.3</span> Sparse data analysis with <code>nlmixr</code></a><ul>
-<li><a href="4-3-sparse-data-analysis-with-nlmixr.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><span class="toc-section-number">4.3.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
+<li><a href="4-1-posters-and-presentations.html#posters-and-presentations"><span class="toc-section-number">4.1</span> Posters and Presentations</a></li>
+<li class="has-sub"><a href="4-2-sparse-data-analysis-with-nlmixr.html#sparse-data-analysis-with-nlmixr"><span class="toc-section-number">4.2</span> Sparse data analysis with <code>nlmixr</code></a><ul>
+<li><a href="4-2-sparse-data-analysis-with-nlmixr.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><span class="toc-section-number">4.2.1</span> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
 </ul></li>
-<li><a href="4-4-course-page-2018.html#course-page-2018"><span class="toc-section-number">4.4</span> Course PAGE 2018</a></li>
+<li><a href="4-3-course-page-2018.html#course-page-2018"><span class="toc-section-number">4.3</span> Course PAGE 2018</a></li>
 </ul></li>
 <li><a href="references.html#references">References</a></li>
 </ul>
@@ -166,20 +166,23 @@ img {
 </div>
 <div id="installation-on-windows" class="section level3">
 <h3><span class="header-section-number">2.1.2</span> Installation on Windows</h3>
-<p>To replicate the environment that was used in Windows for <code>nlmixr</code> development, you will need administrator rights, and you should perform the following steps:</p>
+<p>To replicate the environment that was used in Windows for <code>nlmixr</code> development, you may need administrator rights to write to C:\, and you should perform the following steps:</p>
 <ol style="list-style-type: decimal">
 <li>Install R 3.4.1 (or later) from the R website.</li>
 </ol>
 <ul>
-<li>For best results, we suggest you use <code>C:\R\R-3.4.1</code>, but you can also use the default location (<code>C:\Program Files\R\R-3.4.1</code>) as well, if really needed.</li>
-<li>For 64-bit Windows, it is best practice to include <em>only</em> the 64-bit version. If you include 32-bit files, some packages may not run correctly. Additionally, both the 32- and 64-bit binaries have to be compiled for every package. Similarly, if on 32-bit Windows, install only the 32-bit version of R (and Python, and Rtools).</li>
+<li>For best results, we suggest you use <code>C:\R\R-3.4.1</code>, but you can also use the default location (<code>C:\Program Files\R\R-3.4.1</code>) as well, if really needed. If writing to C:\ is not allowed, another option could be to install to %AppData%, which is typically in C:. Most users have write access to this location.</li>
+<li>For 64-bit Windows, it is best practice to include <em>only</em> the 64-bit version. If you include 32-bit files, some packages may not run correctly. Additionally, both the 32- and 64-bit binaries have to be compiled for every package. Similarly, if on 32-bit Windows, install only the 32-bit version of R (and Python, and Rtools).
+<ul>
+<li>There could be troubles caused by using “Program Files” because paths with spaces are not always supported on all R packages and typically the “Program Files” directory is read only which has been known to cause problems with some packages being able to run.</li>
+</ul></li>
 </ul>
 <ol start="2" style="list-style-type: decimal">
 <li>Install the appropriate version of Rtools for Windows, currently version 3.4, from <a href="https://cran.r-project.org/bin/windows/Rtools/">here</a>.</li>
 </ol>
 <ul>
-<li>This is an absolute requirement, since it includes C++ and related compilers not usually available under Windows.</li>
-<li>For best results, use the default location of <code>c:\Rtools</code>
+<li>This is an absolute requirement, since it includes <code>C++</code> and related compilers not usually available under Windows.</li>
+<li>For best results, use the default location of <code>C:\Rtools</code>
 <ul>
 <li><code>RxODE</code>, a required component of <code>nlmixr</code>, checks and sets up the path based on the following:
 <ol style="list-style-type: lower-alpha">
@@ -187,9 +190,9 @@ img {
 <li><code>Rtools</code> was installed with information saved to the Windows registry, and <code>RxODE</code> can find the installation.</li>
 <li><code>Rtools</code> is on a hard drive installed in either <code>Rtools</code> or <code>RBuildTools</code></li>
 </ol></li>
-<li>If you are on 64-bit windows, please <em>do not install</em> the R 3.3.x 32-bit toolchain. These files can interfere with some packages that compile binaries, with unpredictable consequences. Similarly, only install 32-bit Rtools on 32-bit versions of Windows.</li>
+<li>If you are on 64-bit windows, please <em>do not install</em> the R 3.3.x 32-bit toolchain. These files can interfere with some packages that compile binaries, with unpredictable consequences and it also checks to see if it was installed to a custom location by the <code>nlmixr</code> installer. Similarly, only install 32-bit Rtools on 32-bit versions of Windows.</li>
 </ul></li>
-<li>Make sure the compilers have been added to the Windows <code>PATH</code> environment variable, or <code>RxODE</code> and <code>nlmixr</code> will not work (this should be done automatically during installation).</li>
+<li>Make sure the compilers have been added to the Windows <code>PATH</code> environment variable, or <code>RxODE</code> and <code>nlmixr</code> may not work (this should be done automatically during installation). Under Windows, this is not strictly necessary, rather <code>RxODE</code> finds the paths and sets them up if they are not in the path environment. However, it is good practice.</li>
 </ul>
 <ol start="3" style="list-style-type: decimal">
 <li>Install a version of Python for Windows.</li>
@@ -198,7 +201,7 @@ img {
 <li>This is used for its symbolic algebra package <a href="http://sympy.org/">SymPy</a>.</li>
 <li>A very robust Python distribution that includes <a href="http://sympy.org/">SymPy</a> and many packages that may be useful to the data scientist and/or pharmacometrician is <a href="https://www.anaconda.com/download/">Anaconda</a>. Although very straightforward and easy to install, it is quite a large download and contains much more than you will need to run <code>nlmixr</code>. When installing, use the Python 3.6 version. During the installation, Anaconda provides the option of adding itself to the <code>PATH</code> environment variable, but advises against it; please do this anyway (despite the red warning).</li>
 <li>Another option is to use <a href="http://python.org">official Python</a>, although you will need to install <a href="http://sympy.org/">SymPy</a> separately if you go this route, which is sometimes not straightforward under Windows 10 owing to folder permissions (see <a href="https://stackoverflow.com/questions/31172719/pip-install-access-denied-on-windows">here</a> for a few workarounds). Nonetheless, see <a href="http://simpy.readthedocs.io/en/latest/simpy_intro/installation.html">here</a> for instructions for installation from source or using <code>pip</code>. Note that if you approach us for support, we are going to recommend that you use <a href="https://www.anaconda.com/download/">Anaconda</a>.</li>
-<li>Regardless of the option you choose, please use like with like (64-bit Python for 64-bit Windows, for example).</li>
+<li>Regardless of the option you choose, please use 64-bit Python for 64-bit Windows (or 32 bit).</li>
 <li>Once again, make sure Python has been added to the Windows <code>PATH</code> environment variable, or <code>RxODE</code> and <code>nlmixr</code> will not work, no matter what Anaconda might say.<br />
 </li>
 </ul>
@@ -215,10 +218,11 @@ img {
 </ol>
 <ul>
 <li>Currently the new version of <code>RxODE</code> is in the process of being uploaded to CRAN. <code>nlmixr</code> needs this newer version of <code>RxODE</code> to function correctly. To install this version, use the command: <code>install_github(&quot;nlmixrdevelopment/RxODE&quot;)</code>.</li>
-<li>Once installed, type <code>RxODE::rxWinPythonSetup()</code> to install the required package <code>SnakeCharmR</code>and to make sure Python and SymPy are working properly.</li>
+<li>Once installed, type <code>RxODE::rxWinPythonSetup()</code> to install the required package <code>SnakeCharmR</code> and to make sure Python and SymPy are working properly.</li>
 <li>Restart your R session.</li>
-<li>As a quick test, you can make sure that R and Python can communicate by typing the command <code>library(SnakeCharmR)</code>.</li>
-<li>To validate or test the installation of <code>RxODE</code> completely, you can type the following <code>library(RxODE); rxTest();</code> and it will run all of the unit tests in RxODE to make sure it is running correctly on your system. (Note that the <code>testthat</code> package is required for this, and it will take a long time.)</li>
+<li>As a quick test, you can make sure that R and Python can communicate by typing the command <code>library(SnakeCharmR)</code>. This will will display the version of python you are using.</li>
+<li>Another test to make sure that <code>SymPy</code> is setup appropriately is to do <code>library(RxODE)</code> and <code>rxSymPyVersion()</code>. This will display the <code>SymPy</code> version.</li>
+<li>To validate or test the installation of <code>RxODE</code> completely, you can type the following <code>library(RxODE); rxTest()</code> and it will run all of the unit tests in RxODE to make sure it is running correctly on your system. (Note that the <code>testthat</code> package is required for this, and it will take a long time.) For a short test use <code>rxTest(FALSE)</code>.</li>
 </ul>
 <ol start="6" style="list-style-type: decimal">
 <li>Install <code>nlmixr</code>.</li>
@@ -264,8 +268,9 @@ img {
 <li>Currently the new version of <code>RxODE</code> is in the process of being uploaded to CRAN. <code>nlmixr</code> needs this newer version of <code>RxODE</code> to function correctly. To install this version, use the command: <code>install_github(&quot;nlmixrdevelopment/RxODE&quot;)</code>.</li>
 <li>Install <code>SnakeCharmR</code> using <code>install_github(&quot;nlmixrdevelopment/SnakeCharmR&quot;)</code>.</li>
 <li>Restart your R session.</li>
-<li>As a quick test, you can make sure that R and Python can communicate by typing the command <code>library(SnakeCharmR)</code>.</li>
-<li>To validate or test the installation of <code>RxODE</code> completely, you can type the following <code>library(RxODE); rxTest();</code> and it will run all of the unit tests in RxODE to make sure it is running correctly on your system. (Note that the <code>testthat</code> package is required for this, and it will take a long time.)</li>
+<li>As a quick test, you can make sure that R and Python can communicate by typing the command <code>library(SnakeCharmR)</code>. This will will display the version of python you are using.</li>
+<li>Another test to make sure that <code>SymPy</code> is setup appropriately is to do <code>library(RxODE)</code> and <code>rxSymPyVersion()</code>. This will display the <code>SymPy</code> version.</li>
+<li>To validate or test the installation of <code>RxODE</code> completely, you can type the following <code>library(RxODE); rxTest()</code> and it will run all of the unit tests in RxODE to make sure it is running correctly on your system. (Note that the <code>testthat</code> package is required for this, and it will take a long time.) For a short test use <code>rxTest(FALSE)</code>.</li>
 </ul>
 <ol start="6" style="list-style-type: decimal">
 <li>Install <code>nlmixr</code>.</li>
@@ -329,10 +334,10 @@ img {
 <li>Install build tools.</li>
 </ol>
 <ul>
-<li>Install Xcode from the App Store.</li>
+<li>Install Xcode from the App Store (see which version matches your MacOS if you do not want to upgrade to the latest OS).</li>
 <li>Read the license by entering the following at the macOS terminal: <code>sudo xcodebuild -license</code></li>
 <li>Scroll through it all, reading it carefully, and type <code>agree</code> at the end. (If you don’t, you can’t use <code>nlmixr</code> or anything else that requires compilation on macOS. Don’t yell at us, yell at Apple.)</li>
-<li>Install <code>gfortran</code>: download the appropriate macOS installer from <a href="https://gcc.gnu.org/wiki/GFortranBinaries">here</a> and run it. Another option is to run the installation for the approriate macOS version from the terminal by typing: <code>brew cask install gfortran</code> to <a href="https://twitter.com/opencpu/status/924608631110332421?s=03">automatically install the version of gfortran</a> on macOS needed by R from the Terminal (Mac or RStudio).</li>
+<li>Install <code>gfortran</code>: download the appropriate macOS installer from <a href="https://gcc.gnu.org/wiki/GFortranBinaries">here</a> and run it. Another option is to run the installation for the approriate macOS version from the terminal by typing: <code>brew cask install gfortran</code> to <a href="https://twitter.com/opencpu/status/924608631110332421?s=03">automatically install the version of gfortran</a> on macOS needed by R from the Terminal (Mac or RStudio). Another option is to use the Mac build tools, which are the <a href="https://cran.r-project.org/bin/macosx/tools/">Mac equivalent of Rtools</a>. With R 3.5, this includes <code>clang6</code>, which has open mp support required for threaded/parallel <code>RxODE</code> solving.</li>
 </ul>
 <p>Now install the R packages:</p>
 <ol start="5" style="list-style-type: decimal">
@@ -349,10 +354,13 @@ img {
 <ul>
 <li>Currently the new version of <code>RxODE</code> is in the process of being uploaded to CRAN. <code>nlmixr</code> needs this newer version of <code>RxODE</code> to function correctly. To install this version, use the command: <code>install_github(&quot;nlmixrdevelopment/RxODE&quot;)</code> or use <code>install.packages('RxODE')</code>.</li>
 <li>Install <code>SnakeCharmR</code> using <code>install_github(&quot;nlmixrdevelopment/SnakeCharmR&quot;)</code>.</li>
-<li>Restart your R session.</li>
-<li>As a quick test, you can make sure that R and Python can communicate by typing the command <code>library(SnakeCharmR)</code>.</li>
-<li>SnakeCharmR wants to install the Python package sympy and the latest macOS version does not allow this (installation of packages cannot be done system wide and has to be done on user level). To do this, open the terminal (in macOS or Rstudio) and type: <code>pip install simpy --user</code> (the user flag is important !).</li>
-<li>To validate or test the installation of <code>RxODE</code> completely, you can type the following <code>library(RxODE); rxTest();</code> and it will run all of the unit tests in RxODE to make sure it is running correctly on your system. (Note that the <code>testthat</code> package is required for this, and it will take a long time.)</li>
+<li>Restart your R session.
+<ul>
+<li>As a quick test, you can make sure that R and Python can communicate by typing the command <code>library(SnakeCharmR)</code>. This will will display the version of python you are using.</li>
+</ul></li>
+<li>SnakeCharmR wants to install the Python package <code>SymPy</code> and the latest macOS version does not allow this (installation of packages cannot be done system wide and has to be done on user level, or install as Adminstrator which may allow to install system wide). To do this on user level, open the terminal (in macOS or Rstudio) and type: <code>pip install simpy --user</code> (the user flag is important !).</li>
+<li>Another test to make sure that <code>SymPy</code> is setup appropriately is to do <code>library(RxODE)</code> and <code>rxSymPyVersion()</code>. This will display the <code>SymPy</code> version.</li>
+<li>To validate or test the installation of <code>RxODE</code> completely, you can type the following <code>library(RxODE); rxTest()</code> and it will run all of the unit tests in RxODE to make sure it is running correctly on your system. (Note that the <code>testthat</code> package is required for this, and it will take a long time.) For a short test use <code>rxTest(FALSE)</code>.</li>
 </ul>
 <ol start="8" style="list-style-type: decimal">
 <li>Install <code>nlmixr</code>.</li>
@@ -360,12 +368,41 @@ img {
 <ul>
 <li>This can be done by <code>install_github(&quot;nlmixrdevelopment/nlmixr&quot;)</code> or <code>install.packages('nlmixr')</code>.</li>
 </ul>
-<!-- ShinyMixR -->
+<!-- docker installation  -->
+</div>
+<div id="installation-via-docker" class="section level3">
+<h3><span class="header-section-number">2.1.5</span> Installation via <code>Docker</code></h3>
+<p>The first thing to do is install docker. An installer is available for all major operating systems:</p>
+<ul>
+<li>windows: <a href="https://docs.docker.com/docker-for-windows/install/" class="uri">https://docs.docker.com/docker-for-windows/install/</a></li>
+<li>mac: <a href="https://docs.docker.com/docker-for-mac/install/" class="uri">https://docs.docker.com/docker-for-mac/install/</a></li>
+<li>ubuntu: <a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" class="uri">https://docs.docker.com/install/linux/docker-ce/ubuntu/</a></li>
+</ul>
+<p>Make sure you read the prequisites, but for most modern systems it is sufficient to download and run the installer.</p>
+<ol style="list-style-type: decimal">
+<li>Runnning the container</li>
+</ol>
+<p>To run a docker container you should use a terminal window (or command prompt in windows). The first time a container is ran, it will donwload all applicable files from the repository. This can take some time depending on your internet speed. After the first time, the container will be saved localy and it the machine will start almost immediately. For the course it will be necessary to have access to your local drive, this can be done by adding an option (-v) in the docker command. In the following example the folder “Users/richard/Document” will be mounted to the docs folder in the home directory:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ex">docker</span> run -v /Users/richard/Documents/:/home/rstudio/docs -d -p 8787:8787 nlmixr/nlmixr:1.0</code></pre></div>
+<p>Once the docker container is running, you can go to a browser and go to the following url:</p>
+<p><code>localhost:8787</code></p>
+<p>This will fire up an Rstudio server version. If everything went correctly you will see a login screen for Rstudio. You can login with username and password <strong>rstudio</strong>. If a local folder was mounted you should be able to find this directly in the files pane in Rstudio.</p>
+<p><strong>Note</strong>: In certain cases the localhost is not recognized and the url should be <code>127.0.0.1:8787</code></p>
+<p><strong>Note</strong>: If you are using Docker Toolbox on Windows 7, use the Docker Machine IP instead of localhost. For example, <a href="http://192.168.99.100:8787/" class="uri">http://192.168.99.100:8787/</a>. To find the IP address, the <code>ipconfig</code> command can be used.</p>
+<p><strong>Note</strong>: In general most modern browsers will work with rstudio server. However there might be some problems when running shiny apps. Both chrome and safari were tested and should work fine.</p>
+<ol start="2" style="list-style-type: decimal">
+<li>Stop the container</li>
+</ol>
+<p>Once you are done, or you would want to start another instance of the container, you can close the browser window and from the terminal the following can be done to stop all containers:</p>
+<p><code>docker kill $(docker ps -q)</code></p>
+<p><strong>Note</strong>: In case you want to stop a specific conatainer, you can list the running containers with <code>docker container ls</code> and close the specific container ID (e.g. <code>docker container stop 1fa4ab2cf395</code>)</p>
+<p><strong>Note</strong>: In windows it might be necessary to stop the container using powershell, otherwise the container can be stopped using task manager or through the docker GUI</p>
+<!-- shinyMixR -->
 </div>
 </div>
 <p style="text-align: center;">
 <a href="2-install.html"><button class="btn btn-default">Previous</button></a>
-<a href="2-2-shinymixr-project-management-tool-for-nlmixr.html"><button class="btn btn-default">Next</button></a>
+<a href="2-2-project-management-tool-shinymixr.html"><button class="btn btn-default">Next</button></a>
 </p>
 </div>
 </div>
