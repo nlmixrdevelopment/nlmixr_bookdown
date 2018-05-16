@@ -606,7 +606,7 @@ run_shinymixr(launch.browser = TRUE)
 
 The interface will be started and a project object will be created in the global environment in which all information is kept/managed. If correct, the interface will open in the default browser and the following will be seen:
 
-```{r shiny1, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny1, fig.cap='shinyMixR interface', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen1.png")
 ```
 
@@ -620,7 +620,7 @@ The overview page can be used to see which models are present in a project, the 
 
 ### Edit models
 
-```{r shiny2, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny2, fig.cap='Editing model code', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen2.png")
 ```
 
@@ -629,7 +629,7 @@ knitr::include_graphics("figures/screen2.png")
 The edit tab can be used to edit existing models within an editor including syntax coloring (using `shinyAce`). It is also possible to create new models using various templates or to duplicate existing models.
 
 ### Run models
-```{r shiny3, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny3, fig.cap='Executing model code', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen3.png")
 ```
 
@@ -638,7 +638,7 @@ knitr::include_graphics("figures/screen3.png")
 The run tab can be used to execute models within a project. It is possible to run one or multiple models at once. Also it is possible to assess the intermediate output or progress of an `nlmixr` run.
 
 ### Parameter estimates
-```{r shiny4, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny4, fig.cap='View parameter estimates', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen4.png")
 ```
 
@@ -646,9 +646,9 @@ knitr::include_graphics("figures/screen4.png")
 
 The parameter estimates tab can be used to generate a table with parameter estimates. In case multiple models are selected the table will show the results of each run in a separate column. This page is reactive which means that in case a different model is selected, the table is directly updated. There is the possiblity to save the table to a latex/pdf or html file.
 
-### Goodness of fit
+### Goodness-of-fit
 
-```{r shiny5, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny5, fig.cap='Creating goodness-of-fit plots', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen5.png")
 ```
 <!-- <img src="screen5.png" width="300"> -->
@@ -656,7 +656,7 @@ knitr::include_graphics("figures/screen5.png")
 The goodness-of-fit tab can be used to generate a combination of 4 goodness-of-fit plots combined. By default `nlmixr.xpose` is used but direct ggplot2 can also be used by specifying this in the settings. Plots can be saved to a LaTeX/pdf or html file.
 
 ### Fit plots
-```{r shiny6, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny6, fig.cap='Creating individual fit plots', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen6.png")
 ```
 <!-- <img src="screen6.png" width="300"> -->
@@ -664,7 +664,7 @@ knitr::include_graphics("figures/screen6.png")
 The fit plots tab can be used to generate individual fit plots. The same options are present here as for the goodness-of-fit plots.
 
 ### Scripts
-```{r shiny7, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny7, fig.cap='Run user defined scripts', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen7.png")
 ```
 <!-- <img src="screen7.png" width="300"> -->
@@ -673,7 +673,7 @@ It is possible to write your own scripts that can be used to analyse model resul
 An example of how such a script will look like is included in the package.
 
 ### Results
-```{r shiny8, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
+```{r shiny8, fig.cap='View and combine modeling results', out.width='\\linewidth', fig.align='center', echo=FALSE, message=FALSE}
 knitr::include_graphics("figures/screen8.png")
 ```
 <!-- <img src="screen8.png" width="300"> -->

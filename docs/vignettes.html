@@ -25,7 +25,7 @@
 <meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang">
 
 
-<meta name="date" content="2018-05-15">
+<meta name="date" content="2018-05-16">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -133,7 +133,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="3.2.4" data-path="vignettes.html"><a href="vignettes.html#edit-models"><i class="fa fa-check"></i><b>3.2.4</b> Edit models</a></li>
 <li class="chapter" data-level="3.2.5" data-path="vignettes.html"><a href="vignettes.html#run-models"><i class="fa fa-check"></i><b>3.2.5</b> Run models</a></li>
 <li class="chapter" data-level="3.2.6" data-path="vignettes.html"><a href="vignettes.html#parameter-estimates"><i class="fa fa-check"></i><b>3.2.6</b> Parameter estimates</a></li>
-<li class="chapter" data-level="3.2.7" data-path="vignettes.html"><a href="vignettes.html#goodness-of-fit"><i class="fa fa-check"></i><b>3.2.7</b> Goodness of fit</a></li>
+<li class="chapter" data-level="3.2.7" data-path="vignettes.html"><a href="vignettes.html#goodness-of-fit"><i class="fa fa-check"></i><b>3.2.7</b> Goodness-of-fit</a></li>
 <li class="chapter" data-level="3.2.8" data-path="vignettes.html"><a href="vignettes.html#fit-plots"><i class="fa fa-check"></i><b>3.2.8</b> Fit plots</a></li>
 <li class="chapter" data-level="3.2.9" data-path="vignettes.html"><a href="vignettes.html#scripts"><i class="fa fa-check"></i><b>3.2.9</b> Scripts</a></li>
 <li class="chapter" data-level="3.2.10" data-path="vignettes.html"><a href="vignettes.html#results"><i class="fa fa-check"></i><b>3.2.10</b> Results</a></li>
@@ -574,7 +574,12 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <p>Once there is a folder structure present the interface can be started:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">run_shinymixr</span>(<span class="dt">launch.browser =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <p>The interface will be started and a project object will be created in the global environment in which all information is kept/managed. If correct, the interface will open in the default browser and the following will be seen:</p>
-<p><img src="figures/screen1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:shiny1"></span>
+<img src="figures/screen1.png" alt="shinyMixR interface" width="\linewidth" />
+<p class="caption">
+Figure 3.1: shinyMixR interface
+</p>
+</div>
 <!-- <img src="screen1.png" width="700"> -->
 <p>On the left side, there is a sidebar with various menu items. The content of the main body will open with the model overview but will change based on the selected menu item in the sidebar. The sidebar can be collapsed by clicking the three lines in the top bar, providing more room for the main body.</p>
 </div>
@@ -584,40 +589,79 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 </div>
 <div id="edit-models" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Edit models</h3>
-<p><img src="figures/screen2.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:shiny2"></span>
+<img src="figures/screen2.png" alt="Editing model code" width="\linewidth" />
+<p class="caption">
+Figure 3.2: Editing model code
+</p>
+</div>
 <!-- <img src="screen2.png" width="300"> -->
 <p>The edit tab can be used to edit existing models within an editor including syntax coloring (using <code>shinyAce</code>). It is also possible to create new models using various templates or to duplicate existing models.</p>
 </div>
 <div id="run-models" class="section level3">
 <h3><span class="header-section-number">3.2.5</span> Run models</h3>
-<p><img src="figures/screen3.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:shiny3"></span>
+<img src="figures/screen3.png" alt="Executing model code" width="\linewidth" />
+<p class="caption">
+Figure 3.3: Executing model code
+</p>
+</div>
 <!-- <img src="screen3.png" width="300"> -->
 <p>The run tab can be used to execute models within a project. It is possible to run one or multiple models at once. Also it is possible to assess the intermediate output or progress of an <code>nlmixr</code> run.</p>
 </div>
 <div id="parameter-estimates" class="section level3">
 <h3><span class="header-section-number">3.2.6</span> Parameter estimates</h3>
-<p><img src="figures/screen4.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="figure" style="text-align: center"><span id="fig:shiny4"></span>
+<img src="figures/screen4.png" alt="View parameter estimates" width="\linewidth" />
+<p class="caption">
+Figure 3.4: View parameter estimates
+</p>
+</div>
 <!-- <img src="screen4.png" width="300"> -->
 <p>The parameter estimates tab can be used to generate a table with parameter estimates. In case multiple models are selected the table will show the results of each run in a separate column. This page is reactive which means that in case a different model is selected, the table is directly updated. There is the possiblity to save the table to a latex/pdf or html file.</p>
 </div>
 <div id="goodness-of-fit" class="section level3">
-<h3><span class="header-section-number">3.2.7</span> Goodness of fit</h3>
-<p><img src="figures/screen5.png" width="80%" style="display: block; margin: auto;" /> <!-- <img src="screen5.png" width="300"> --></p>
+<h3><span class="header-section-number">3.2.7</span> Goodness-of-fit</h3>
+<div class="figure" style="text-align: center"><span id="fig:shiny5"></span>
+<img src="figures/screen5.png" alt="Creating goodness-of-fit plots" width="\linewidth" />
+<p class="caption">
+Figure 3.5: Creating goodness-of-fit plots
+</p>
+</div>
+<!-- <img src="screen5.png" width="300"> -->
 <p>The goodness-of-fit tab can be used to generate a combination of 4 goodness-of-fit plots combined. By default <code>nlmixr.xpose</code> is used but direct ggplot2 can also be used by specifying this in the settings. Plots can be saved to a LaTeX/pdf or html file.</p>
 </div>
 <div id="fit-plots" class="section level3">
 <h3><span class="header-section-number">3.2.8</span> Fit plots</h3>
-<p><img src="figures/screen6.png" width="80%" style="display: block; margin: auto;" /> <!-- <img src="screen6.png" width="300"> --></p>
+<div class="figure" style="text-align: center"><span id="fig:shiny6"></span>
+<img src="figures/screen6.png" alt="Creating individual fit plots" width="\linewidth" />
+<p class="caption">
+Figure 3.6: Creating individual fit plots
+</p>
+</div>
+<!-- <img src="screen6.png" width="300"> -->
 <p>The fit plots tab can be used to generate individual fit plots. The same options are present here as for the goodness-of-fit plots.</p>
 </div>
 <div id="scripts" class="section level3">
 <h3><span class="header-section-number">3.2.9</span> Scripts</h3>
-<p><img src="figures/screen7.png" width="80%" style="display: block; margin: auto;" /> <!-- <img src="screen7.png" width="300"> --></p>
+<div class="figure" style="text-align: center"><span id="fig:shiny7"></span>
+<img src="figures/screen7.png" alt="Run user defined scripts" width="\linewidth" />
+<p class="caption">
+Figure 3.7: Run user defined scripts
+</p>
+</div>
+<!-- <img src="screen7.png" width="300"> -->
 <p>It is possible to write your own scripts that can be used to analyse model results. This script can be used to process the result for one or multiple models at once (the interface will include the name of the selected models in the script). An example of how such a script will look like is included in the package.</p>
 </div>
 <div id="results" class="section level3">
 <h3><span class="header-section-number">3.2.10</span> Results</h3>
-<p><img src="figures/screen8.png" width="80%" style="display: block; margin: auto;" /> <!-- <img src="screen8.png" width="300"> --></p>
+<div class="figure" style="text-align: center"><span id="fig:shiny8"></span>
+<img src="figures/screen8.png" alt="View and combine modeling results" width="\linewidth" />
+<p class="caption">
+Figure 3.8: View and combine modeling results
+</p>
+</div>
+<!-- <img src="screen8.png" width="300"> -->
 <p>It is possible to view and combine the results from the models within a project within the last tab.</p>
 </div>
 <div id="interactive-session" class="section level3">
