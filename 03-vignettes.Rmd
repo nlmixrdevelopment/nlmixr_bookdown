@@ -14,7 +14,7 @@ library(nlmixr)
 
 
 
-Under the hood `nlmixr` has five main modules:  
+Under the hood, `nlmixr` has five main modules:  
 
 1. `dynmodel()` and its mcmc cousin `dynmodel.mcmc()` for nonlinear dynamic models of individual data; 
 2. `nlme_lin_cmpt()`for one to three linear compartment models of population data with first order absorption, or i.v. bolus, or i.v. infusion using the nlme algorithm; 
@@ -96,29 +96,29 @@ Under the hood `nlmixr` has five main modules:
 - Also like NONMEM, `c(est)` does not specify a lower bound, and is equivalent
    to specifying the parameter  without R's `c` function.
 - The initial estimates of the between subject variabilities are specified on the variance scale, and in analogy with
-      NONMEM, the square roots of the diagonal elements correspond to coefficients of variation when used in the exponential IIV implementation. This is true, since this is an approximation.  When displaying the %CV in the nlmixr table it uses the: sqrt(exp(v) - 1) * 100 where v=variance of Omega formula. 
+      NONMEM, the square roots of the diagonal elements correspond to coefficients of variation when used in the exponential IIV implementation. This is true, since this is an approximation.  When displaying %CV in the `nlmixr` table, it uses: `sqrt(exp(v) - 1) * 100` where `v`=variance of the Omega formula. 
 
- These parameters can be named almost any R compatible name.  Please note that:
+ These parameters can be called by almost any R-compatible name.  Please note that:
 
  - Residual error estimates should be coded as population estimates (i.e. using an
     '=' or '<-' statement, not a '~'). These are specified on a standard deviation scale.
- - Naming variables that start with "`_`" are not supported.  Note that R does not
+ - Variable names starting with "`_`" are not supported.  Note that R does not
      allow variable starting with "`_`" to be assigned without quoting them.
- - Naming variables that start with "`rx_`" or "`nlmixr_`" is not supported since
+ - Variable names starting with "`rx_`" or "`nlmixr_`" are not supported, since
    `RxODE` and `nlmixr` use these prefixes internally for certain estimation
-    routines and calculating residuals.
+    routines and for calculating residuals.
  - Variable names are case sensitive, just like they are in R. "`CL`" is not the
     same as "`Cl`".
 
 
- **Initial Estimates for between subject error distribution (NONMEM's  $OMEGA)**
+ **Initial estimates for between-subject error distributions**
 
  In mixture models, multivariate normal individual deviations from
  the population parameters are estimated (in `NONMEM` these are
  called `ETA` parameters).  Additionally, the
  variance/covariance matrix of these deviations are also estimated
- (in `NONMEM` this is the OMEGA matrix).  The initial estimates for variance are specified by the `~` operator in `nlmixr`, which 
- is typically used in R for "modeled by", and was chosen to
+ (in `NONMEM` this is the `OMEGA` matrix).  The initial estimates for variance are specified by the `~` operator in `nlmixr`, which 
+ is typically used in R to denote "modeled by", and was chosen to
  distinguish these estimates from the population and residual error
  parameters.
 
@@ -164,12 +164,12 @@ Under the hood `nlmixr` has five main modules:
  Currently the model syntax does not allow comments inside the
  lower triangular matrix.
 
-**Model Syntax for ODE based models (NONMEM's $PK, $PRED, $DES and $ERROR)**
+**Model syntax for ODE-based models**
 
 **The `ini` model block**
  Once the initialization block has been defined, you can define a
  `model` block in terms of the defined variables in the `ini` block.  You can
- also mix in `RxODE` blocks into the model.
+ also mix in `RxODE` blocks into the model. This section is analogous to NONMEM's `$PK`, `$PRED`, `$DES` and `$ERROR` blocks.
 
  The current method of defining an `nlmixr` model is to specify the
  parameters, and then possibly the `RxODE` lines:
@@ -214,9 +214,9 @@ Under the hood `nlmixr` has five main modules:
  - The differential equations, parameters and error terms are in a single
       block, instead of multiple sections.
  - State names, calculated variables cannot start with either "`rx_`" or "`nlmixr_`" since these are reserved terms for internal use in some estimation routines.
- - Errors are specified using the `~`.  Currently you can use either `add(parameter)` for additive error,  prop(parameter) for proportional error or `add(parameter1) + prop(parameter2)` for additive plus proportional error.  You can also specify `norm(parameter)` for the additive error, since it follows a normal distribution.
- - Some routines, like `saem` require  parameters in terms of `Pop.Parameter + Individual.Deviation.Parameter + Covariate*Covariate.Parameter`.
-      The order of these parameters do not matter.  This is similar to NONMEM's mu-referencing.
+ - Errors are specified using `~`.  Currently you can use either `add(parameter)` for additive error,  `prop(parameter)` for proportional error or `add(parameter1) + prop(parameter2)` for combined additive and proportional error.  You can also specify `norm(parameter)` for the additive error, since it follows a normal distribution.
+ - Some algorithms, like `saem`, require  parameters in terms of `Pop.Parameter + Individual.Deviation.Parameter + Covariate*Covariate.Parameter`.
+      The order of these parameters do not matter.  The approach is similar to NONMEM's mu-referencing.
  - The type of parameter (population parameter estimate, or individual parameter deviation) in the model is determined by the initial block;  Covariates used in the model are missing in the `ini` block.  These variables need to be present in the modeling dataset for the model to run.
 
 
@@ -257,16 +257,16 @@ Under the hood `nlmixr` has five main modules:
 
 
 - Currently the solved systems support either oral dosing, IV dosing
-      or IV infusion dosing and does not allow mixing the dosing types.
+      or IV infusion dosing, but does not allow mixing the dosing types.
 - While RxODE allows mixing of solved systems and ODEs, this has not
       been implemented in `nlmixr` yet.
-- The solved systems implemented are the one, two and three compartment
+- The solved systems implemented are the one-, two- and three-compartment
        models with or without first-order absorption.  Each of the models support a
-       lag time with a tlag parameter (Currently tlag will cause the CWRES/OBJF calculation to stop).
-- In general the linear compartment model figures out the model by the parameter names.
-       `nlmixr` currently knows about numbered volumes, Vc/Vp, Clearances in terms of both Cl and
+       lag time with a `tlag` parameter (although currently `tlag` will cause the CWRES/OBJF calculation to fail).
+- The `linCmt()` function figures out the model from the parameter names.
+       `nlmixr` currently knows about numbered volumes, Vc/Vp, clearances in terms of both CL and
        Q/CLD.  Additionally, `nlmixr` knows about elimination micro-constants (ie k12).  Mixing of
-       these parameters for these models is currently not supported.
+       parameters and microconstants for is currently not supported.
 
 
 **Checking model syntax**
@@ -323,7 +323,7 @@ Under the hood `nlmixr` has five main modules:
  doses are not supported by RxODE, and therefore not supported by
  the conversion function.
 
- As an example, you can use a simulated rich 1-compartment dataset.
+ As an example, we can use a simulated rich 1-compartment oral PK dataset.
 
 ```{r eval=FALSE}
   d <- Oral_1CPT
@@ -407,11 +407,11 @@ Under the hood `nlmixr` has five main modules:
 
  The options for `saem` are controlled by `saemControl`.
  You may wish to make sure the minimization is complete in the case
- of `saem`.  You can do that with `traceplot` which shows the
- iteration history with the divided by burn-in and EM phases.  In
- this case, the burn in seems reasonable; you may wish to increase
+ of `saem`.  You can do that with `traceplot`, which shows the
+ iteration history with burn-in and EM phases.  In
+ this case, the burn-in seems reasonable; you may wish to increase
  the number of iterations in the EM phase of the estimation.
- Overall it is probably a semi-reasonable solution.
+ Overall it is probably a semi-reasonable solution. (`xpose.nlmixr`'s `prm_vs_iteration()` can also do this.)
 
 **`nlmixr` output objects**
 
@@ -482,11 +482,10 @@ This example shows the standard printout of an `nlmixr` fit object.  The element
      - To align the comparison between methods, the FOCEi likelihood objective is calculated
            regardless of the method used and used for goodness of fit metrics.
      - This FOCEi likelihood has been compared to NONMEM's objective function and gives
-          the same values (based on the data in **Wang 2007** (**INLCUDE REF**))
-      - Note that `saem` does not calculate an objective function,
-             and the FOCEi is used as the only objective function for the fit.
+          the same values (based on the data in **Wang 2007** [-@Wang2007])
+      - Note that FOCEi is used to calculate the objective function for a `saem` fit.
       - Even though the objective functions are calculated in the same manner, caution should
-          be used when comparing fits from various estimation routines.
+          be used when comparing fits from different estimation routines.
 
 The next item is the timing of each of the steps of the fit.
 
@@ -504,9 +503,9 @@ After the timing of the fit, the parameter estimates are displayed (can be acces
 
 - Omega block (accessed by `fit.s$omega`)
 
-The table of fit data. Please note:
+A table of fit data is also supplied. Please note:
 
-- An `nlmixr` fit object is actually a data frame.  Saving it as a Rdata object and then loading it without `nlmixr` will just show the data by itself.  Don't worry; the fit information has not vanished, you can bring it back by simply loading `nlmixr`, and then accessing the data.
+- An `nlmixr` fit object is actually a data frame.  Saving it as a Rdata object and then loading it without `nlmixr` will just show the data by itself.  The additional fit information is still present, but `nlmixr` must be loaded in order to see it.
 - Special access to fit information (like the `$omega`) needs `nlmixr` to extract the information.
 
 If you use the `$` to access information, the order of precedence is:
@@ -536,9 +535,28 @@ While the printout may display the data as a `data.table` object or `tbl`
        `eta`s.  This can also be accessed in using the `random.effects`
  function.
  
+## `xpose.nlmixr` {#xpose}
+### Introduction
 
+`xpose.nlmixr` was written to provide an interface between `nlmixr` and the NONMEM-centric [`xpose`](https://github.com/UUPharmacometrics/xpose) model diagnostics package developed by Ben Guiastrennec and colleagues at Uppsala University. 
 
+### Getting started
 
+To get started, first install the package using:
+
+```{r eval=FALSE}
+devtools::install_github("nlmixrdevelopment/xpose.nlmixr")
+```
+
+### Overview 
+
+To leverage the full power of `xpose` to provide diagnostics for an `nlmixr` model, an `xpose` object must be created from the `nlmixr` fit. 
+
+```{r eval=FALSE}
+xpdb <- xpose_data_nlmixr(nlmixrfit)
+```
+
+This `xpose` object can now be used in the same way as any other - for full details, see the `xpose`website at [uupharmacometrics.github.io/xpose](https://uupharmacometrics.github.io/xpose/). 
 
 <!-- ## `shinyMixR` - project-centric interface {#interface} -->
 ## `shinyMixR` {#interface}
@@ -583,20 +601,20 @@ devtools::install_github("nlmixrdevelopment/xpose.nlmixr")
 The easiest way to get to know the package is to create the folder structure (which includes some example models):
 
 ```{r eval=FALSE}
-library(shinyMixR,quietly = TRUE)
+library(shinyMixR, quietly = TRUE)
 create_proj()
 ```
 
 By default, a folder structure is created within the current directory. The following folders are created:
 
-- analysis: in this folder all plots and tables are saved in a structured way to make them accesible to the interface
-- data: data files used by the models in R data format (.rds) or Excel format (.csv).
-- models: models, available as separate R scripts according to the `nlmixr` unified-user-interface R model functions.
-- scripts: generic analysis scipts made available in the interface
-- shinyMixR: folder used by the interface to store temporarly files and results files
+- `analysis`: in this folder all plots and tables are saved in a structured way to make them accesible to the interface
+- `data`: data files used by the models in R data format (.rds) or Excel format (.csv).
+- `models`: models, available as separate R scripts according to the `nlmixr` unified-user-interface R model functions.
+- `scripts`: generic analysis scipts made available in the interface
+- `? shinyMixR`: folder used by the interface to store temporarly files and results files
 
 The interface monitors what happens in these folders. This is important to know because new models and/or data can be copied into these folders or files can be removed. This will then be recognized within the app (after refreshing the overview).
-This way it is possible to work on data and models separately and plug it in to shinyMixR at a later stage. 
+This way it is possible to work on data and models separately and plug them in to `shinyMixR` at a later stage. 
 
 Once there is a folder structure present the interface can be started:
 

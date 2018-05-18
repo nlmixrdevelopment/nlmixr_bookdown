@@ -1,6 +1,6 @@
 # Installation  {#install}
 
-`nlmixr` can be used on several platforms. The installation can be easy to challenging depending on the platform. We are in the process of making sure the installation work every time. Any help or suggestions are appreciated !
+`nlmixr` can be installed and used on several platforms. Installation can range from easy to challenging, depending on the platform. We are in the process of streamlining this process, and any help or suggestions are greatly appreciated!
 
 
 
@@ -8,24 +8,26 @@
 
 ## `nlmixr`
 ### Windows installer
+
 For those not interested in customized installation on Windows, we **recommend** you download a Windows installer for your platform from the following [link](https://github.com/nlmixrdevelopment/nlmixr/releases/tag/v0.9.0-2)
 
 
 <!-- Windows installation -->
 
 ### Installation on Windows
-To replicate the environment that was used in Windows for `nlmixr` development, you may need administrator rights to write to C:\\, and you should perform the following steps:
 
-1. Install R 3.4.1 (or later) from the R website.
-   - For best results, we suggest you use `C:\R\R-3.4.1`, but
-     you can also use the default location (`C:\Program Files\R\R-3.4.1`) as well, if really needed. If writing to C:\\ is not allowed, another option could be to install to %AppData%, which is typically in C:\Users\userName\AppData\. Most users have write access to this location. 
-   - For 64-bit Windows, it is best practice to include *only* the 64-bit version. 
+To replicate the environment for `nlmixr` development on Windows, you may need administrator rights. The following steps should be performed:
+
+1. Install R 3.4.1 (or later - we recommend 3.5.0, and will assume this in the rest of these instructions) from the R website.
+   - For best results, we suggest you use `C:\R\R-3.5.0`, but
+     you can also use the default location (`C:\Program Files\R\R-3.5.0`) as well, if really needed. If writing to C:\\ is not allowed, another option could be to install to `%AppData%`, which is typically in `C:\Users\userName\AppData\`. Most users have write access to this location. 
+   - When installing on 64-bit Windows, it is best practice to include *only* the 64-bit version. 
      If you include 32-bit files, some packages may not
      run correctly.  Additionally, both the 32- and
-     64-bit binaries have to be compiled for every package. Similarly, if on 32-bit Windows, install only the 32-bit version of R (and Python, and Rtools).
-     - There could be troubles caused by using "Program Files" because paths with spaces are not always supported on all R packages and typically the "Program Files" directory is read only which has been known to cause problems with some packages being able to run.
+     64-bit binaries have to be compiled for every package. Similarly, if running on 32-bit Windows, install only the 32-bit version of R (and Python, and Rtools).
+     - Using "Program Files" may lead to difficulties because paths with spaces are not always supported by all R packages and typically the "Program Files" directory is read-only, which has also been known to cause problems. We do not recommend this.
 2. Install the appropriate version of Rtools for Windows, currently version 3.4, from [here](https://cran.r-project.org/bin/windows/Rtools/).
-   - This is an absolute requirement, since it includes `C++` and related compilers not usually available under Windows.
+   - This is an absolute requirement, since it includes `C++` and related compilers not usually available under Windows. Further, alternative toolsets installed from other sources may not work correctly.
    - For best results, use the default location of `C:\Rtools`
      - `RxODE`, a required component of `nlmixr`, checks and sets up the path based on the following:
 	    a. `Rtools` is in the path (fastest and recommended option)
@@ -34,7 +36,7 @@ To replicate the environment that was used in Windows for `nlmixr` development, 
 		c. `Rtools` is on a hard drive installed in either `Rtools` or `RBuildTools`
      - If you are on 64-bit windows, please *do not install* the R
        3.3.x 32-bit toolchain. These files can interfere with some
-       packages that compile binaries, with unpredictable consequences and it also checks to see if it was installed to a custom location by the `nlmixr` installer.  Similarly, only install 32-bit
+       packages that compile binaries, with unpredictable consequences.  Similarly, only install 32-bit
        Rtools on 32-bit versions of Windows. 
    - Make sure the compilers have been added to the Windows `PATH` environment variable, or `RxODE` and `nlmixr` may not work (this should be done automatically during installation). Under Windows, this is not strictly necessary, rather `RxODE` finds the paths and sets them up if they are not in the path environment. However, it is good practice.
 3. Install a version of Python for Windows.
@@ -44,10 +46,10 @@ To replicate the environment that was used in Windows for `nlmixr` development, 
      pharmacometrician
      is [Anaconda](https://www.anaconda.com/download/). Although very straightforward and easy to install, it is quite a large download and contains much more than you will need to run `nlmixr`. When installing, use the Python 3.6 version. During the installation, Anaconda provides the option of adding itself to the `PATH` environment variable, but advises against it; please do this anyway (despite the red warning).
    - Another option is to use [official Python](http://python.org), although you will need to install [SymPy](http://sympy.org/) separately if you go this route, which is sometimes not straightforward under Windows 10 owing to folder permissions (see [here](https://stackoverflow.com/questions/31172719/pip-install-access-denied-on-windows) for a few workarounds). Nonetheless, see [here](http://simpy.readthedocs.io/en/latest/simpy_intro/installation.html) for instructions for installation from source or using `pip`. Note that if you approach us for support, we are going to recommend that you use [Anaconda](https://www.anaconda.com/download/).
-   - Regardless of the option you choose, please use 64-bit Python for 64-bit Windows (or 32 bit).
+   - Regardless of the option you choose, please use 64-bit Python for 64-bit Windows (or vice versa for 32-bit).
    - Once again, make sure Python has been added to the Windows `PATH` environment variable, or `RxODE` and `nlmixr` will not work, no matter what Anaconda might say.   
 3. Install `devtools`.
-   - This package is required to install packages from Github, amongst other things.
+   - This package is required to install packages from GitHub, amongst other things.
    - This can be done from a clean R session by `install.packages("devtools")`.
 4. Load `devtools` using `library(devtools)`.
 5. Install `RxODE`.
@@ -75,7 +77,7 @@ To replicate the environment that was used in Windows for `nlmixr` development, 
 ### Installation on Linux
 Instructions for Ubuntu-alike distributions are given here (specifically, [Ubuntu 16.04 Xenial Xerus](http://releases.ubuntu.com/16.04/)), but all current Linux distributions are supported, in principle.
 
-1. Install R 3.4.1 (or later) from an appropriate repository (Ubuntu Xenial shown below, based on instructions provided [here](https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-16-04-2)).
+1. Install R 3.4.1 (or later - we recommend 3.5.0) from an appropriate repository (Ubuntu Xenial shown below, based on instructions provided [here](https://www.digitalocean.com/community/tutorials/how-to-install-r-on-ubuntu-16-04-2)).
    - You will need administrator privileges (i.e. access to `sudo`). Provide your admin password when asked. 
    - Add the official CRAN repository for Ubuntu: 
      `sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9`
@@ -153,8 +155,8 @@ Instructions for macOS 10.12 Sierra are provided here. They should be broadly ex
 The general logic is to first install any external software and then install the R packages.
 
 1. Check the Python version in the terminal: python --version. On maxOS the standard version is 2.7, which is used by `nlmixr`. If there are other versions of Python available, set the $PATH to the 2.7 version and/or remove other versions of Python, if possible (this step can be a challenge).
-2. Install R 3.4.1 (or later) from the R website.
-   - Download and install `R-3.4.1.pkg` (or later) from [CRAN](http://cran.r-project.org/bin/macosx/).
+2. Install R 3.4.1 (or later - we recommend 3.5.0, and will assume this in the rest of these instructions) from the R website.
+   - Download and install the appropriate R package (e.g. `R-3.5.0.pkg`) from [CRAN](http://cran.r-project.org/bin/macosx/).
 3. Install Python dependencies.
    - Install `pip` from the macOS or RStudio terminal prompt: `sudo easy_install pip`.
    - Install `sympy` using `pip`: `sudo -H pip install sympy`.
@@ -165,10 +167,10 @@ The general logic is to first install any external software and then install the
    - Scroll through it all, reading it carefully, and type `agree` at the end. (If you don't, you can't use `nlmixr` or anything else that requires compilation on macOS. Don't yell at us, yell at Apple.) 
    - Install `gfortran`: download the appropriate macOS installer from [here](https://gcc.gnu.org/wiki/GFortranBinaries) and run it. Another option is to run the installation for the approriate macOS version from the terminal by typing: `brew cask install gfortran` to [automatically install the version of gfortran](https://twitter.com/opencpu/status/924608631110332421?s=03) on macOS needed by R from the Terminal (Mac or RStudio). Another option is to use the Mac build tools, which are the [Mac equivalent of Rtools](https://cran.r-project.org/bin/macosx/tools/). With R 3.5, this includes `clang6`, which has open mp support required for threaded/parallel `RxODE` solving.
 
-Now install the R packages:
+Now install the required R packages:
 
 5. Install `devtools` and dependencies.
-   - This package is required to install packages from Github, amongst other things.
+   - This package is required to install packages from GitHub, amongst other things.
    - Install `devtools` from a clean R session by entering `install.packages("devtools")`.
 6. In R, load `devtools` using `library(devtools)`.
 7. Install `RxODE`.
@@ -180,7 +182,7 @@ Now install the R packages:
    - Restart your R session.
     - As a quick test, you can make sure that R and Python can
      communicate by typing the command `library(SnakeCharmR)`. This will will display the version of python you are using.
-   - SnakeCharmR wants to install the Python package `SymPy` and the latest macOS version does not allow this (installation of packages cannot be done system wide and has to be done on user level, or install as Adminstrator which may allow to install system wide). To do this on user level, open the terminal (in macOS or Rstudio) and type: `pip install simpy --user` (the user flag is important !).
+   - SnakeCharmR wants to install the Python package `SymPy` and the latest macOS version does not allow this (installation of packages cannot be done system wide and has to be done on user level, or install as Adminstrator which may allow to install system wide). To do this on user level, open the terminal (in macOS or RStudio) and type: `pip install simpy --user` (the user flag is important!).
   - Another test to make sure that `SymPy` is setup appropriately is to do `library(RxODE)` and `rxSymPyVersion()`. This will display the `SymPy` version.
    - To validate or test the installation of `RxODE` completely, you
      can type the following `library(RxODE); rxTest()` and it will
@@ -192,37 +194,43 @@ Now install the R packages:
 
 
 <!-- docker installation  -->
-### Installation via `Docker`
+### Installation via Docker
 
-The first thing to do is install docker. An installer is available for all major operating systems:
+Docker is a tool designed to make it easier to create, deploy, and run applications by using so-called "containers". Containers allow complex applications to be wrapped as packages, ensuring they will run on any computer or platform regardless of any customized settings that machine might have that could differ from the machine used for writing and testing the code (a little like virtual machines, but more lightweight and portable). This is very attractive in our case, since it allows all the complexity above to be sidestepped neatly, and in principle makes the results obtained more reproducible.
 
-- windows: <https://docs.docker.com/docker-for-windows/install/>
-- mac: <https://docs.docker.com/docker-for-mac/install/>
-- ubuntu: <https://docs.docker.com/install/linux/docker-ce/ubuntu/>
+The first thing to do is install Docker. An installer is available for all major operating systems:
+
+- Windows: <https://docs.docker.com/docker-for-windows/install/>
+- macOS: <https://docs.docker.com/docker-for-mac/install/>
+- Ubuntu Linux: <https://docs.docker.com/install/linux/docker-ce/ubuntu/>
 
 Make sure you read the prequisites, but for most modern systems it is sufficient to download and run the installer.
 
 1. Runnning the container
 
-To run a docker container you should use a terminal window (or command prompt in windows). 
-The first time a container is ran, it will donwload all applicable files from the repository. This can take some time depending on your internet speed. After the first time, the container will be saved localy and it the machine will start almost immediately.
-For the course it will be necessary to have access to your local drive, this can be done by adding an option (-v) in the docker command. In the following example the folder "Users/richard/Document" will be mounted to the docs folder in the home directory:
+To run a docker container you should use a terminal window (or command prompt in Windows). 
+
+The first time a container is run, it will donwload all applicable files from the repository. This can take some time depending on your internet speed. After the first time, the container will be saved locally and the machine will start almost immediately.
+
+It is usually necessary to have access to your local drive, and this can be done by adding an option (-v) in the docker command. In the following example the folder `/Users/richard/Document` on the host computer will be mounted to the `docs` folder in the `/home/rstudio` directory of the container:
 
 ```{bash eval=FALSE}
 docker run -v /Users/richard/Documents/:/home/rstudio/docs -d -p 8787:8787 nlmixr/nlmixr:1.0
 ```
 
-Once the docker container is running, you can go to a browser and go to the following url:
+The version above applies to Linux, but it's easy to do in Windows as well, by making the appropriate adjustments in the "Shared Drives" tab of the Docker settings app (accessible by right-clicking the Docker whale icon in the Windows system tray). Note that you may need adjust your firewall settings to enable folder sharing, and that you'll probably need administrator privileges.
+
+Once the Docker container is running, you can go to a browser and go to the following URL:
 
 `localhost:8787` 
 
-This will fire up an Rstudio server version. If everything went correctly you will see a login screen for Rstudio. You can login with username and password **rstudio**. If a local folder was mounted you should be able to find this directly in the files pane in Rstudio.
+This will launch an RStudio Server instance hosted inside the container. If everything has gone correctly you will see an RStudio login screen. You can log in with username and password **rstudio**. If a local folder was mounted, you should be able to find this directly in the RStudio files pane.
 
 **Note**: In certain cases the localhost is not recognized and the url should be `127.0.0.1:8787`
 
-**Note**: If you are using Docker Toolbox on Windows 7, use the Docker Machine IP instead of localhost. For example, http://192.168.99.100:8787/. To find the IP address, the `ipconfig` command can be used.
+**Note**: If you are using Docker Toolbox on Windows 7, use the Docker Machine IP instead of localhost. For example, http://192.168.99.100:8787/. To find the right IP address, the `ipconfig` command can be used from the Command Prompt.
 
-**Note**: In general most modern browsers will work with rstudio server. However there might be some problems when running shiny apps. Both chrome and safari were tested and should work fine. 
+**Note**: In general, most modern browsers will work with RStudio Server. However, there might be some problems when running shiny apps. Both Chrome and Safari have been tested and should work correctly. 
 
 2. Stop the container
 
@@ -230,9 +238,9 @@ Once you are done, or you would want to start another instance of the container,
 
 `docker kill $(docker ps -q)`
 
-**Note**: In case you want to stop a specific conatainer, you can list the running containers with `docker container ls` and close the specific container ID (e.g. `docker container stop 1fa4ab2cf395`)
+**Note**: In case you want to stop a specific conatainer, you can list the running containers with `docker container ls` and close the specific container ID (e.g. `docker container stop 1fa4ab2cf395`).
 
-**Note**: In windows it might be necessary to stop the container using powershell, otherwise the container can be stopped using task manager or through the docker GUI
+**Note**: In Windows it might be necessary to stop the container using Powershell; otherwise, the container can be stopped using Task Manager or through the Docker GUI.
 
 
 <!-- shinyMixR -->

@@ -13,9 +13,9 @@ urlcolor: blue
 ---
 
 # Welcome to population modeling in R {-}
-The fact that you are here suggest that you have an interest to do population modeling in R ! Maybe you found this through our [nlmixr website](http://nlmixr.org/wp/). Maybe via [Twitter](https://twitter.com/nlmixr), [LinkedIn](https://www.linkedin.com/start/join?session_redirect=https%3A%2F%2Fwww.linkedin.com%2Fgroups%2F8621368&trk=login_reg_redirect), or [GitHub](https://github.com/nlmixrdevelopment/nlmixr). Either way: **welcome and join us in our journey to do population modeling with R !**
+The fact that you are here suggest that you have an interest to do population modeling in R! Maybe you found this through our [nlmixr website](http://nlmixr.org/wp/). Maybe via [Twitter](https://twitter.com/nlmixr), [LinkedIn](https://www.linkedin.com/start/join?session_redirect=https%3A%2F%2Fwww.linkedin.com%2Fgroups%2F8621368&trk=login_reg_redirect), or [GitHub](https://github.com/nlmixrdevelopment/nlmixr). Either way: **welcome, and join us in our journey towards population PKPD modeling with R!**
 
-This book is intended to get you started with [nlmixr](https://cran.r-project.org/web/packages/nlmixr/index.html), an R package for nonlinear mixed effects models in population pharmacokinetics (PK) and pharmacodynamics (PD) . You'll get information on the package itself, its installation, interesting use cases and more.
+This book is intended to get you started with [nlmixr]https://github.com/nlmixrdevelopment/nlmixr), an R package for nonlinear mixed effects models in population pharmacokinetics (PK) and pharmacodynamics (PD) . You'll get information on the package itself, its installation, interesting use cases and more.
 
 ```{r logo-fig, fig.cap='', out.width='80%', fig.asp=.75, fig.align='center', echo=FALSE}
 knitr::include_graphics("figures/logo.png")
