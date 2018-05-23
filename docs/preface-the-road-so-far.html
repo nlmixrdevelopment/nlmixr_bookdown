@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="preface-the-road-so-far.html">
-<link rel="next" href="install.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="intro.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -175,37 +175,27 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<div id="prereq" class="section level2">
-<h2><span class="header-section-number">1.1</span> Prerequisites</h2>
-<p>Several packages and pieces of software together create the <code>nlmixr</code> environment.</p>
-<p>These packages and software are:</p>
-<ul>
-<li><a href="https://cran.r-project.org/"><code>R</code></a> (including variants such as <a href="https://mran.microsoft.com/open">Microsoft R Open</a> and related GUIs, such as RGui and <a href="https://www.rstudio.com/"><code>Rstudio</code></a>)</li>
-<li><a href="https://www.python.org/"><code>Python</code></a> and <a href="http://www.sympy.org/index.html"><code>SymPy</code></a></li>
-<li><a href="https://cran.r-project.org/package=RxODE"><code>RxODE</code></a> (development release on <a href="https://github.com/nlmixrdevelopment/RxODE">GitHub</a>)</li>
-<li><a href="https://cran.r-project.org/package=nlmixr"><code>nlmixr</code></a> (development release on <a href="https://github.com/nlmixrdevelopment/nlmixr">GitHub</a>)</li>
-</ul>
-<p>Secondary R packages required by <code>nlmixr</code> are:</p>
-<ul>
-<li><a href="https://github.com/nlmixrdevelopment/n1qn1"><code>n1qn1</code></a></li>
-<li><a href="https://github.com/nlmixrdevelopment/PreciseSums"><code>PreciseSums</code></a></li>
-<li><a href="https://github.com/nlmixrdevelopment/SnakeCharmR"><code>SnakeCharmR</code></a></li>
-</ul>
-<p>Packages to support the use of <code>nlmixr</code> are:</p>
-<ul>
-<li><a href="https://richardhooijmaijers.github.io/shinyMixR/index.html"><code>shinyMixR</code></a></li>
-<li><a href="https://github.com/nlmixrdevelopment/xpose.nlmixr"><code>xpose.nlmixr</code></a></li>
-</ul>
-<p><!-- placeholder for an illustration --></p>
-<p>More information on the installation of packages and software can be found in Chapter <a href="install.html#install">2</a>.</p>
+<div id="preface-the-road-so-far" class="section level1 unnumbered">
+<h1>Preface: The Road So Far</h1>
+<p>In pharmacometrics there are several population pharmacokinetic and pharmacodynamic modeling software packages. The <code>nlmixr</code> R package was developed for fitting general dynamic models, pharmacokinetic (PK) models and pharmacokinetic-pharmacodynamic (PKPD) models in particular, with either individual data or population data. The interesting part about <code>nlmixr</code> is that it is open-source and the entire workflow of modeling can be done solely in R!</p>
+<p><code>nlmixr</code> has its roots in <code>RxODE</code>. Once <code>RxODE</code> was built it was soon recognized that by combining <code>RxODE</code> with a nonlinear mixed-effect model (NLME) estimation tool, one greatly expands an existing NLME tool to include fitting a population PK/PD model described by a set of ordinary differential equations (ODEs) and by allowing complex and arbitrary dosing history.</p>
+<p>The first attempt was to combine <code>RxODE</code> with the <code>nlme()</code> function in R, resulting in two efficient and useful functions for population PK/PD: <code>nlme_lin_cmpt()</code> and <code>nlme_ode()</code>. After the initial success of these functions, stochastic approximation expectation maximization (SAEM) was subsequently added to the <code>nlmixr</code> toolbox. While maintaining fidelity to the original SAEM algorithm, the <code>nlmixr</code> implementation of SAEM was written from scratch using <code>C++</code> with many optimizations and re-factorizations in comparison to the original implementation. The resulting SAEM code is compact and efficient. Since execution of <code>nlmixr</code>’s SAEM is in compiled <code>C++</code> mode, the speed of the implementation is relatively fast.</p>
+<p>A function for the generalized nonlinear mixed-effect model (<code>gnlmm</code>) was developed to address project needs. This function <code>gnlmm()</code> takes an arbitrary user-defined log-likelihood function and hence is able to fit odd types of data like binary data, count data, heavy tail data and bounded clinical endpoints via beta-regression. Structure models can be optionally defined by user-defined ODEs.</p>
+<p>These population PK/PD functions, plus a number of ancillary functions to aid model building (including support for VPCs, bootstraps and stepwise forward selection of covariates), comprised the functionality of the first public release of <code>nlmixr</code> in October 2016.</p>
+<p>In early 2017, a publication on the use of sensitivity equations in first-order conditional estimation with interaction (FOCEi) by <a href="https://link.springer.com/article/10.1007/s10928-015-9409-1">Almquist and colleagues</a> was brought to the attention of the <code>nlmixr</code> team, and a proof-of-concept implementation was soon put in place. A full production version will soon be completed.</p>
+<p><code>nlmixr</code>’s population PK/PD functions are highly optimized and efficient. However, due to historic reasons (e.g., <code>nlme</code>’s original user interface) and specific input-output needs, different algorithms in <code>nlmixr</code> had similar but subtly different user interfaces. To reduce the learning curve of population PK/PD modeling, the <code>nlmixr</code> team proposed and implemented a unified user-interface (UUI) across all fitting algorithms in mid-2017. The result is a minimalist, intuitive, expressive, domain-specific population PK/PD modeling language. A comprehensive collection of nlme algorithms with the UUI marked the first CRAN release of <code>nlmixr</code> in October 2017.</p>
+<p><code>nlmixr</code> remains under active, intensive development, and exciting features and functionality emerge almost on a daily basis. For instance, parallel computing has recently become available in <code>RxODE</code> via the <code>openmp</code> package. This parallel computing capability is the industry’s first among the current population PK/PD simulators to the best of our knowledge. Clinical trial simulation (CTS) was added to <code>nlmixr</code> in May 2018 and is capable of extensive and sophisticated CTS right after a population PK/PD model with <code>nlmixr</code>.</p>
+<p>We hope you enjoy <code>nlmixr</code>!</p>
+<p><em><strong>Wenping Wang</strong></em></p>
+<div id="about-this-book" class="section level2 unnumbered">
+<h2>About this book</h2>
+<p>This book provides guidance on the use of <code>nlmixr</code> and serves as a basic reference manual, although we do not cover every aspect of modeling or <code>nlmixr</code>.</p>
+<p>We assume readers have a background in pharmacometric modeling and know how to use R. Basic knowledge is required and assumed on installing other software packages, such as Python. The installation of <code>nlmixr</code> and related software and packages is described in Chapter <a href="install.html#install">2</a>.</p>
 </div>
-<div id="workflow" class="section level2">
-<h2><span class="header-section-number">1.2</span> Workflow</h2>
-<p>The ability to perform population modeling in R provides an opportunity to work via a single unified workflow for data management, data exploration, data analysis and report writing.</p>
-<p><code>nlmixr</code> can be used directly from the R command line or via the user-friendly R Shiny tool <code>shinyMixR</code>. The <code>shinyMixR</code> package provides a means to build a project-centric workflow around <code>nlmixr</code> from the R command line and from a streamlined <a href="https://shiny.rstudio.com/"><code>Shiny</code></a> application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of <code>shinyMixR</code> in Chapter <a href="vignettes.html#interface">3.3</a>.</p>
-
+<div id="acknowledgements" class="section level2 unnumbered">
+<h2>Acknowledgements</h2>
+<p>We are thankful for the time people have been willing to spend on this project. There have been various interactions and contributions on GitHub, which we really appreciate. We would like to especially thank James Cavenaugh, Ron Keizer and Jack Miller.</p>
+<!-- First chapter -->
 </div>
 </div>
             </section>
@@ -213,8 +203,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="preface-the-road-so-far.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="install.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
