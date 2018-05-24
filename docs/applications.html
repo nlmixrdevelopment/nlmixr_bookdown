@@ -25,7 +25,11 @@
 <meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang">
 
 
+<<<<<<< HEAD
 <meta name="date" content="2018-05-24">
+=======
+<meta name="date" content="2018-05-23">
+>>>>>>> 67a4bb4e25d4ee5f11fb9a7368ba4e06e8c6e8f2
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -150,8 +154,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#posters-and-presentations"><i class="fa fa-check"></i><b>4.1</b> Posters and Presentations</a></li>
 <li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#sparse-data-analysis-with-nlmixr"><i class="fa fa-check"></i><b>4.2</b> Sparse data analysis with <code>nlmixr</code></a><ul>
 <li class="chapter" data-level="4.2.1" data-path="applications.html"><a href="applications.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><i class="fa fa-check"></i><b>4.2.1</b> Examination of <code>nlmixr</code> estimation algorithm properties for sparse sample data</a></li>
+<<<<<<< HEAD
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.3</b> Course: PAGE 2018</a></li>
+=======
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.3</b> Course: PAGE 2018</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="applications.html"><a href="applications.html#examplomycin-a-simple-pk-model-with-covariates"><i class="fa fa-check"></i><b>4.3.1</b> Examplomycin: a simple PK model with covariates</a></li>
+</ul></li>
+>>>>>>> 67a4bb4e25d4ee5f11fb9a7368ba4e06e8c6e8f2
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -652,6 +663,7 @@ Figure 4.4: Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), 
 </div>
 <div id="course-page-2018" class="section level2">
 <h2><span class="header-section-number">4.3</span> Course: PAGE 2018</h2>
+<<<<<<< HEAD
 <p>The <code>nlmixr</code> team will present a one-day course at PAGE 2018, in Montreux, Switzerland. We shall post the examples used in the course shortly after the end of the meeting - stay tuned.</p>
 <!-- ### Examplomycin: a simple PK model with covariates -->
 <!-- First, we load required libraries... -->
@@ -834,7 +846,219 @@ Figure 4.4: Comparison of runtimes vs NONMEM FOCE I: nlmixr/NLME solved (left), 
 <!-- ```{r 2cptwtsex-vpc, fig.cap='VPC for base model with weight on CL and sex on V2, n=400', out.width='80%', fig.align='center', echo=FALSE, eval=TRUE} -->
 <!-- knitr::include_graphics("figures/examplomycin_vpc.png") -->
 <!-- ``` -->
+=======
+<p>The <code>nlmixr</code> team will present a one-day course at PAGE 2018, in Montreux, Switzerland. Here we show some of the more interesting examples to be covered in the hands-on session.</p>
+<div id="examplomycin-a-simple-pk-model-with-covariates" class="section level3">
+<h3><span class="header-section-number">4.3.1</span> Examplomycin: a simple PK model with covariates</h3>
+<p>First, we load required libraries…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(gridExtra)
+<span class="kw">library</span>(RxODE)
+<span class="kw">library</span>(MASS)
+<span class="kw">library</span>(data.table)
+<span class="kw">library</span>(ggplot2)
+<span class="kw">library</span>(nlmixr)
+<span class="kw">library</span>(xpose)
+<span class="kw">library</span>(xpose.nlmixr)
+<span class="kw">library</span>(shinyMixR)
+<span class="kw">library</span>(vpc)</code></pre></div>
+<p>We simulate some PK data for our imaginary compound using <code>RxODE</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mod &lt;-<span class="st"> </span><span class="kw">RxODE</span>({
+  k10 =<span class="st"> </span>CL<span class="op">/</span>V2
+  k12 =<span class="st"> </span>Q<span class="op">/</span>V2
+  k21 =<span class="st"> </span>Q<span class="op">/</span>V3
+  d<span class="op">/</span><span class="kw">dt</span>(depot) =<span class="op">-</span>KA<span class="op">*</span>depot;
+  d<span class="op">/</span><span class="kw">dt</span>(centr) =<span class="st"> </span>KA<span class="op">*</span>depot <span class="op">-</span><span class="st"> </span>k10<span class="op">*</span>centr <span class="op">-</span><span class="st"> </span>k12<span class="op">*</span>centr <span class="op">+</span><span class="st"> </span>k21<span class="op">*</span>peri;
+  d<span class="op">/</span><span class="kw">dt</span>(peri)  =<span class="st">                        </span>k12<span class="op">*</span>centr <span class="op">-</span><span class="st"> </span>k21<span class="op">*</span>peri;
+  C2 =<span class="st"> </span>centr<span class="op">/</span>V2;
+  C3 =<span class="st"> </span>peri<span class="op">/</span>V3;
+  cp =<span class="st"> </span>C2 <span class="co">#*(1+cp.err)</span>
+})
 
+theta &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dt">TKA=</span><span class="fl">1.05</span>, <span class="dt">TCL=</span><span class="fl">0.121</span>, <span class="dt">TV2=</span><span class="fl">1.939</span>,
+           <span class="dt">TQ=</span><span class="fl">0.282</span>, <span class="dt">TV3=</span><span class="fl">5.65</span>)
+
+omegaCor &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,    <span class="fl">0.5</span>, <span class="fl">0.25</span>, <span class="fl">0.1</span>,  <span class="dv">0</span>,
+                     <span class="fl">0.5</span>,  <span class="dv">1</span>,   <span class="fl">0.5</span>,  <span class="fl">0.1</span>,  <span class="dv">0</span>,
+                     <span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="dv">1</span>,    <span class="fl">0.1</span>,  <span class="dv">0</span>,
+                     <span class="fl">0.1</span>,  <span class="fl">0.1</span>, <span class="fl">0.1</span>,  <span class="dv">1</span>,    <span class="dv">0</span>,
+                     <span class="dv">0</span>,    <span class="dv">0</span>,   <span class="dv">0</span>,    <span class="dv">0</span>,    <span class="dv">1</span>), <span class="dt">dimnames=</span><span class="kw">list</span>(<span class="ot">NULL</span>,<span class="kw">c</span>(<span class="st">&quot;eta.CL&quot;</span>,<span class="st">&quot;eta.V2&quot;</span>,<span class="st">&quot;eta.V3&quot;</span>, <span class="st">&quot;eta.Q&quot;</span>, <span class="st">&quot;eta.KA&quot;</span>)), <span class="dt">nrow=</span><span class="dv">5</span>)
+
+iiv.sd &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.3</span>, <span class="fl">0.3</span>) ## SDs of model parameters
+
+iiv &lt;-<span class="st"> </span>iiv.sd <span class="op">%*%</span><span class="st"> </span><span class="kw">t</span>(iiv.sd)
+omega &lt;-<span class="st"> </span>iiv <span class="op">*</span><span class="st"> </span>omegaCor  <span class="co"># covariance matrix</span>
+
+sigma &lt;-<span class="st"> </span><span class="kw">diag</span>(<span class="dv">1</span>)<span class="op">*</span><span class="fl">0.1</span>
+<span class="kw">dimnames</span>(sigma) &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="ot">NULL</span>, <span class="kw">c</span>(<span class="st">&quot;cp.err&quot;</span>))
+
+<span class="kw">set.seed</span>(<span class="dv">740727</span>)
+
+mv &lt;-<span class="st"> </span><span class="kw">mvrnorm</span>(<span class="dv">40</span>, <span class="kw">rep</span>(<span class="dv">0</span>, <span class="kw">dim</span>(omega)[<span class="dv">1</span>]), omega) <span class="co"># Sample from covariance matrix</span>
+
+<span class="co"># Combine population parameters with IIV</span>
+params.all &lt;-
+<span class="st">  </span><span class="kw">data.table</span>(
+    <span class="st">&quot;ID&quot;</span> =<span class="st"> </span><span class="kw">seq</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>),
+    <span class="st">&quot;CL&quot;</span> =<span class="st"> </span>theta[<span class="st">&#39;TCL&#39;</span>] <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(mv[, <span class="dv">1</span>]),
+    <span class="st">&quot;V2&quot;</span> =<span class="st"> </span>theta[<span class="st">&#39;TV2&#39;</span>] <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(mv[, <span class="dv">2</span>]),
+    <span class="st">&quot;V3&quot;</span> =<span class="st"> </span>theta[<span class="st">&#39;TV3&#39;</span>] <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(mv[, <span class="dv">3</span>]),
+    <span class="st">&quot;Q&quot;</span>  =<span class="st"> </span>theta[<span class="st">&#39;TQ&#39;</span>]  <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(mv[, <span class="dv">4</span>]),
+    <span class="st">&quot;KA&quot;</span> =<span class="st"> </span>theta[<span class="st">&#39;TKA&#39;</span>] <span class="op">*</span><span class="st"> </span><span class="kw">exp</span>(mv[, <span class="dv">5</span>]),
+    <span class="st">&quot;WT&quot;</span> =<span class="st"> </span><span class="kw">round</span>(<span class="kw">rnorm</span>(<span class="dv">40</span>,<span class="dv">70</span>,<span class="dv">15</span>)),
+    <span class="st">&quot;SEX&quot;</span> =<span class="st"> </span><span class="kw">rbinom</span>(<span class="dt">n =</span> <span class="dv">40</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>, <span class="dt">size =</span><span class="dv">1</span>)
+  )
+<span class="co"># set the doses (looping through the 4 doses)</span>
+params.all[, AMT <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">1200</span>]
+
+params.all<span class="op">$</span>CL &lt;-<span class="st"> </span>params.all<span class="op">$</span>CL <span class="op">*</span><span class="st"> </span>(params.all<span class="op">$</span>WT<span class="op">/</span><span class="dv">70</span>)<span class="op">^</span><span class="fl">0.75</span>
+params.all<span class="op">$</span>V2 &lt;-<span class="st"> </span>params.all<span class="op">$</span>V2 <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">0.2</span> <span class="op">*</span><span class="st"> </span>params.all<span class="op">$</span>SEX)
+
+params.all<span class="op">$</span>lWT &lt;-<span class="st"> </span><span class="kw">log</span>(params.all<span class="op">$</span>WT<span class="op">/</span><span class="dv">70</span>)
+
+s =<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">40</span>, <span class="cf">function</span>(i) {
+  <span class="co"># selects the parameters associated with the subject to be simulated</span>
+  params &lt;-<span class="st"> </span>params.all[i]
+  <span class="co"># creates an eventTable with 7 doses every 24 hours</span>
+  ev &lt;-<span class="st"> </span><span class="kw">eventTable</span>()
+  ev<span class="op">$</span><span class="kw">add.dosing</span>(
+    <span class="dt">dose =</span> params<span class="op">$</span>AMT,
+    <span class="dt">nbr.doses =</span> <span class="dv">28</span>,
+    <span class="dt">dosing.to =</span> <span class="dv">1</span>,
+    <span class="dt">dosing.interval =</span> <span class="dv">24</span>,
+    <span class="dt">rate =</span> <span class="ot">NULL</span>,
+    <span class="dt">start.time =</span> <span class="dv">0</span>
+  )
+
+  smp &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>),<span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">3</span>),<span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>), <span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">12</span>), <span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">18</span>, <span class="fl">23.9</span>), <span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">168</span>, <span class="dv">169</span>),<span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">169</span>, <span class="dv">171</span>),<span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">171</span>, <span class="dv">180</span>),<span class="dv">3</span>),
+           <span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">1</span>, <span class="dv">188</span>, <span class="fl">191.9</span>),<span class="dv">3</span>))
+
+  ev<span class="op">$</span><span class="kw">add.sampling</span>(smp)
+
+  x &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(mod<span class="op">$</span><span class="kw">run</span>(params, ev))
+  x<span class="op">$</span>rv &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="kw">nrow</span>(x), <span class="dv">0</span>, <span class="fl">0.075</span>)
+  x<span class="op">$</span>DV &lt;-<span class="st"> </span><span class="kw">round</span>(x<span class="op">$</span>cp <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>x<span class="op">$</span>rv),<span class="dv">1</span>)
+  x<span class="op">$</span>ID &lt;-<span class="st"> </span>i
+
+  x[, <span class="kw">names</span>(params) <span class="op">:</span><span class="er">=</span><span class="st"> </span>params]
+})
+
+sim &lt;-<span class="st"> </span><span class="kw">as.data.table</span>(<span class="kw">do.call</span>(<span class="st">&quot;rbind&quot;</span>, s))
+
+<span class="kw">setnames</span>(sim, <span class="st">&quot;time&quot;</span>, <span class="st">&quot;TIME&quot;</span>)
+
+Dose &lt;-<span class="st"> </span><span class="kw">expand.grid</span>(<span class="dt">TIME =</span> <span class="kw">seq</span>(<span class="dv">0</span>, <span class="dv">7</span> <span class="op">*</span><span class="st"> </span><span class="dv">24</span>, <span class="dv">24</span>), <span class="dt">ID =</span> params.all<span class="op">$</span>ID, <span class="dt">DV=</span><span class="dv">0</span>)
+Dose &lt;-<span class="st"> </span><span class="kw">data.table</span>(<span class="kw">merge</span>(Dose, params.all, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>))
+Dose[, EVID <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">101</span>]
+
+sim[, EVID <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">0</span>]
+sim[, AMT <span class="op">:</span><span class="er">=</span><span class="st"> </span><span class="dv">0</span>]
+
+sim &lt;-<span class="st"> </span>sim[,<span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>,<span class="st">&quot;TIME&quot;</span>,<span class="st">&quot;DV&quot;</span>,<span class="st">&quot;WT&quot;</span>,<span class="st">&quot;SEX&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;EVID&quot;</span>)]
+dat &lt;-<span class="st"> </span><span class="kw">rbind</span>(sim, Dose[,<span class="kw">c</span>(<span class="st">&quot;ID&quot;</span>,<span class="st">&quot;TIME&quot;</span>,<span class="st">&quot;DV&quot;</span>,<span class="st">&quot;WT&quot;</span>,<span class="st">&quot;SEX&quot;</span>,<span class="st">&quot;AMT&quot;</span>,<span class="st">&quot;EVID&quot;</span>)])
+<span class="kw">setkey</span>(dat, ID, TIME)</code></pre></div>
+<div id="data-exploration" class="section level4">
+<h4><span class="header-section-number">4.3.1.1</span> Data exploration</h4>
+<p>Plotting the data reveals that we are probably dealing with a two-compartmental system (Figure <a href="applications.html#fig:plotdata">4.5</a>). That said, let’s run through all possibilities.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat<span class="op">$</span>Day &lt;-<span class="st"> &quot;Day 1&quot;</span>
+dat<span class="op">$</span>Day[dat<span class="op">$</span>TIME<span class="op">&gt;</span><span class="dv">167</span>] &lt;-<span class="st"> &quot;Day 8&quot;</span>
+
+<span class="kw">ggplot</span>(<span class="kw">subset</span>(<span class="kw">data.frame</span>(dat), EVID<span class="op">==</span><span class="dv">0</span>), <span class="kw">aes</span>(TIME, DV)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="dt">col=</span><span class="st">&quot;#1F4E79&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group=</span>ID), <span class="dt">col=</span><span class="st">&quot;#1F4E79&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;Time (h)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_log10</span>(<span class="st">&quot;Concentration (mg/L)&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>Day, <span class="dt">scales=</span><span class="st">&quot;free_x&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:plotdata"></span>
+<img src="figures/examplomycin_plotdata.png" alt="Simulated examplomycin data, by day" width="80%" />
+<p class="caption">
+Figure 4.5: Simulated examplomycin data, by day
+</p>
+</div>
+</div>
+<div id="model-fitting" class="section level4">
+<h4><span class="header-section-number">4.3.1.2</span> Model fitting</h4>
+<p>Working through model development in the usual way, we eventually arrive at a model which looks like this…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">model.2cpt.ode.wtcl.sexv2 &lt;-<span class="st"> </span><span class="cf">function</span>() {
+  <span class="kw">ini</span>({
+    tka &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">1.14</span>)
+    tcl &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">0.0190</span>)
+    tv2  &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">2.12</span>)
+    tv3  &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">20.4</span>)
+    tq   &lt;-<span class="st"> </span><span class="kw">log</span>(<span class="fl">0.383</span>)
+    wteff  &lt;-<span class="st"> </span><span class="fl">0.35</span>
+    sexeff &lt;-<span class="st"> </span><span class="op">-</span><span class="fl">0.2</span>
+    eta.ka <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.cl <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.v2 <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.v3 <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    eta.q <span class="op">~</span><span class="st"> </span><span class="dv">1</span>
+    prop.err &lt;-<span class="st"> </span><span class="fl">0.075</span>
+  })
+  <span class="kw">model</span>({
+    ka &lt;-<span class="st"> </span><span class="kw">exp</span>(tka <span class="op">+</span><span class="st"> </span>eta.ka)
+    cl &lt;-<span class="st"> </span><span class="kw">exp</span>(tcl <span class="op">+</span><span class="st"> </span>wteff<span class="op">*</span>lWT <span class="op">+</span><span class="st"> </span>eta.cl)
+    v2 &lt;-<span class="st"> </span><span class="kw">exp</span>(tv2 <span class="op">+</span><span class="st"> </span>sexeff<span class="op">*</span>SEX <span class="op">+</span><span class="st"> </span>eta.v2)
+    v3 &lt;-<span class="st"> </span><span class="kw">exp</span>(tv3 <span class="op">+</span><span class="st"> </span>eta.v3)
+    q  &lt;-<span class="st"> </span><span class="kw">exp</span>(tq <span class="op">+</span><span class="st"> </span>eta.q)
+    d<span class="op">/</span><span class="kw">dt</span>(depot) =<span class="st"> </span><span class="op">-</span>ka <span class="op">*</span><span class="st"> </span>depot
+    d<span class="op">/</span><span class="kw">dt</span>(center) =<span class="st"> </span>ka <span class="op">*</span><span class="st"> </span>depot <span class="op">-</span><span class="st"> </span>cl <span class="op">/</span><span class="st"> </span>v2 <span class="op">*</span><span class="st"> </span>center <span class="op">+</span><span class="st"> </span>q<span class="op">/</span>v3 <span class="op">*</span><span class="st"> </span>periph <span class="op">-</span><span class="st"> </span>q<span class="op">/</span>v2 <span class="op">*</span><span class="st"> </span>center
+    d<span class="op">/</span><span class="kw">dt</span>(periph) =<span class="st"> </span>q<span class="op">/</span>v2 <span class="op">*</span><span class="st"> </span>center <span class="op">-</span><span class="st"> </span>q<span class="op">/</span>v3 <span class="op">*</span><span class="st"> </span>periph
+    cp =<span class="st"> </span>center <span class="op">/</span><span class="st"> </span>v2
+    cp <span class="op">~</span><span class="st"> </span><span class="kw">prop</span>(prop.err)
+  })
+}
+
+fit.2cpt.ode.wtcl.sexv2.saem &lt;-<span class="st"> </span><span class="kw">nlmixr</span>(model.2cpt.ode.wtcl.sexv2, dat, <span class="dt">est=</span><span class="st">&quot;saem&quot;</span>)</code></pre></div>
+<p>Notice how covariates have been included. <code>lWT</code> is pre-processed body weight (<code>log(WT/70)</code>) and <code>SEX</code> is a binary variable equal to 0 (male) or 1 (female).</p>
+<p>We can now have a look at some diagnostics…</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">print</span>(fit.2cpt.ode.wtcl.sexv2.saem)</code></pre></div>
+<p>GOF plots (Figure <a href="applications.html#fig:2cptwtsex-xpose">4.6</a>) look OK and the VPC suggests the model does a good job of predicting the data (Figure <a href="applications.html#fig:2cptwtsex-vpc">4.7</a>).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># create xpose data object</span>
+xp.2cpt.wtcl.sexv2.ode.saem &lt;-<span class="st"> </span><span class="kw">xpose_data_nlmixr</span>(fit.2cpt.ode.wtcl.sexv2.saem, 
+                                                 <span class="dt">xp_theme =</span> <span class="kw">theme_xp_nlmixr</span>())
+
+xp1 &lt;-<span class="st"> </span><span class="kw">dv_vs_pred</span>(xp.2cpt.wtcl.sexv2.ode.saem, <span class="dt">title =</span> <span class="st">&quot;DV vs PRED&quot;</span>, 
+                  <span class="dt">subtitle =</span> <span class="ot">NULL</span>, <span class="dt">caption =</span> <span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>))
+
+xp2 &lt;-<span class="st"> </span><span class="kw">dv_vs_ipred</span>(xp.2cpt.wtcl.sexv2.ode.saem, <span class="dt">title =</span> <span class="st">&quot;DV vs IPRED&quot;</span>, 
+                   <span class="dt">subtitle =</span> <span class="ot">NULL</span>, <span class="dt">caption =</span> <span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>), <span class="dt">xlim=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1000</span>))
+
+xp3 &lt;-<span class="st"> </span><span class="kw">res_vs_idv</span>(xp.2cpt.wtcl.sexv2.ode.saem, <span class="dt">res =</span> <span class="st">&quot;CWRES&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;CWRES vs time&quot;</span>, 
+                  <span class="dt">subtitle =</span> <span class="ot">NULL</span>, <span class="dt">caption =</span> <span class="ot">NULL</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">3.5</span>,<span class="fl">3.5</span>))
+
+xp4 &lt;-<span class="st"> </span><span class="kw">res_vs_pred</span>(xp.2cpt.wtcl.sexv2.ode.saem, <span class="dt">res =</span> <span class="st">&quot;CWRES&quot;</span>, <span class="dt">title =</span> <span class="st">&quot;CWRES vs PRED&quot;</span>, 
+                   <span class="dt">subtitle =</span> <span class="ot">NULL</span>, <span class="dt">caption =</span> <span class="ot">NULL</span>)<span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">coord_cartesian</span>(<span class="dt">ylim=</span><span class="kw">c</span>(<span class="op">-</span><span class="fl">3.5</span>,<span class="fl">3.5</span>))
+
+<span class="kw">grid.arrange</span>(xp1, xp2, xp3, xp4, <span class="dt">nrow=</span><span class="dv">2</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:2cptwtsex-xpose"></span>
+<img src="figures/examplomycin_xpose.png" alt="Basic goodness-of-fit plots for base model with weight on CL and sex on V2" width="80%" />
+<p class="caption">
+Figure 4.6: Basic goodness-of-fit plots for base model with weight on CL and sex on V2
+</p>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">vpc</span>(fit.2cpt.ode.wtcl.sexv2.saem, <span class="dt">nsim=</span><span class="dv">400</span>,<span class="dt">show=</span><span class="kw">list</span>(<span class="dt">obs_dv=</span>T)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="st">&quot;Time (h)&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Examplomycin concentration&quot;</span>)</code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:2cptwtsex-vpc"></span>
+<img src="figures/examplomycin_vpc.png" alt="VPC for base model with weight on CL and sex on V2, n=400" width="80%" />
+<p class="caption">
+Figure 4.7: VPC for base model with weight on CL and sex on V2, n=400
+</p>
+</div>
+>>>>>>> 67a4bb4e25d4ee5f11fb9a7368ba4e06e8c6e8f2
+
+</div>
+</div>
 </div>
 </div>
             </section>
