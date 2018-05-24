@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>nlmixr: an R package for population PKPD modeling</title>
   <meta name="description" content="This is the start of setting up a user’s guide and reference manual for nlmixr">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
 
   <meta property="og:title" content="nlmixr: an R package for population PKPD modeling" />
   <meta property="og:type" content="book" />
@@ -25,14 +25,14 @@
 <meta name="author" content="Matthew Fidler, Teun M. Post, Richard Hooijmaijers, Rik Schoemaker, Mirjam N. Trame, Justin Wilkins, Yuan Xiong and Wenping Wang">
 
 
-<meta name="date" content="2018-05-16">
+<meta name="date" content="2018-05-24">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="preface.html">
+<link rel="prev" href="preface-the-road-so-far.html">
 <link rel="next" href="install.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -104,9 +104,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome to population modeling in R</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a><ul>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#about-this-book"><i class="fa fa-check"></i>About this book</a></li>
-<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
+<li class="chapter" data-level="" data-path="preface-the-road-so-far.html"><a href="preface-the-road-so-far.html"><i class="fa fa-check"></i>Preface: The Road So Far</a><ul>
+<li class="chapter" data-level="" data-path="preface-the-road-so-far.html"><a href="preface-the-road-so-far.html#about-this-book"><i class="fa fa-check"></i>About this book</a></li>
+<li class="chapter" data-level="" data-path="preface-the-road-so-far.html"><a href="preface-the-road-so-far.html#acknowledgements"><i class="fa fa-check"></i>Acknowledgements</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
 <li class="chapter" data-level="1.1" data-path="intro.html"><a href="intro.html#prereq"><i class="fa fa-check"></i><b>1.1</b> Prerequisites</a></li>
@@ -118,34 +118,40 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1.2" data-path="install.html"><a href="install.html#installation-on-windows"><i class="fa fa-check"></i><b>2.1.2</b> Installation on Windows</a></li>
 <li class="chapter" data-level="2.1.3" data-path="install.html"><a href="install.html#installation-on-linux"><i class="fa fa-check"></i><b>2.1.3</b> Installation on Linux</a></li>
 <li class="chapter" data-level="2.1.4" data-path="install.html"><a href="install.html#installation-on-macos"><i class="fa fa-check"></i><b>2.1.4</b> Installation on macOS</a></li>
-<li class="chapter" data-level="2.1.5" data-path="install.html"><a href="install.html#installation-via-docker"><i class="fa fa-check"></i><b>2.1.5</b> Installation via <code>Docker</code></a></li>
+<li class="chapter" data-level="2.1.5" data-path="install.html"><a href="install.html#installation-via-docker"><i class="fa fa-check"></i><b>2.1.5</b> Installation via Docker</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="install.html"><a href="install.html#project-management-tool-shinymixr"><i class="fa fa-check"></i><b>2.2</b> project management tool (<code>shinyMixR</code>)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="vignettes.html"><a href="vignettes.html"><i class="fa fa-check"></i><b>3</b> <code>nlmixr</code> vignettes</a><ul>
 <li class="chapter" data-level="3.1" data-path="vignettes.html"><a href="vignettes.html#nlmixr-domain-specific-language"><i class="fa fa-check"></i><b>3.1</b> <code>nlmixr</code> domain specific language</a><ul>
 <li class="chapter" data-level="3.1.1" data-path="vignettes.html"><a href="vignettes.html#rationale"><i class="fa fa-check"></i><b>3.1.1</b> Rationale</a></li>
+<li class="chapter" data-level="3.1.2" data-path="vignettes.html"><a href="vignettes.html#some-examples"><i class="fa fa-check"></i><b>3.1.2</b> Some examples</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="vignettes.html"><a href="vignettes.html#interface"><i class="fa fa-check"></i><b>3.2</b> <code>shinyMixR</code></a><ul>
+<li class="chapter" data-level="3.2" data-path="vignettes.html"><a href="vignettes.html#xpose"><i class="fa fa-check"></i><b>3.2</b> <code>xpose.nlmixr</code></a><ul>
 <li class="chapter" data-level="3.2.1" data-path="vignettes.html"><a href="vignettes.html#introduction"><i class="fa fa-check"></i><b>3.2.1</b> Introduction</a></li>
 <li class="chapter" data-level="3.2.2" data-path="vignettes.html"><a href="vignettes.html#getting-started"><i class="fa fa-check"></i><b>3.2.2</b> Getting started</a></li>
 <li class="chapter" data-level="3.2.3" data-path="vignettes.html"><a href="vignettes.html#overview"><i class="fa fa-check"></i><b>3.2.3</b> Overview</a></li>
-<li class="chapter" data-level="3.2.4" data-path="vignettes.html"><a href="vignettes.html#edit-models"><i class="fa fa-check"></i><b>3.2.4</b> Edit models</a></li>
-<li class="chapter" data-level="3.2.5" data-path="vignettes.html"><a href="vignettes.html#run-models"><i class="fa fa-check"></i><b>3.2.5</b> Run models</a></li>
-<li class="chapter" data-level="3.2.6" data-path="vignettes.html"><a href="vignettes.html#parameter-estimates"><i class="fa fa-check"></i><b>3.2.6</b> Parameter estimates</a></li>
-<li class="chapter" data-level="3.2.7" data-path="vignettes.html"><a href="vignettes.html#goodness-of-fit"><i class="fa fa-check"></i><b>3.2.7</b> Goodness-of-fit</a></li>
-<li class="chapter" data-level="3.2.8" data-path="vignettes.html"><a href="vignettes.html#fit-plots"><i class="fa fa-check"></i><b>3.2.8</b> Fit plots</a></li>
-<li class="chapter" data-level="3.2.9" data-path="vignettes.html"><a href="vignettes.html#scripts"><i class="fa fa-check"></i><b>3.2.9</b> Scripts</a></li>
-<li class="chapter" data-level="3.2.10" data-path="vignettes.html"><a href="vignettes.html#results"><i class="fa fa-check"></i><b>3.2.10</b> Results</a></li>
-<li class="chapter" data-level="3.2.11" data-path="vignettes.html"><a href="vignettes.html#interactive-session"><i class="fa fa-check"></i><b>3.2.11</b> Interactive session</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="vignettes.html"><a href="vignettes.html#interface"><i class="fa fa-check"></i><b>3.3</b> <code>shinyMixR</code></a><ul>
+<li class="chapter" data-level="3.3.1" data-path="vignettes.html"><a href="vignettes.html#introduction-1"><i class="fa fa-check"></i><b>3.3.1</b> Introduction</a></li>
+<li class="chapter" data-level="3.3.2" data-path="vignettes.html"><a href="vignettes.html#getting-started-1"><i class="fa fa-check"></i><b>3.3.2</b> Getting started</a></li>
+<li class="chapter" data-level="3.3.3" data-path="vignettes.html"><a href="vignettes.html#overview-1"><i class="fa fa-check"></i><b>3.3.3</b> Overview</a></li>
+<li class="chapter" data-level="3.3.4" data-path="vignettes.html"><a href="vignettes.html#edit-models"><i class="fa fa-check"></i><b>3.3.4</b> Edit models</a></li>
+<li class="chapter" data-level="3.3.5" data-path="vignettes.html"><a href="vignettes.html#run-models"><i class="fa fa-check"></i><b>3.3.5</b> Run models</a></li>
+<li class="chapter" data-level="3.3.6" data-path="vignettes.html"><a href="vignettes.html#parameter-estimates"><i class="fa fa-check"></i><b>3.3.6</b> Parameter estimates</a></li>
+<li class="chapter" data-level="3.3.7" data-path="vignettes.html"><a href="vignettes.html#goodness-of-fit"><i class="fa fa-check"></i><b>3.3.7</b> Goodness-of-fit</a></li>
+<li class="chapter" data-level="3.3.8" data-path="vignettes.html"><a href="vignettes.html#fit-plots"><i class="fa fa-check"></i><b>3.3.8</b> Fit plots</a></li>
+<li class="chapter" data-level="3.3.9" data-path="vignettes.html"><a href="vignettes.html#scripts"><i class="fa fa-check"></i><b>3.3.9</b> Scripts</a></li>
+<li class="chapter" data-level="3.3.10" data-path="vignettes.html"><a href="vignettes.html#results"><i class="fa fa-check"></i><b>3.3.10</b> Results</a></li>
+<li class="chapter" data-level="3.3.11" data-path="vignettes.html"><a href="vignettes.html#interactive-session"><i class="fa fa-check"></i><b>3.3.11</b> Interactive session</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>4</b> Applications of <code>nlmixr</code></a><ul>
 <li class="chapter" data-level="4.1" data-path="applications.html"><a href="applications.html#posters-and-presentations"><i class="fa fa-check"></i><b>4.1</b> Posters and Presentations</a></li>
 <li class="chapter" data-level="4.2" data-path="applications.html"><a href="applications.html#sparse-data-analysis-with-nlmixr"><i class="fa fa-check"></i><b>4.2</b> Sparse data analysis with <code>nlmixr</code></a><ul>
-<li class="chapter" data-level="4.2.1" data-path="applications.html"><a href="applications.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><i class="fa fa-check"></i><b>4.2.1</b> Examination of nlmixr estimation algorithm properties for sparse sample data</a></li>
+<li class="chapter" data-level="4.2.1" data-path="applications.html"><a href="applications.html#examination-of-nlmixr-estimation-algorithm-properties-for-sparse-sample-data"><i class="fa fa-check"></i><b>4.2.1</b> Examination of <code>nlmixr</code> estimation algorithm properties for sparse sample data</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.3</b> Course PAGE 2018</a></li>
+<li class="chapter" data-level="4.3" data-path="applications.html"><a href="applications.html#course-page-2018"><i class="fa fa-check"></i><b>4.3</b> Course: PAGE 2018</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -172,19 +178,19 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
 <div id="prereq" class="section level2">
 <h2><span class="header-section-number">1.1</span> Prerequisites</h2>
-<p>There are several packages and pieces of software that together create an environment that enables you to use <code>nlmixr</code>.</p>
+<p>Several packages and pieces of software together create the <code>nlmixr</code> environment.</p>
 <p>These packages and software are:</p>
 <ul>
-<li><a href="https://cran.r-project.org/"><code>R</code></a> (and related GUIs, such as RGui and <a href="https://www.rstudio.com/"><code>Rstudio</code></a>)</li>
-<li><a href="https://www.python.org/"><code>Python</code></a> - i.e., <a href="http://www.sympy.org/nl/index.html"><code>SymPy</code></a></li>
-<li><a href="https://cran.r-project.org/web/packages/RxODE/index.html"><code>RxODE</code></a></li>
-<li><a href="https://cran.r-project.org/web/packages/nlmixr/index.html"><code>nlmixr</code></a></li>
+<li><a href="https://cran.r-project.org/"><code>R</code></a> (including variants such as <a href="https://mran.microsoft.com/open">Microsoft R Open</a> and related GUIs, such as RGui and <a href="https://www.rstudio.com/"><code>Rstudio</code></a>)</li>
+<li><a href="https://www.python.org/"><code>Python</code></a> and <a href="http://www.sympy.org/index.html"><code>SymPy</code></a></li>
+<li><a href="https://cran.r-project.org/package=RxODE"><code>RxODE</code></a> (development release on <a href="https://github.com/nlmixrdevelopment/RxODE">GitHub</a>)</li>
+<li><a href="https://cran.r-project.org/package=nlmixr"><code>nlmixr</code></a> (development release on <a href="https://github.com/nlmixrdevelopment/nlmixr">GitHub</a>)</li>
 </ul>
-<p>Related custom packages used by <code>nlmixr</code> are:</p>
+<p>Secondary R packages required by <code>nlmixr</code> are:</p>
 <ul>
 <li><a href="https://github.com/nlmixrdevelopment/n1qn1"><code>n1qn1</code></a></li>
 <li><a href="https://github.com/nlmixrdevelopment/PreciseSums"><code>PreciseSums</code></a></li>
-<li><a href="https://github.com/nlmixrdevelopment/SnakeCharmR"><code>SnakeCharmeR</code></a></li>
+<li><a href="https://github.com/nlmixrdevelopment/SnakeCharmR"><code>SnakeCharmR</code></a></li>
 </ul>
 <p>Packages to support the use of <code>nlmixr</code> are:</p>
 <ul>
@@ -192,12 +198,12 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="https://github.com/nlmixrdevelopment/xpose.nlmixr"><code>xpose.nlmixr</code></a></li>
 </ul>
 <p><!-- placeholder for an illustration --></p>
-<p>More on the installation of packages and software in Chapter <a href="install.html#install">2</a>.</p>
+<p>More information on the installation of packages and software can be found in Chapter <a href="install.html#install">2</a>.</p>
 </div>
 <div id="workflow" class="section level2">
 <h2><span class="header-section-number">1.2</span> Workflow</h2>
 <p>The ability to perform population modeling in R provides an opportunity to work via a single unified workflow for data management, data exploration, data analysis and report writing.</p>
-<p><code>nlmixr</code> can be used directly from the R command line or via the user-friendly R Shiny tool <code>shinyMixR</code>. The <code>shinyMixR</code> package provides a means to build a project-centric workflow around <code>nlmixr</code> from the R command line and from a streamlined <a href="https://shiny.rstudio.com/"><code>Shiny</code></a> application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of <code>shinyMixR</code> in Chapter <a href="vignettes.html#interface">3.2</a>.</p>
+<p><code>nlmixr</code> can be used directly from the R command line or via the user-friendly R Shiny tool <code>shinyMixR</code>. The <code>shinyMixR</code> package provides a means to build a project-centric workflow around <code>nlmixr</code> from the R command line and from a streamlined <a href="https://shiny.rstudio.com/"><code>Shiny</code></a> application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of <code>shinyMixR</code> in Chapter <a href="vignettes.html#interface">3.3</a>.</p>
 
 </div>
 </div>
@@ -206,7 +212,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           </div>
         </div>
       </div>
-<a href="preface.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="preface-the-road-so-far.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="install.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
