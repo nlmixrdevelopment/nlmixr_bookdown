@@ -562,7 +562,7 @@ knitr::include_graphics("figures/RuntimesFig1.png")
 
 ## Course: PAGE 2018
 
-The `nlmixr` team will present a one-day course  at PAGE 2018, in Montreux, Switzerland. We shall post the examples used in the course shortly after the end of the meeting - stay tuned.
+The `nlmixr` team presented a one-day course at PAGE 2018, in Montreux, Switzerland. The examples used in the course are presented [here](https://github.com/nlmixrdevelopment/PAGE-2018).
 
 <!-- ### Examplomycin: a simple PK model with covariates -->
 
