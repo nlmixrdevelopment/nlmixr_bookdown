@@ -1,6 +1,6 @@
 # `nlmixr` vignettes  {#vignettes}
 
-Some _significant_ applications are demonstrated in this chapter; the vignettes will be discussing the application in more depth.
+Some basic applications are demonstrated in this chapter; the vignettes will be discussing the application in more depth. More examples will be added to the [`nlmixr` pkgdown site](https://nlmixrdevelopment.github.io/nlmixr/index.html) and [`RxODE` pkgdown site](https://nlmixrdevelopment.github.io/RxODE/index.html)
 
 
 <!-- nlmixr vignette -->
@@ -11,18 +11,6 @@ Some _significant_ applications are demonstrated in this chapter; the vignettes 
 library(nlmixr)
 ?nlmixr
 ```
-
-
-
-Under the hood, `nlmixr` has five main modules:  
-
-1. `dynmodel()` and its mcmc cousin `dynmodel.mcmc()` for nonlinear dynamic models of individual data; 
-2. `nlme_lin_cmpt()`for one to three linear compartment models of population data with first order absorption, or i.v. bolus, or i.v. infusion using the nlme algorithm; 
-3. `nlme_ode()` for general dynamic models defined by ordinary differential equations (ODEs) of population data using the nlme algorithm; 
-4. `saem_fit` for general dynamic models defined by ordinary differential equations (ODEs) of population data by the Stochastic Approximation Expectation-Maximization (SAEM) algorithm;  
-5. `gnlmm` and `gnlmm2` for generalized non-linear mixed-models (possibly defined by ordinary differential equations) of population data by the adaptive Gaussian quadrature algorithm.
-
-
 
 ### Rationale
 
@@ -877,7 +865,7 @@ wbc <- function() {
 ## `xpose.nlmixr` {#xpose}
 ### Introduction
 
-`xpose.nlmixr` was written to provide an interface between `nlmixr` and the NONMEM-centric [`xpose`](https://github.com/UUPharmacometrics/xpose) model diagnostics package developed by Ben Guiastrennec and colleagues at Uppsala University. 
+`xpose.nlmixr` was written to provide an interface between `nlmixr` and the NONMEM-centric [`xpose`](https://uupharmacometrics.github.io/xpose/) model diagnostics package developed by Ben Guiastrennec and colleagues at Uppsala University. 
 
 ### Getting started
 
@@ -895,7 +883,7 @@ To leverage the full power of `xpose` to provide diagnostics for an `nlmixr` mod
 xpdb <- xpose_data_nlmixr(nlmixrfit)
 ```
 
-This `xpose` object can now be used in the same way as any other - for full details, see the `xpose`website at [uupharmacometrics.github.io/xpose](https://uupharmacometrics.github.io/xpose/). 
+This `xpose` object can now be used in the same way as any other - for full details, see the `xpose` website at [uupharmacometrics.github.io/xpose](https://uupharmacometrics.github.io/xpose/). 
 
 <!-- ## `shinyMixR` - project-centric interface {#interface} -->
 ## `shinyMixR` {#interface}

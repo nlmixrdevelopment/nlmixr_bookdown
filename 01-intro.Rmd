@@ -22,12 +22,12 @@ We hope you enjoy `nlmixr`!
 _**Wenping Wang**_
 
 ## About this book {-}
-This book provides guidance on the use of `nlmixr` and serves as a basic reference manual, although we do not cover every aspect of modeling or `nlmixr`.
+This book provides basic guidance on the use of `nlmixr` and serves as a basic reference manual, although we do not cover every aspect of modeling or `nlmixr`. Whenever possible, this manual refers to the individual pkgdown sites and/or github sites of the separate packages.
 
 We assume readers have a background in pharmacometric modeling and know how to use R. Basic knowledge is required and assumed on installing other software packages, such as Python. The installation of `nlmixr` and related software and packages is described in Chapter \@ref(install).
 
 ## Acknowledgements {-}
-We are thankful for the time people have been willing to spend on this project. There have been various interactions and contributions on GitHub, which we really appreciate. We would like to especially thank James Cavenaugh, Ron Keizer and Jack Miller.
+We are thankful for the time people have been willing to spend on this project. There have been various interactions and contributions on GitHub, which we really appreciate. We would like to  thank James Cavenaugh, [NeutralKaon](https://github.com/NeutralKaon), [ronkeizer](https://github.com/ronkeizer), [nholford](https://github.com/nholford), [kylebaron](https://github.com/kylebaron), [DimitrisVoul](https://github.com/DimitrisVoul), [ericwongyc](https://github.com/ericwongyc), [tamas-ferenci](https://github.com/tamas-ferenci), [karthikl6](https://github.com/karthikl6), [billdenny](https://github.com/bildenny), [amaisahmad](https://github.com/amaisahmad), [bgoodri](https://github.com/bgoodri), [cfosser](https://github.com/cfosser), [rfaelens](https://github.com/rfaelens), [dryoutao](https://github.com/dryoutao), [jfstanding](https://github.com/jfstanding), [SCarter79](https://github.com/SCarter79), [MikeKSmith](https://github.com/MikeKSmith), and many more.
 
 
 
@@ -36,7 +36,7 @@ We are thankful for the time people have been willing to spend on this project. 
 ## Prerequisites {#prereq}
 Several packages and pieces of software together create the `nlmixr` environment.
 
-These packages and software are:
+In general, these packages and software are:
 
 - [`R`](https://cran.r-project.org/) (including variants such as [Microsoft R Open](https://mran.microsoft.com/open) and related GUIs, such as RGui and [`Rstudio`](https://www.rstudio.com/))
 - [`Python`](https://www.python.org/) and [`SymPy`](http://www.sympy.org/index.html)
@@ -56,7 +56,7 @@ Packages to support the use of `nlmixr` are:
 
  <!-- placeholder for an illustration -->
 
-More information on the installation of packages and software can be found in Chapter \@ref(install).
+More specific information on the installation of packages and software can be found in Chapter \@ref(install).
 
 
 ## Workflow {#workflow}
