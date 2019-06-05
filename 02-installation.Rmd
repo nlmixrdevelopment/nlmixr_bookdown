@@ -24,8 +24,4 @@ A user-friendly tool was developed for `nlmixr` based on [`Shiny`](http://shiny.
 
 This `shinyMixR` package provides a means to build a project-centric workflow around `nlmixr` from the R command line and from a streamlined Shiny application. This project tool was developed to enhance the usability and attractiveness of nlmixr, facilitating dynamic and interactive use in real-time for rapid model development. More on the use of `ShinyMixR` in Chapter \@ref(interface).
 
-To install the package, use:
-
-```{r eval=FALSE}
-devtools::install_github("richardhooijmaijers/shinyMixR")
-```
+To install the package, see the [`shinyMixR` pkgdown site](https://richardhooijmaijers.github.io/shinyMixR/index.html)
